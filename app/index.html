@@ -22,24 +22,28 @@
       <h3 class="" id="legibility">Simulation</h3>
       <div class="group" style="display: block;">
 
-        <label>Size:<br>
-        <input type="range" name="textsize" id="textsize" min="0" max="100" value="100" oninput="textsizeoutput.value = textsize.valueAsNumber + 'vw'">
-        <output for="textsize" id="textsizeoutput">100vw</output>
+        <label>Size:
+        <output for="textsize" id="textsizeoutput">10vw</output>
+        <br>
+        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 40%, rgb(179, 179, 179) 40%);" data-width="20%" type="range" name="textsize" id="textsize" min="0" step="0.01" max="25" value="10" oninput="textsizeoutput.value = textsize.valueAsNumber + 'vw'">
         </label>
 
-        <label>Distance:<br>
-        <input type="range" name="distance" id="distance" min="0" max="100" value="0" oninput="distanceoutput.value = distance.valueAsNumber">
-        <output for="distance" id="distanceoutput">0</output>
+        <label>Distance:
+        <output for="distance" id="distanceoutput">0ft</output>
+        <br>
+        <input type="range" name="distance" id="distance" min="0" step="0.01" max="200" value="0" oninput="distanceoutput.value = distance.valueAsNumber + 'ft'">
         </label>
 
-        <label>Contrast:<br>
-        <input type="range" name="contrast" id="contrast" min="0" max="10" value="10" oninput="contrastoutput.value = contrast.valueAsNumber">
-        <output for="contrast" id="contrastoutput">10</output>
+        <label>Contrast:
+        <output for="contrast" id="contrastoutput">100%</output>
+        <br>
+        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 100%, rgb(179, 179, 179) 100%);" type="range" name="contrast" id="contrast" min="0" step="0.1" max="100" value="100" oninput="contrastoutput.value = contrast.valueAsNumber + '%'">
         </label>
 
-        <label>Overglow:<br>
-        <input type="range" name="overglow" id="overglow" min="0" max="10" value="0" oninput="overglowoutput.value = overglow.valueAsNumber">
+        <label>Overglow:
         <output for="overglow" id="overglowoutput">0</output>
+        <br>
+        <input type="range" name="overglow" id="overglow" min="0" step="0.01" max="25" value="0" oninput="overglowoutput.value = overglow.valueAsNumber">
         </label>
 
         <label>Board:<br>

@@ -53,12 +53,13 @@ a:active {
   transition: none !important; }
 
 body {
-  font: normal normal 11px/1.2 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
-  text-align: center;
+  font: normal normal 11px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+  text-align: left;
   color: #222; }
 
 h1 {
   position: absolute;
+  text-align: center;
   top: 48%;
   width: 80%;
   left: 50%;
@@ -75,8 +76,8 @@ h1 {
   left: 0;
   background-color: #ededed;
   color: #000;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-  width: 19em;
+  box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.2);
+  width: 22em;
   z-index: 100; }
   #controls input[type="range"],
   #controls input[type="checkbox"],
@@ -87,17 +88,22 @@ h1 {
     cursor: text; }
 
 .group {
-  padding: 0 12px 1.09090909090909em 25px; }
+  padding: 0 16px 2em; }
+  .group > *:nth-child(1) {
+    margin-top: 8px; }
 
 h3, h2 {
   font-size: 11px;
-  font-weight: normal; }
+  font-weight: normal;
+  line-height: 1.4; }
 
 h3 {
-  background: transparent url(../images/open.png) no-repeat 13px 6px;
+  background: transparent url(../images/open.png) no-repeat 13px 8px;
   margin: 0;
-  padding: 5px 0 0.4545454545em 25px;
-  border-top: 1px solid #929292;
+  padding: 5px 0 0.4545454545em 30px;
+  border-top: 1px solid #ccc;
+  color: #444;
+  font-weight: 600;
   cursor: default; }
 
 h3.closed {
@@ -115,43 +121,34 @@ input {
   font-family: inherit;
   margin-right: 0.545454545454545em;
   margin-left: 0; }
+  input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin: 0 0 15px;
+    height: 3px;
+    background: #B3B3B3;
+    position: relative; }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border-radius: 100%;
+    background: #fff;
+    position: relative;
+    overflow: visible;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    height: 15px;
+    width: 15px; }
+  input[type="range"]:focus {
+    outline: 0; }
+  input[type='range']::-webkit-slider-thumb:active {
+    background: #eee; }
+
+output {
+  color: #999;
+  float: right; }
 
 select {
-  max-width: 100%; }
+  width: 100%; }
 
 label {
   display: block; }
-
-#output {
-  background: #cecdce;
-  color: #000;
-  position: absolute;
-  z-index: 10;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.6);
-  line-height: 1.27272727272727; }
-
-#output p {
-  float: right;
-  padding-right: 4%;
-  margin: 0.5em 0 0 0; }
-
-#output p.caveat {
-  float: left;
-  width: 17em;
-  padding-left: 1em;
-  font-family: "Lucida Sans Unicode", "Segoe UI", "Droid Sans", verdana, sans-serif;
-  font-style: italic; }
-
-#output p.caveat strong {
-  display: block;
-  font-style: normal;
-  margin-top: 0.63636363636364em;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", "Droid Sans", verdana, sans-serif;
-  font-weight: bold; }
-
-#output div {
-  margin-left: 19em;
-  padding: 0.5em 0 0.5em 4%; }

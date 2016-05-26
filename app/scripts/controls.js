@@ -3,6 +3,12 @@ function() {
 
 	var type = document.getElementsByTagName("h1")[0];
 
+	$('input[type="range"]').on('input', function () {
+            var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
+            console.log(this.min);
+            $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
+        });
+
 	// hide controls and set heading images to closed
 	$('.group, #font, #otherfont').hide();
 	$('#controls h3').addClass("closed");
@@ -15,7 +21,7 @@ function() {
 	$('#controls h3').click(
 		function() {
 			$(this).toggleClass("closed");
-			$(this).next(".group").slideToggle("fast");
+			$(this).next(".group").slideToggle(200);
 		}
 	);
 
@@ -33,21 +39,27 @@ function() {
 	//refreshFont();
 	//refreshFeatures();
 
+	var size = document.getElementById("textsize");
+	size.addEventListener("input", function () {
+		type.style.fontSize = size.value + "vw";
+	});
+
 	var distance = document.getElementById("distance");
 	distance.addEventListener("input", function () {
-		type.style.webkitTextStroke = distance.value / 10 + "px #222";
-		type.style.textShadow = "0 0 " + distance.value / 2 + "px #222";
+		type.style.webkitTextStroke = distance.value / 20 + "px #fff";
+		type.style.webkitFilter = "blur(" + distance.value / 20 + "px)";
 	});
 
 	var contrast = document.getElementById("contrast");
 	contrast.addEventListener("input", function () {
 
-		type.style.opacity =  contrast.value / 10;
+		type.style.opacity =  contrast.value / 100;
 	});
 
 	var overglow = document.getElementById("overglow");
 	overglow.addEventListener("input", function () {
-		type.style.webkitFilter = "blur(" + overglow.value + "px)";
+		type.style.webkitFilter = "blur(" + overglow.value / 3 + "px)";
+		type.style.webkitTextStroke = overglow.value / 2 + "px #222";
 	});
 })
 
