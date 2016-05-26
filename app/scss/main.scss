@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+
+/* HELPERS
+--------------------------------------------- */
+
+$browser-context: 16;
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em
+}
+
+%prevent-user-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+%tabular-numbers {
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+
+
+/* MEDIA QUERIES
+--------------------------------------------- */
+
+@mixin breakpoint($media) {
+  @if $media == highres {
+    @media (min-width: em(860)) and (-webkit-min-device-pixel-ratio: 1.25),
+           (min-width: em(860)) and (-o-min-device-pixel-ratio: 5/4),
+           (min-width: em(860)) and (min-resolution: 120dpi) { @content; }
+  }
+}
+
+
+/* COLORS
+--------------------------------------------- */
+
+$black      :   #222;
+$white      :   #fff;
+
+
+/* TYPEFACES
+--------------------------------------------- */
+
+$base       :   -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+
+
+/* STYLES
+--------------------------------------------- */
+
+@import "reset";
+@import "base";

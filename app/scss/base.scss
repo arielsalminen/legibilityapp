@@ -1,0 +1,118 @@
+body {
+  font: normal normal 11px/1.2 $base;
+  text-align: center;
+  color: $black;
+}
+
+h1 {
+  position: absolute;
+  top: 48%;
+  width: 80%;
+  left: 50%;
+  font-size: 10vw;
+  line-height: 1;
+  transform: translateY(-50%) translateX(-50%);
+  &:focus {
+    outline: 0;
+  }
+}
+
+#controls {
+  @extend %prevent-user-select;
+  cursor: default;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ededed;
+  color:#000;
+  box-shadow:1px 1px 4px rgba(0,0,0,0.4);
+  width: 19em;
+  z-index:100;
+  input[type="range"],
+  input[type="checkbox"],
+  input[type="reset"],
+  select {
+    cursor: pointer;
+  }
+  input[type="text"] {
+    cursor: text;
+  }
+}
+
+.group {
+  padding: 0 12px 1.09090909090909em 25px;
+}
+h3, h2 {
+  font-size: 11px;
+  font-weight: normal;
+}
+
+h3 {
+  background: transparent url(../images/open.png) no-repeat 13px 6px;
+  margin: 0;
+  padding: 5px 0 0.4545454545em 25px;
+  border-top: 1px solid #929292;
+  cursor: default;
+}
+
+h3.closed {
+  background-image: url(../images/closed.png);
+}
+
+h2 {
+  text-align: center;
+  background: #bebdbe url(../images/h2bg.png) repeat-x 0 top;
+  margin:0;
+  padding: 3px 0 2px 0;
+  text-shadow: 0 1px rgba(255,255,255,0.5);
+}
+input {
+  font-size:100%;
+  font-family:inherit;
+  margin-right: 0.545454545454545em;
+  margin-left: 0;
+}
+select {
+  max-width: 100%;
+}
+label {
+  display: block;
+}
+
+#output {
+  background: #cecdce;
+  color:#000;
+  position: absolute;
+  z-index:10;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-shadow:0 -1px 3px rgba(0,0,0,0.6);
+  line-height:1.27272727272727;
+}
+
+#output p {
+  float:right;
+  padding-right: 4%;
+  margin: 0.5em 0 0 0;
+}
+
+#output p.caveat {
+  float: left;
+  width: 17em;
+  padding-left: 1em;
+  font-family:"Lucida Sans Unicode", "Segoe UI", "Droid Sans", verdana, sans-serif;
+  font-style: italic;
+}
+#output p.caveat strong {
+  display: block;
+  font-style: normal;
+  margin-top: 0.63636363636364em;
+  font-family:"Lucida Grande", "Lucida Sans Unicode", "Segoe UI", "Droid Sans", verdana, sans-serif;
+  font-weight: bold;
+}
+
+#output div {
+  margin-left: 19em;
+  padding: 0.5em 0 0.5em 4%;
+}

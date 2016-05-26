@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="@viljamis">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-title" content="Legibility App">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#000">
+    <title>Legibility App</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/controls.js"></script>
+  </head>
+  <body>
+    <h1 contenteditable autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Legibility</h1>
+
+    <div id="controls">
+
+      <h2>Legibility Inspector</h2>
+
+      <h3 class="" id="legibility">Simulation</h3>
+      <div class="group" style="display: block;">
+
+        <label>Size:<br>
+        <input type="range" name="textsize" id="textsize" min="0" max="100" value="100" oninput="textsizeoutput.value = textsize.valueAsNumber + 'vw'">
+        <output for="textsize" id="textsizeoutput">100vw</output>
+        </label>
+
+        <label>Distance:<br>
+        <input type="range" name="distance" id="distance" min="0" max="100" value="0" oninput="distanceoutput.value = distance.valueAsNumber">
+        <output for="distance" id="distanceoutput">0</output>
+        </label>
+
+        <label>Contrast:<br>
+        <input type="range" name="contrast" id="contrast" min="0" max="10" value="10" oninput="contrastoutput.value = contrast.valueAsNumber">
+        <output for="contrast" id="contrastoutput">10</output>
+        </label>
+
+        <label>Overglow:<br>
+        <input type="range" name="overglow" id="overglow" min="0" max="10" value="0" oninput="overglowoutput.value = overglow.valueAsNumber">
+        <output for="overglow" id="overglowoutput">0</output>
+        </label>
+
+        <label>Board:<br>
+        <select id="typeface" name="typeface" onchange="refreshFont()">
+          <option value="">Positive (black on white)</option>
+          <option value="">Negative (white on black)</option>
+        </select>
+        </label>
+      </div>
+
+        <h3 class="closed">Font Family</h3>
+        <div class="group" style="display: none;">
+        <label>
+        <select id="typeface" name="typeface" onchange="refreshFont()">
+        <option value="">-local font-</option>
+        <option value="Baskerville 1757 Pro Regular">Baskerville 1757 Pro Regular</option><option value="FS Clerkenwell Web Regular">FS Clerkenwell Web Regular</option><option value="Premiera Book">Premiera Book</option><option value="LFT Etica Regular">LFT Etica Regular</option><option value="Magneta Medium">Magneta Medium</option><option value="Raisonne Demibold">Raisonne Demibold</option><option value="Museo Slab 500">Museo Slab 500</option><option value="Calluna Sans Regular">Calluna Sans Regular</option><option value="Redisturbed Regular">Redisturbed Regular</option><option value="Museo 500">Museo 500</option><option value="Bree Regular">Bree Regular</option><option value="Museo Sans Rounded 500">Museo Sans Rounded 500</option><option value="Museo Sans 500">Museo Sans 500</option><option value="Calluna Regular">Calluna Regular</option><option value="Aniuk Regular">Aniuk Regular</option><option value="Tanger Serif Medium Regular">Tanger Serif Medium Regular</option><option value="Apercu Pro Regular">Apercu Pro Regular</option><option value="Akagi Book">Akagi Book</option><option value="Trilogy Fatface Regular">Trilogy Fatface Regular</option><option value="Bliss Regular">Bliss Regular</option><option value="Adelle Regular">Adelle Regular</option><option value="Antwerp Regular">Antwerp Regular</option><option value="Apercu Light">Apercu Light</option><option value="Clobber Grotesk Light">Clobber Grotesk Light</option><option value="Proxima Nova Regular">Proxima Nova Regular</option></select>
+        </label>
+        <label><input type="text" id="font" name="font" style="display: none;"></label>
+        <label><input type="text" id="otherfont" name="otherfont" onkeyup="refreshOther()" placeholder="Font-family name" style="display: inline-block;"></label>
+        <label style="display:none"><input id="italic" onchange="refreshSample()" type="checkbox">Italic</label>
+        </div>
+
+        <h3 class="closed">Kerning</h3>
+        <div class="group" style="display: none;">
+        <label><input id="kern" type="checkbox">Enabled (kern)</label>
+        </div>
+
+        <h3 class="closed">Ligatures</h3>
+        <div class="group" style="display: none;">
+        <label><input id="liga" type="checkbox">Common (liga)</label>
+        <label><input id="dlig" type="checkbox">Discretionary (dlig)</label>
+        <label><input id="hlig" type="checkbox">Historical (hlig)</label>
+        <label><input id="clig" type="checkbox">Contextual (clig)</label>
+        </div>
+
+        <h3 class="closed">Letter Case</h3>
+        <div class="group" style="display: none;">
+        <label><input id="smcp" name="smcp" type="checkbox">Small Caps (smcp)</label>
+        <label><input id="c2sc" name="smcp" type="checkbox">Small Caps from Caps (c2sc)</label>
+        </div>
+
+        <h3 class="closed">Number Case</h3>
+        <div class="group" style="display: none;">
+        <label><input name="numsty" checked="checked" type="radio">Default</label>
+        <label><input id="lnum" name="numsty" type="radio">Lining (lnum)</label>
+        <label><input id="onum" name="numsty" type="radio">Old-Style (onum)</label>
+        </div>
+
+        <h3 class="closed">Number Spacing</h3>
+        <div class="group" style="display: none;">
+        <label><input name="numspc" checked="checked" type="radio">Default</label>
+        <label><input id="pnum" name="numspc" type="radio">Proportional (pnum)</label>
+        <label><input id="tnum" name="numspc" type="radio">Tabular (tnum)</label>
+        </div>
+
+        <h3 class="closed">Fractions</h3>
+        <div class="group" style="display: none;">
+        <label><input name="frac" checked="checked" type="radio">Off</label>
+        <label><input id="frac" name="frac" type="radio">Normal (frac)</label>
+        <label><input id="afrc" name="frac" type="radio">Alternate (afrc)</label>
+        </div>
+
+        <h3 class="closed">Numeric Extras</h3>
+        <div class="group" style="display: none;">
+        <label><input id="zero" type="checkbox">Slashed Zero (zero)</label>
+        <label><input id="nalt" type="checkbox">Alt. Annotation (nalt)</label>
+        </div>
+
+        <h3 class="closed">Positioning</h3>
+        <div class="group" style="display: none;">
+        <label><input id="sups" type="checkbox">Superscript/Superiors</label>
+        <label><input id="subs" type="checkbox">Subscript/Inferiors</label>
+        </div>
+
+        <h3 class="closed">Character Alternatives</h3>
+        <div class="group" style="display: none;">
+        <label><input id="swsh" type="checkbox">Swash (swsh)</label>
+        <label><input id="calt" type="checkbox">Contextual (calt)</label>
+        <label><input id="hist" type="checkbox">Historical (hist)</label>
+        <label><input id="salt" type="checkbox">Stylistic (salt)</label>
+        </div>
+
+        <h3 class="closed">Alternative Stylistic Sets</h3>
+        <div class="group" style="display: none;">
+        <label><input id="ss01" type="checkbox">Set 1 (ss01)</label>
+        <label><input id="ss02" type="checkbox">Set 2 (ss02)</label>
+        <label><input id="ss03" type="checkbox">Set 3 (ss03)</label>
+        <label><input id="ss04" type="checkbox">Set 4 (ss04)</label>
+        <label><input id="ss05" type="checkbox">Set 5 (ss05)</label>
+        <label><input id="ss06" type="checkbox">Set 6 (ss06)</label>
+        <label><input id="ss07" type="checkbox">Set 7 (ss07)</label>
+        <label><input id="ss08" type="checkbox">Set 8 (ss08)</label>
+        <label><input id="ss09" type="checkbox">Set 9 (ss09)</label>
+        </div>
+
+        <h3 class="closed">Reset</h3>
+        <div class="group" style="display: none;">
+        <label id="reset"><input type="reset" value="Defaults"></label>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
