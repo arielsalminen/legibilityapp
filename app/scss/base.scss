@@ -116,8 +116,16 @@ select {
 
 input[type="text"] {
   width: 100%;
-  padding: .4em .7em;
+  background: $white;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: .7em .7em;
   margin: .5em 0;
+  &:focus {
+    outline: 0;
+    border: 1px solid $focus;
+  }
 }
 label {
   display: block;

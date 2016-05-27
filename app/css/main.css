@@ -156,8 +156,15 @@ select {
 
 input[type="text"] {
   width: 100%;
-  padding: .4em .7em;
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: .7em .7em;
   margin: .5em 0; }
+  input[type="text"]:focus {
+    outline: 0;
+    border: 1px solid #419bf9; }
 
 label {
   display: block; }
