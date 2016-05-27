@@ -16,6 +16,7 @@
     <h1 contenteditable autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Legibility</h1>
 
     <div id="controls">
+      <form id="inputForm">
 
       <h2>Legibility Inspector</h2>
 
@@ -25,7 +26,7 @@
         <label>Size:
         <output for="textsize" id="textsizeoutput">10vw</output>
         <br>
-        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 40%, rgb(179, 179, 179) 40%);" data-width="20%" type="range" name="textsize" id="textsize" min="0" step="0.01" max="25" value="10" oninput="textsizeoutput.value = textsize.valueAsNumber + 'vw'">
+        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 38%, rgb(179, 179, 179) 38%);" data-width="20%" type="range" name="textsize" id="textsize" min="2" step="0.01" max="25" value="10" oninput="textsizeoutput.value = textsize.valueAsNumber + 'vw'">
         </label>
 
         <label>Distance:
@@ -46,8 +47,14 @@
         <input type="range" name="overglow" id="overglow" min="0" step="0.01" max="25" value="0" oninput="overglowoutput.value = overglow.valueAsNumber">
         </label>
 
+        <label>Pixelation:
+        <output for="pixelation" id="pixelationoutput">0px</output>
+        <br>
+        <input type="range" name="pixelation" id="pixelation" min="0" step="0" max="35" value="0" oninput="pixelationoutput.value = pixelation.valueAsNumber + 'px'">
+        </label>
+
         <label>Board:<br>
-        <select id="typeface" name="typeface" onchange="refreshFont()">
+        <select id="board" name="board" onchange="refreshFont()">
           <option value="">Positive (black on white)</option>
           <option value="">Negative (white on black)</option>
         </select>
@@ -57,12 +64,23 @@
         <h3 class="closed">Font Family</h3>
         <div class="group" style="display: none;">
         <label>
-        <select id="typeface" name="typeface" onchange="refreshFont()">
-        <option value="">-local font-</option>
-        <option value="Baskerville 1757 Pro Regular">Baskerville 1757 Pro Regular</option><option value="FS Clerkenwell Web Regular">FS Clerkenwell Web Regular</option><option value="Premiera Book">Premiera Book</option><option value="LFT Etica Regular">LFT Etica Regular</option><option value="Magneta Medium">Magneta Medium</option><option value="Raisonne Demibold">Raisonne Demibold</option><option value="Museo Slab 500">Museo Slab 500</option><option value="Calluna Sans Regular">Calluna Sans Regular</option><option value="Redisturbed Regular">Redisturbed Regular</option><option value="Museo 500">Museo 500</option><option value="Bree Regular">Bree Regular</option><option value="Museo Sans Rounded 500">Museo Sans Rounded 500</option><option value="Museo Sans 500">Museo Sans 500</option><option value="Calluna Regular">Calluna Regular</option><option value="Aniuk Regular">Aniuk Regular</option><option value="Tanger Serif Medium Regular">Tanger Serif Medium Regular</option><option value="Apercu Pro Regular">Apercu Pro Regular</option><option value="Akagi Book">Akagi Book</option><option value="Trilogy Fatface Regular">Trilogy Fatface Regular</option><option value="Bliss Regular">Bliss Regular</option><option value="Adelle Regular">Adelle Regular</option><option value="Antwerp Regular">Antwerp Regular</option><option value="Apercu Light">Apercu Light</option><option value="Clobber Grotesk Light">Clobber Grotesk Light</option><option value="Proxima Nova Regular">Proxima Nova Regular</option></select>
+          <select id="typeface" name="typeface" onchange="refreshFont()">
+            <option value="">Specify custom font-family</option>
+            <option value="Arial, Helvetica, sans-serif">Arial</option>
+            <option value="'Comic Sans MS', cursive, sans-serif">Comic Sans</option>
+            <option value="'Courier New', Courier, monospace, monospace">Courier</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="'Helvetica Neue', Helvetica, sans-serif">Helvetica Neue</option>
+            <option value="'Lucida Console', Monaco, monospace, monospace">Lucida Console</option>
+            <option value="'Lucida Grande', 'Lucida Sans Unicode', sans-serif">Lucida Grande</option>
+            <option value="'Palatino Linotype', 'Book Antiqua', Palatino, serif">Palatino</option>
+            <option value="'Times New Roman', Times, serif">Times New Roman</option>
+            <option value="'Trebuchet MS', Helvetica, sans-serif">Trebuchet MS</option>
+            <option value="Verdana, Geneva, sans-serif">Verdana</option>
+          </select>
         </label>
         <label><input type="text" id="font" name="font" style="display: none;"></label>
-        <label><input type="text" id="otherfont" name="otherfont" onkeyup="refreshOther()" placeholder="Font-family name" style="display: inline-block;"></label>
+        <label><input type="text" id="otherfont" name="otherfont" onkeyup="refreshOther()" placeholder="Font-family name" value="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif" style="display: inline-block;"></label>
         <label style="display:none"><input id="italic" onchange="refreshSample()" type="checkbox">Italic</label>
         </div>
 

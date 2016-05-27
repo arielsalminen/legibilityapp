@@ -150,5 +150,10 @@ output {
 select {
   width: 100%; }
 
+input[type="text"] {
+  width: 100%;
+  padding: .4em .7em;
+  margin: .5em 0; }
+
 label {
   display: block; }
