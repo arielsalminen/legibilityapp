@@ -5,10 +5,9 @@ function() {
   var html = document.documentElement;
 
   $('input[type="range"]').on('input', function () {
-            var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
-            console.log(this.min);
-            $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
-        });
+    var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
+    $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
+  });
 
   // hide controls and set heading images to closed
   $('.group, #font, #otherfont').hide();
@@ -39,8 +38,7 @@ function() {
   )
 
   refreshFeatures();
-	refreshFont();
-
+  refreshFont();
 
   $("#typeface").higooglefonts({
     loadedCallback:function(font){
@@ -48,43 +46,45 @@ function() {
     }
   });
 
- $("select").each(function() {
-	 if (!($(this).hasClass("customselect"))) {
-	   $(this).select2({
-	     theme: "classic",
-	     minimumResultsForSearch: 30
-	   });
-	 }
- });
+  $("select").each(function() {
+   if (!($(this).hasClass("customselect"))) {
+     $(this).select2({
+       theme: "classic",
+       minimumResultsForSearch: 30
+     });
+   }
+  });
 
   var size = document.getElementById("textsize");
   var vision = document.getElementById("vision");
   var contrast = document.getElementById("contrast");
   var overglow = document.getElementById("overglow");
-	var pixelation = document.getElementById("pixelation");
-	var spacing = document.getElementById("letterspacing");
+  var pixelation = document.getElementById("pixelation");
+  var spacing = document.getElementById("letterspacing");
   var leading = document.getElementById("leading");
+  var weight = document.getElementById("weight");
 
-	function getSize() {
-		var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
-		return parseFloat(style);
-	}
-	var initialSize = getSize();
-	var once = false;
+  function getSize() {
+    var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
+    return parseFloat(style);
+  }
+
+  var initialSize = getSize();
+  var once = false;
 
   size.addEventListener("input", function () {
-		if (size.value > 0) {
+    if (size.value > 0) {
       html.classList.add("size");
     } else {
       html.classList.remove("size");
     }
-		once = false;
-		type.style.fontSize = size.value + "vw";
-		type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
-		html.classList.remove("pixelation");
-		pixelation.value = 0;
-		pixelation.style.background = "-webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 0%, rgb(179, 179, 179) 0%)";
-		once = false;
+    once = false;
+    type.style.fontSize = size.value + "vw";
+    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
+    html.classList.remove("pixelation");
+    pixelation.value = 0;
+    pixelation.style.background = "-webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 0%, rgb(179, 179, 179) 0%)";
+    once = false;
 
   });
 
@@ -113,32 +113,32 @@ function() {
     }
     if (html.classList.contains("vision")) {
       type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #222";
-			type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222";
+      type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222";
     } else {
       type.style.webkitFilter = "blur(" + overglow.value / 6 + "px)";
       type.style.webkitTextStroke = overglow.value / 2 + "px #222";
-		type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222, 0 0 " + overglow.value * 6 + "px #222";
+    type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222, 0 0 " + overglow.value * 6 + "px #222";
     }
   });
 
-	pixelation.addEventListener("input", function () {
-		if (!once) {
-			initialSize = getSize();
-			once = true;
-		}
-		if (pixelation.value > 0) {
-				html.classList.add("pixelation");
-				type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + pixelation.value + ")";
-				type.style.fontSize = initialSize / pixelation.value + "px";
+  pixelation.addEventListener("input", function () {
+    if (!once) {
+      initialSize = getSize();
+      once = true;
+    }
+    if (pixelation.value > 0) {
+        html.classList.add("pixelation");
+        type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + pixelation.value + ")";
+        type.style.fontSize = initialSize / pixelation.value + "px";
     } else {
-			type.style.transform = "translateY(-50%) translateX(-50%)";
+      type.style.transform = "translateY(-50%) translateX(-50%)";
       html.classList.remove("pixelation");
-			type.style.fontSize = initialSize + "px";
-			once = false;
+      type.style.fontSize = initialSize + "px";
+      once = false;
     }
   });
 
-	spacing.addEventListener("input", function () {
+  spacing.addEventListener("input", function () {
     type.style.letterSpacing = spacing.value + "em";
   });
 
@@ -146,66 +146,70 @@ function() {
     type.style.lineHeight = leading.value;
   });
 
+  weight.addEventListener("input", function () {
+    type.style.fontWeight = weight.value;
+  });
 
-	var defaultOff = [
-	  'smcp', 'c2sc',
-	  'lnum', 'onum', 'tnum', 'pnum',
-	  'frac', 'afrc',
-	  'sups', 'subs',
-	  'zero', 'nalt',
-	  'kern',
-	  'liga', 'dlig', 'hlig', 'clig',
-	  'swsh', 'calt', 'hist', 'salt',
-	  'ss01', 'ss02', 'ss03', 'ss04', 'ss05','ss06', 'ss07', 'ss08', 'ss09'
-	];
 
-	var defaultOn = [];
+  var defaultOff = [
+    'smcp', 'c2sc',
+    'lnum', 'onum', 'tnum', 'pnum',
+    'frac', 'afrc',
+    'sups', 'subs',
+    'zero', 'nalt',
+    'kern',
+    'liga', 'dlig', 'hlig', 'clig',
+    'swsh', 'calt', 'hist', 'salt',
+    'ss01', 'ss02', 'ss03', 'ss04', 'ss05','ss06', 'ss07', 'ss08', 'ss09'
+  ];
 
-	function refreshFeatures() {
+  var defaultOn = [];
 
-	  var mfeatures = "";
-	  var wfeatures = "";
-	  var f;
-	  for (f in defaultOn) {
-	    if (!document.getElementById(defaultOn[f]).checked) { wfeatures += "'" + defaultOn[f] + "' 0, "; }
-	  }
-	  for (f in defaultOff) {
-	    if (document.getElementById(defaultOff[f]).checked) { wfeatures += "'" + defaultOff[f] + "' 1, "; }
-	  }
+  function refreshFeatures() {
 
-		if ("MozFontFeatureSettings" in type.style) {
-	    // first, reset the property to normal
-	    type.style.MozFontFeatureSettings = "normal";
+    var mfeatures = "";
+    var wfeatures = "";
+    var f;
+    for (f in defaultOn) {
+      if (!document.getElementById(defaultOn[f]).checked) { wfeatures += "'" + defaultOn[f] + "' 0, "; }
+    }
+    for (f in defaultOff) {
+      if (document.getElementById(defaultOff[f]).checked) { wfeatures += "'" + defaultOff[f] + "' 1, "; }
+    }
 
-	    // old Firefox syntax
-	    type.style.MozFontFeatureSettings = "'" + wfeatures + "'";
+    if ("MozFontFeatureSettings" in type.style) {
+      // first, reset the property to normal
+      type.style.MozFontFeatureSettings = "normal";
 
-	    // if that failed setting will be "normal", use standard syntax
-	    if (type.style.MozFontFeatureSettings == "normal") {
-	      type.style.MozFontFeatureSettings = wfeatures;
-	    }
-	  }
+      // old Firefox syntax
+      type.style.MozFontFeatureSettings = "'" + wfeatures + "'";
 
-	  wfeatures = wfeatures.substring(0, wfeatures.length - 2);
-		type.style.msFontFeatureSettings = "'" + wfeatures + "'";
-	  type.style.oFontFeatureSettings = "'" + wfeatures + "'";
-	  type.style.webkitFontFeatureSettings = wfeatures;
-	  type.style.fontFeatureSettings = wfeatures;
-	};
+      // if that failed setting will be "normal", use standard syntax
+      if (type.style.MozFontFeatureSettings == "normal") {
+        type.style.MozFontFeatureSettings = wfeatures;
+      }
+    }
+
+    wfeatures = wfeatures.substring(0, wfeatures.length - 2);
+    type.style.msFontFeatureSettings = "'" + wfeatures + "'";
+    type.style.oFontFeatureSettings = "'" + wfeatures + "'";
+    type.style.webkitFontFeatureSettings = wfeatures;
+    type.style.fontFeatureSettings = wfeatures;
+  };
 
 });
 
 function refreshFont() {
-		var typefaceSelect = document.getElementById("typeface");
-		if (typefaceSelect.selectedIndex == 0) {
-			refreshOther();
-			$('#otherfont').show();
-		} else {
-			$('#otherfont').hide();
-			document.getElementsByTagName("h1")[0].style.fontFamily = typefaceSelect.value;
-		}
+  var typefaceSelect = document.getElementById("typeface");
+  if (typefaceSelect.selectedIndex == 0) {
+    refreshOther();
+    $('#otherfont').show();
+  } else {
+    $('#otherfont').hide();
+    document.getElementsByTagName("h1")[0].style.fontFamily = typefaceSelect.value;
+  }
 }
 
 function refreshOther() {
-		document.getElementsByTagName("h1")[0].style.fontFamily = document.getElementById("otherfont").value;
+  document.getElementsByTagName("h1")[0].style.fontFamily = document.getElementById("otherfont").value;
 }

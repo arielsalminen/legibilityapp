@@ -66,6 +66,11 @@
         <label><input type="text" id="font" name="font" style="display: none;"></label>
         <label><input type="text" id="otherfont" style="display: none;" name="otherfont" onkeyup="refreshOther()" placeholder="Font-family name" value="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif" style="display: inline-block;"></label>
         <br>
+        <label>Weight:
+        <output for="weight" id="weightoutput">700</output>
+        <br>
+        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 70%, rgb(179, 179, 179) 70%);" data-width="20%" type="range" name="weight" id="weight" min="100" step="100" max="900" value="700" oninput="weightoutput.value = weight.valueAsNumber">
+        </label>
         <label>Size:
         <output for="textsize" id="textsizeoutput">10vw</output>
         <br>
