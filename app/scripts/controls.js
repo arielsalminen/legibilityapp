@@ -42,7 +42,7 @@ function() {
 	refreshFont();
 
   var size = document.getElementById("textsize");
-  var distance = document.getElementById("distance");
+  var vision = document.getElementById("vision");
   var contrast = document.getElementById("contrast");
   var overglow = document.getElementById("overglow");
 	var pixelation = document.getElementById("pixelation");
@@ -69,17 +69,17 @@ function() {
 
   });
 
-  distance.addEventListener("input", function () {
-    if (distance.value > 0) {
-      html.classList.add("distance");
+  vision.addEventListener("input", function () {
+    if (vision.value > 0) {
+      html.classList.add("vision");
     } else {
-      html.classList.remove("distance");
+      html.classList.remove("vision");
     }
     if (html.classList.contains("overglow")) {
-      type.style.webkitFilter = "blur(" + ((distance.value / 20) + (overglow.value / 3)) + "px)";
+      type.style.webkitFilter = "blur(" + ((vision.value / 20) + (overglow.value / 3)) + "px)";
     } else {
-      type.style.webkitTextStroke = distance.value / 20 + "px #fff";
-      type.style.webkitFilter = "blur(" + distance.value / 20 + "px)";
+      type.style.webkitTextStroke = vision.value / 20 + "px #fff";
+      type.style.webkitFilter = "blur(" + vision.value / 20 + "px)";
     }
   });
 
@@ -93,10 +93,10 @@ function() {
     } else {
       html.classList.remove("overglow");
     }
-    if (html.classList.contains("distance")) {
-      type.style.webkitTextStroke = ((distance.value / 20) + (overglow.value / 2)) + "px #222";
+    if (html.classList.contains("vision")) {
+      type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #222";
     } else {
-      type.style.webkitFilter = "blur(" + overglow.value / 2 + "px)";
+      type.style.webkitFilter = "blur(" + overglow.value / 4 + "px)";
       type.style.webkitTextStroke = overglow.value / 2 + "px #222";
     }
   });
