@@ -62,6 +62,8 @@ function() {
   var contrast = document.getElementById("contrast");
   var overglow = document.getElementById("overglow");
 	var pixelation = document.getElementById("pixelation");
+	var spacing = document.getElementById("letterspacing");
+
 	function getSize() {
 		var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
 		return parseFloat(style);
@@ -114,7 +116,7 @@ function() {
     } else {
       type.style.webkitFilter = "blur(" + overglow.value / 6 + "px)";
       type.style.webkitTextStroke = overglow.value / 2 + "px #222";
-		type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222";
+		type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222, 0 0 " + overglow.value * 6 + "px #222";
     }
   });
 
@@ -134,6 +136,11 @@ function() {
 			once = false;
     }
   });
+
+	spacing.addEventListener("input", function () {
+    type.style.letterSpacing = spacing.value + "em";
+  });
+
 
 	var defaultOff = [
 	  'smcp', 'c2sc',

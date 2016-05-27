@@ -9,6 +9,23 @@
 	text-indent: -999px;
 	height: 29px;
 }
+
+.select2-results__options li:last-child div {
+	background: $white none !important;
+	color: $black;
+	line-height: 2.2;
+	text-indent: 10px;
+}
+
+.select2-results__options li:last-child[aria-selected="true"] div,
+.select2-results__options li:last-child[aria-selected="true"]:hover div {
+	color: $focus;
+}
+
+.select2-results__options li:last-child:hover div {
+	color: $black;
+}
+
 .select2-container {
 	text-align: left !important;
 	width: 100% !important;

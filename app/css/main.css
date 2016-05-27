@@ -168,6 +168,19 @@ label {
   text-indent: -999px;
   height: 29px; }
 
+.select2-results__options li:last-child div {
+  background: #fff none !important;
+  color: #222;
+  line-height: 2.2;
+  text-indent: 10px; }
+
+.select2-results__options li:last-child[aria-selected="true"] div,
+.select2-results__options li:last-child[aria-selected="true"]:hover div {
+  color: #419bf9; }
+
+.select2-results__options li:last-child:hover div {
+  color: #222; }
+
 .select2-container {
   text-align: left !important;
   width: 100% !important; }
@@ -455,7 +468,7 @@ label {
   -webkit-appearance: textfield; }
 
 .select2-container--default .select2-results > .select2-results__options {
-  max-height: 200px;
+  max-height: 300px;
   overflow-y: auto; }
 
 .select2-container--default .select2-results__option[role=group] {
@@ -682,7 +695,7 @@ label {
   border-top: none; }
 
 .select2-container--classic .select2-results > .select2-results__options {
-  max-height: 200px;
+  max-height: 300px;
   overflow-y: auto; }
 
 .select2-container--classic .select2-results__option[role=group] {
