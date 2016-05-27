@@ -10,6 +10,9 @@
     <title>Legibility App</title>
     <link rel="stylesheet" href="css/main.css">
     <script src="scripts/jquery.js"></script>
+    <script src="scripts/select2.min.js"></script>
+    <script src="scripts/webfontloader.js"></script>
+    <script src="scripts/fonts.js"></script>
     <script src="scripts/controls.js"></script>
   </head>
   <body>
@@ -64,20 +67,7 @@
         <h3 class="closed">Font Family</h3>
         <div class="group" style="display: none;">
         <label>
-          <select id="typeface" name="typeface" onchange="refreshFont()">
-            <option value="">Specify custom font-family</option>
-            <option value="Arial, Helvetica, sans-serif">Arial</option>
-            <option value="'Comic Sans MS', cursive, sans-serif">Comic Sans</option>
-            <option value="'Courier New', Courier, monospace, monospace">Courier</option>
-            <option value="Georgia, serif">Georgia</option>
-            <option value="'Helvetica Neue', Helvetica, sans-serif">Helvetica Neue</option>
-            <option value="'Lucida Console', Monaco, monospace, monospace">Lucida Console</option>
-            <option value="'Lucida Grande', 'Lucida Sans Unicode', sans-serif">Lucida Grande</option>
-            <option value="'Palatino Linotype', 'Book Antiqua', Palatino, serif">Palatino</option>
-            <option value="'Times New Roman', Times, serif">Times New Roman</option>
-            <option value="'Trebuchet MS', Helvetica, sans-serif">Trebuchet MS</option>
-            <option value="Verdana, Geneva, sans-serif">Verdana</option>
-          </select>
+          <select id="typeface" style="width: 230px;"></select>
         </label>
         <label><input type="text" id="font" name="font" style="display: none;"></label>
         <label><input type="text" id="otherfont" name="otherfont" onkeyup="refreshOther()" placeholder="Font-family name" value="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif" style="display: inline-block;"></label>

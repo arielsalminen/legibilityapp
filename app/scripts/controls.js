@@ -41,6 +41,21 @@ function() {
   refreshFeatures();
 	refreshFont();
 
+
+  $("#typeface").higooglefonts({
+    loadedCallback:function(font){
+      $("h1").css("font-family", font);
+    }
+  });
+
+ $("select").each(function() {
+   $(this).select2({
+     theme: "classic",
+     minimumResultsForSearch: 30
+   });
+
+ });
+
   var size = document.getElementById("textsize");
   var vision = document.getElementById("vision");
   var contrast = document.getElementById("contrast");
