@@ -49,11 +49,12 @@ function() {
   });
 
  $("select").each(function() {
-   $(this).select2({
-     theme: "classic",
-     minimumResultsForSearch: 30
-   });
-
+	 if (!($(this).hasClass("customselect"))) {
+	   $(this).select2({
+	     theme: "classic",
+	     minimumResultsForSearch: 30
+	   });
+	 }
  });
 
   var size = document.getElementById("textsize");
@@ -91,10 +92,9 @@ function() {
       html.classList.remove("vision");
     }
     if (html.classList.contains("overglow")) {
-      type.style.webkitFilter = "blur(" + ((vision.value / 20) + (overglow.value / 3)) + "px)";
+      type.style.webkitFilter = "blur(" + ((vision.value / 10) + (overglow.value / 1.5)) + "px)";
     } else {
-      type.style.webkitTextStroke = vision.value / 20 + "px #fff";
-      type.style.webkitFilter = "blur(" + vision.value / 20 + "px)";
+      type.style.webkitFilter = "blur(" + vision.value / 10 + "px)";
     }
   });
 
@@ -110,9 +110,11 @@ function() {
     }
     if (html.classList.contains("vision")) {
       type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #222";
+			type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222";
     } else {
-      type.style.webkitFilter = "blur(" + overglow.value / 4 + "px)";
+      type.style.webkitFilter = "blur(" + overglow.value / 6 + "px)";
       type.style.webkitTextStroke = overglow.value / 2 + "px #222";
+		type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222";
     }
   });
 

@@ -29,7 +29,7 @@
         <label>Vision:
         <output for="vision" id="visionoutput">0ft</output>
         <br>
-        <input type="range" name="vision" id="vision" min="0" step="0.01" max="200" value="0" oninput="visionoutput.value = vision.valueAsNumber + 'ft'">
+        <input type="range" name="vision" id="vision" min="0" step="0.01" max="100" value="0" oninput="visionoutput.value = vision.valueAsNumber + 'ft'">
         </label>
 
         <label>Overglow:
@@ -67,7 +67,7 @@
         <h3 class="closed">Font Family</h3>
         <div class="group" style="display: none;">
         <label>
-          <select id="typeface" style="width: 230px;"></select>
+          <select id="typeface" class="customselect" style="width: 230px;"></select>
         </label>
         <label><input type="text" id="font" name="font" style="display: none;"></label>
         <label><input type="text" id="otherfont" name="otherfont" onkeyup="refreshOther()" placeholder="Font-family name" value="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif" style="display: inline-block;"></label>

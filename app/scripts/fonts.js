@@ -44,7 +44,7 @@
           allowClear: false,
           minimumResultsForSearch: Infinity,
           templateResult: function (result) {
-            var state = $('<div style="background-position:10px -'+y+'px !important;" class="li_'+result.itemId+'">'+result.text+'</div>');
+            var state = $('<div style="background-position:0 -'+y+'px !important;" class="li_'+result.itemId+'">'+result.text+'</div>');
             y  +=29;
             return state;
           }
