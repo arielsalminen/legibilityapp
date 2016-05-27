@@ -96,7 +96,7 @@ function() {
     if (html.classList.contains("distance")) {
       type.style.webkitTextStroke = ((distance.value / 20) + (overglow.value / 2)) + "px #222";
     } else {
-      type.style.webkitFilter = "blur(" + overglow.value / 8 + "px)";
+      type.style.webkitFilter = "blur(" + overglow.value / 2 + "px)";
       type.style.webkitTextStroke = overglow.value / 2 + "px #222";
     }
   });
