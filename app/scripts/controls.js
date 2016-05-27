@@ -14,8 +14,8 @@ function() {
   $('#controls h3').addClass("closed");
 
   // show typeface selector by default
-  $('#legibility, #projectgroup').toggleClass("closed");
-  $('#legibility, #projectgroup').next(".group").show();
+  $('#legibility').toggleClass("closed");
+  $('#legibility').next(".group").show();
 
   // show/hide control group
   $('#controls h3').click(
