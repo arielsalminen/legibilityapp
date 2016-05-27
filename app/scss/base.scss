@@ -26,11 +26,13 @@ h1 {
   @extend %prevent-user-select;
   cursor: default;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 30px;
+  left: 30px;
+  border-radius: 3px;
+  overflow: hidden;
   background-color: #ededed;
   color:#000;
-  box-shadow:3px 6px 8px rgba(0,0,0,0.2);
+  box-shadow:0 3px 10px rgba(0,0,0,0.2);
   width: 22em;
   z-index:100;
   input[type="range"],
@@ -129,4 +131,10 @@ input[type="text"] {
 }
 label {
   display: block;
+}
+.handle {
+  cursor: move;
+  &:active {
+    color: #666;
+  }
 }

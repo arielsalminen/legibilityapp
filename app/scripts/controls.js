@@ -9,6 +9,8 @@ function() {
     $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
   });
 
+  $(".draggable").draggable({ handle: ".handle" });
+
   // hide controls and set heading images to closed
   $('.group, #font, #otherfont').hide();
   $('#controls h3').addClass("closed");

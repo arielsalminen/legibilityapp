@@ -10,6 +10,7 @@
     <title>Legibility App</title>
     <link rel="stylesheet" href="css/main.css">
     <script src="scripts/jquery.js"></script>
+    <script src="scripts/draggable.js"></script>
     <script src="scripts/select2.min.js"></script>
     <script src="scripts/webfontloader.js"></script>
     <script src="scripts/fonts.js"></script>
@@ -18,10 +19,10 @@
   <body>
     <h1 contenteditable autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Legibility</h1>
 
-    <div id="controls">
+    <div id="controls" class="draggable">
       <form id="inputForm">
 
-      <h2>Legibility Inspector</h2>
+      <h2 class="handle">Legibility Inspector</h2>
 
       <h3 id="legibility">Simulation</h3>
       <div class="group" style="display: block;">
