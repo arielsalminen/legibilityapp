@@ -1,4 +1,9 @@
+html,body {
+  height: 100%;
+}
+
 body {
+  height: 200%;
   font: normal normal 11px/1.6 $base;
   text-align: left;
   color: $black;
