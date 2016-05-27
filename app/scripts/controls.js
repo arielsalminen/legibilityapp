@@ -63,6 +63,7 @@ function() {
   var overglow = document.getElementById("overglow");
 	var pixelation = document.getElementById("pixelation");
 	var spacing = document.getElementById("letterspacing");
+  var leading = document.getElementById("leading");
 
 	function getSize() {
 		var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
@@ -139,6 +140,10 @@ function() {
 
 	spacing.addEventListener("input", function () {
     type.style.letterSpacing = spacing.value + "em";
+  });
+
+  leading.addEventListener("input", function () {
+    type.style.lineHeight = leading.value;
   });
 
 

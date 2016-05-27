@@ -71,7 +71,12 @@
         <br>
         <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 38%, rgb(179, 179, 179) 38%);" data-width="20%" type="range" name="textsize" id="textsize" min="0.3" step="0.01" max="25" value="10" oninput="textsizeoutput.value = textsize.valueAsNumber + 'vw'">
         </label>
-        <label>Letter Spacing:
+        <label>Leading:
+        <output for="leading" id="leadingoutput">1.2</output>
+        <br>
+        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 60%, rgb(179, 179, 179) 60%);" type="range" name="leading" id="leading" min="0" step="0.01" max="2" value="1.2" oninput="leadingoutput.value = leading.valueAsNumber">
+        </label>
+        <label>Spacing:
         <output for="letterspacing" id="letterspacingoutput">0em</output>
         <br>
         <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 50%, rgb(179, 179, 179) 50%);" type="range" name="letterspacing" id="letterspacing" min="-0.1" step="0.001" max="0.1" value="0" oninput="letterspacingoutput.value = letterspacing.valueAsNumber + 'em'">
