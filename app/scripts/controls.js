@@ -68,6 +68,8 @@ function() {
   var spacing = document.getElementById("letterspacing");
   var leading = document.getElementById("leading");
   var weight = document.getElementById("weight");
+  var wideness = document.getElementById("wideness");
+  var heightness = document.getElementById("heightness");
 
   function getSize() {
     var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
@@ -153,6 +155,14 @@ function() {
 
   weight.addEventListener("input", function () {
     type.style.fontWeight = weight.value;
+  });
+
+  wideness.addEventListener("input", function () {
+    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + wideness.value + ", 1.0)";
+  });
+
+  heightness.addEventListener("input", function () {
+    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(1.0, " + heightness.value + ")";
   });
 
 

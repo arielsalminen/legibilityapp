@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-title" content="Legibility App">
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#000">
-    <title>Legibility App</title>
+    <title>Legibility Test Tool</title>
     <link rel="stylesheet" href="css/main.css">
     <script src="scripts/jquery.js"></script>
     <script src="scripts/draggable.js"></script>
@@ -17,12 +17,12 @@
     <script src="scripts/controls.js"></script>
   </head>
   <body>
-    <h1 contenteditable autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Legibility</h1>
+    <h1 style="-webkit-filter: blur(1.67667px); -webkit-text-stroke-width: 5.03px; -webkit-text-stroke-color: rgb(34, 34, 34); text-shadow: rgb(34, 34, 34) 0px 0px 40.24px, rgb(34, 34, 34) 0px 0px 60.36px;" contenteditable autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">1ilI!</h1>
 
     <div id="controls" class="draggable">
       <form id="inputForm">
 
-      <h2 class="handle">Legibility Inspector</h2>
+      <h2 class="handle">Legibility Test Tool</h2>
 
       <h3 id="legibility">Simulation</h3>
       <div class="group" style="display: block;">
@@ -34,9 +34,9 @@
         </label>
 
         <label>Overglow:
-        <output for="overglow" id="overglowoutput">0</output>
+        <output for="overglow" id="overglowoutput">10</output>
         <br>
-        <input type="range" name="overglow" id="overglow" min="0" step="0.01" max="25" value="0" oninput="overglowoutput.value = overglow.valueAsNumber">
+        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 35%, rgb(179, 179, 179) 35%);" type="range" name="overglow" id="overglow" min="0" step="0.01" max="30" value="10" oninput="overglowoutput.value = overglow.valueAsNumber">
         </label>
 
         <label>Pixelation:
@@ -68,24 +68,34 @@
         <label><input type="text" id="otherfont" style="display: none;" name="otherfont" onkeyup="refreshOther()" placeholder="Font-family name" value="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif" style="display: inline-block;"></label>
         <br>
         <label>Weight:
-        <output for="weight" id="weightoutput">700</output>
+        <output for="weight" id="weightoutput">600</output>
         <br>
-        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 70%, rgb(179, 179, 179) 70%);" data-width="20%" type="range" name="weight" id="weight" min="100" step="100" max="900" value="700" oninput="weightoutput.value = weight.valueAsNumber">
+        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 60%, rgb(179, 179, 179) 60%);" data-width="20%" type="range" name="weight" id="weight" min="100" step="100" max="900" value="600" oninput="weightoutput.value = weight.valueAsNumber">
         </label>
         <label>Size:
-        <output for="textsize" id="textsizeoutput">10vw</output>
+        <output for="textsize" id="textsizeoutput">20vw</output>
         <br>
-        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 38%, rgb(179, 179, 179) 38%);" data-width="20%" type="range" name="textsize" id="textsize" min="0.3" step="0.01" max="25" value="10" oninput="textsizeoutput.value = textsize.valueAsNumber + 'vw'">
+        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 42%, rgb(179, 179, 179) 42%);" type="range" name="textsize" id="textsize" min="0.3" step="0.01" max="50" value="20" oninput="textsizeoutput.value = textsize.valueAsNumber + 'vw'">
         </label>
         <label>Leading:
-        <output for="leading" id="leadingoutput">1.2</output>
+        <output for="leading" id="leadingoutput">1.6</output>
         <br>
-        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 60%, rgb(179, 179, 179) 60%);" type="range" name="leading" id="leading" min="0" step="0.01" max="2" value="1.2" oninput="leadingoutput.value = leading.valueAsNumber">
+        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 75%, rgb(179, 179, 179) 75%);" type="range" name="leading" id="leading" min="0" step="0.01" max="2" value="1.6" oninput="leadingoutput.value = leading.valueAsNumber">
         </label>
         <label>Spacing:
         <output for="letterspacing" id="letterspacingoutput">0em</output>
         <br>
         <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 50%, rgb(179, 179, 179) 50%);" type="range" name="letterspacing" id="letterspacing" min="-0.1" step="0.001" max="0.1" value="0" oninput="letterspacingoutput.value = letterspacing.valueAsNumber + 'em'">
+        </label>
+        <label>Width:
+        <output for="wideness" id="widenessoutput">1x</output>
+        <br>
+        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 50%, rgb(179, 179, 179) 50%);" type="range" name="wideness" id="wideness" min="0.7" step="0.1" max="1.3" value="1" oninput="widenessoutput.value = wideness.valueAsNumber + 'x'">
+        </label>
+        <label>Height:
+        <output for="heightness" id="heightnessoutput">1x</output>
+        <br>
+        <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 50%, rgb(179, 179, 179) 50%);" type="range" name="heightness" id="heightness" min="0.7" step="0.1" max="1.3" value="1" oninput="heightnessoutput.value = heightness.valueAsNumber + 'x'">
         </label>
         </div>
 
