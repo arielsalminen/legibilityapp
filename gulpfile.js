@@ -4,8 +4,8 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 gulp.task('sass', function() {
-  return sass('app/scss/main.scss')
-    .pipe(gulp.dest('app/css'))
+  return sass('scss/main.scss')
+    .pipe(gulp.dest('css'))
     .pipe(reload({ stream:true }));
 });
 
@@ -13,9 +13,9 @@ gulp.task('sass', function() {
 gulp.task('serve', ['sass'], function() {
   browserSync({
     server: {
-      baseDir: 'app'
+      baseDir: ''
     }
   });
 
-  gulp.watch('app/scss/*.scss', ['sass']);
+  gulp.watch('scss/*.scss', ['sass']);
 });
