@@ -4,8 +4,13 @@ $(document).ready(function() {
     e.preventDefault();
   }, false);*/
 
+  var ua = navigator.userAgent;
   var type = document.getElementsByTagName("h1")[0];
   var html = document.documentElement;
+
+  if (ua.match(/firefox/i)) {
+    document.getElementById("overglow").disabled = true;
+  }
 
   $('input[type="range"]').on('input', function () {
     var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
@@ -107,9 +112,13 @@ $(document).ready(function() {
       html.classList.remove("vision");
     }
     if (html.classList.contains("overglow")) {
-      type.style.webkitFilter = "blur(" + ((vision.value / 10) + (overglow.value / 1.5)) + "px)";
+      type.style.webkitFilter =
+      type.style.mozFilter =
+      type.style.filter = "blur(" + ((vision.value / 10) + (overglow.value / 1.5)) + "px)";
     } else {
-      type.style.webkitFilter = "blur(" + vision.value / 10 + "px)";
+      type.style.webkitFilter =
+      type.style.mozFilter =
+      type.style.filter = "blur(" + vision.value / 10 + "px)";
     }
   }, false);
 
@@ -126,10 +135,17 @@ $(document).ready(function() {
     if (html.classList.contains("vision")) {
       type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #222";
       type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222";
+      type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
     } else {
       type.style.webkitFilter = "blur(" + overglow.value / 6 + "px)";
       type.style.webkitTextStroke = overglow.value / 2 + "px #222";
-    type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222, 0 0 " + overglow.value * 2 + "px #222";
+      if (ua.match(/safari/i) && !ua.match(/chrome/i)) {
+        type.style.textShadow = "0 0 " + overglow.value + "px rgba(0,0,0,.3), 0 0 " + overglow.value * 0.5 + "px rgba(0,0,0,.3)";
+      } else {
+        type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222, 0 0 " + overglow.value * 2 + "px #222";
+      }
+
+      type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
     }
   }, false);
 
@@ -140,6 +156,7 @@ $(document).ready(function() {
     }
     if (pixelation.value > 0) {
         html.classList.add("pixelation");
+        type.style.mozTransform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + pixelation.value + ")";
         type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + pixelation.value + ")";
         type.style.fontSize = initialSize / pixelation.value + "px";
     } else {
