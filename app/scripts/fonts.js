@@ -31,7 +31,7 @@
 
     var y = 0;
 
-    this.select2({
+    var $select = this.select2({
       placeholder:"Select typeface",
       data: fontMap,
       theme: "classic",
@@ -46,14 +46,17 @@
     });
 
     this.on("select2:open", function (e) {
+      jQuery('.select2-search input').prop('focus',false);
       y = 0;
     });
 
     this.on("select2:close", function (e) {
+      $select.select2("close");
       y = 0;
     });
 
     this.on("select2:select", function (e) {
+      $select.select2("close");
       var font_family = e.params.data.text;
 
       // make sure the callback is a function

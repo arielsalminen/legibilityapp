@@ -2,6 +2,10 @@ html,body {
   height: 100%;
 }
 
+html.no-scroll {
+  overflow: hidden;
+}
+
 body {
   font: normal normal 11px/1.6 $base;
   text-align: left;
@@ -37,8 +41,8 @@ h1 {
   left: 30px;
   border-radius: 3px;
   overflow: hidden;
-  background-color: #ededed;
-  box-shadow:0 3px 10px rgba(0,0,0,0.2);
+  background-color: #efefef;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
   width: 22em;
   z-index:100;
   input[type="range"],
@@ -53,6 +57,7 @@ h1 {
 }
 
 .group {
+  overflow: hidden;
   padding: 0 16px 2em;
   > *:nth-child(1) {
     margin-top: 8px;
@@ -65,25 +70,42 @@ h3, h2 {
 }
 
 h3 {
-  background: transparent url(../images/open.png) no-repeat 13px 8px;
   margin: 0;
-  padding: 5px 0 0.4545454545em 30px;
+  padding: 5px 0 0.4545454545em 20px;
   border-top: 1px solid #ccc;
   color: #444;
   font-weight: 600;
+  position: relative;
   cursor: default;
+  &:before {
+    content: "";
+    border-style: solid;
+    border-color: #888 transparent transparent transparent;
+    border-width: 5px 4px 0 4px;
+    height: 0;
+    left: 7px;
+    position: absolute;
+    top: 10px;
+    width: 0;
+  }
 }
 
-h3.closed {
-  background-image: url(../images/closed.png);
+h3.closed:before {
+  border-color: transparent transparent transparent #888;
+  border-width: 4px 0 4px 5px;
+  left: 9px;
+  top: 9px;
 }
 
 h2 {
   text-align: center;
-  background: #bebdbe url(../images/h2bg.png) repeat-x 0 top;
   margin:0;
   padding: 3px 0 2px 0;
   text-shadow: 0 1px rgba(255,255,255,0.5);
+  background-color: #f7f7f7;
+  background-image: -webkit-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+  background-image: linear-gradient(to bottom, #eeeeee 0%, #cccccc 100%);
+  background-repeat: repeat-x;
 }
 input {
   font-size:100%;
@@ -105,10 +127,11 @@ input {
   	border-radius: 100%;
   	background: #fff;
     position: relative;
+    border: 0;
     overflow: visible;
   	box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-  	height: 15px;
-  	width: 15px;
+  	height: 16px;
+  	width: 16px;
   }
   &[type="range"]:focus {
     outline: 0;
@@ -119,7 +142,8 @@ input {
   }
 }
 output {
-  color: #999;
+  margin: -17px 0 0;
+  color: #aaa;
   float: right;
 }
 select {
@@ -133,18 +157,17 @@ input[type="text"] {
   border-radius: 4px;
   box-sizing: border-box;
   padding: .7em .7em;
-  margin: .5em 0;
+  margin: .5em 0 1.5em;
   &:focus {
     outline: 0;
     border: 1px solid $focus;
   }
 }
 label {
-  display: block;
+  float: left;
+  width: 100%;
+  margin: 0;
 }
 .handle {
   cursor: move;
-  &:active {
-    color: #666;
-  }
 }
