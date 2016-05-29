@@ -31,6 +31,15 @@
           <label>Contrast:</label>
           <output for="contrast" id="contrastoutput">100%</output><br>
           <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 100%, rgb(179, 179, 179) 100%);" type="range" name="contrast" id="contrast" min="0" step="0.1" max="100" value="100" oninput="contrastoutput.value = contrast.valueAsNumber + '%'">
+          <label>Rotate X:</label>
+          <output for="rotatex" id="rotatexoutput">0°</output><br>
+          <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 50%, rgb(179, 179, 179) 50%);" type="range" name="rotatex" id="rotatex" min="-180" step="1" max="180" value="0" oninput="rotatexoutput.value = rotatex.valueAsNumber + '°'">
+          <label>Rotate Y:</label>
+          <output for="rotatey" id="rotateyoutput">0°</output><br>
+          <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 50%, rgb(179, 179, 179) 50%);" type="range" name="rotatey" id="rotatey" min="-180" step="1" max="180" value="0" oninput="rotateyoutput.value = rotatey.valueAsNumber + '°'">
+          <label>Rotate Z:</label>
+          <output for="rotatez" id="rotatezoutput">0°</output><br>
+          <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 50%, rgb(179, 179, 179) 50%);" type="range" name="rotatez" id="rotatez" min="-180" step="1" max="180" value="0" oninput="rotatezoutput.value = rotatez.valueAsNumber + '°'">
           <label style="margin-bottom: 5px">Board:</label><br>
           <select id="board" name="board" onchange="refreshBoard()">
             <option value="positive">Positive (black on white)</option>
