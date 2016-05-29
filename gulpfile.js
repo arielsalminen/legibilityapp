@@ -1,6 +1,9 @@
 var gulp = require('gulp');
 var sass = require('gulp-ruby-sass');
 var browserSync = require('browser-sync');
+var concat = require('gulp-concat');
+var rename = require('gulp-rename');
+var uglify = require('gulp-uglify');
 var reload = browserSync.reload;
 
 gulp.task('sass', function() {
@@ -9,8 +12,17 @@ gulp.task('sass', function() {
     .pipe(reload({ stream:true }));
 });
 
+gulp.task('uglify', function(){
+  return gulp.src(['scripts/jquery.js', 'scripts/select2.min.js', 'scripts/draggable.js', 'scripts/fonts.js', 'scripts/webfontloader.js', 'scripts/controls.js'])
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest('scripts'))
+    .pipe(rename('all.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('scripts'));
+});
+
 // watch Sass files for changes, run the Sass preprocessor with the 'sass' task and reload
-gulp.task('serve', ['sass'], function() {
+gulp.task('serve', ['sass', 'uglify'], function() {
   browserSync({
     server: {
       baseDir: ''
@@ -18,4 +30,5 @@ gulp.task('serve', ['sass'], function() {
   });
 
   gulp.watch('scss/*.scss', ['sass']);
+  gulp.watch('scripts/controls.js', ['uglify']);
 });
