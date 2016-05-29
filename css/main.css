@@ -60,8 +60,11 @@ html.no-scroll {
 
 body {
   font: normal normal 11px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
+  background: #fff;
   text-align: left;
   color: #222; }
+  .negative body {
+    background: #111; }
 
 h1 {
   position: absolute;
@@ -74,12 +77,15 @@ h1 {
   line-height: 1.1;
   font-weight: 600;
   overflow: visible;
+  color: #111;
   transform: translateY(-50%) translateX(-50%); }
   h1:hover {
     background: rgba(253, 242, 139, 0.3); }
   h1:focus {
     background: #FDF28B;
     outline: 0; }
+  .negative h1 {
+    color: #fff; }
 
 #controls {
   cursor: default;

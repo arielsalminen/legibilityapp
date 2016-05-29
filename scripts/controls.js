@@ -41,16 +41,9 @@ $(document).ready(function() {
   );
 
   // update changes
-  $("#inputForm").change(
-    function() {
-      refreshFeatures();
-    }
-  )
-  $("#reset").click(
-    function() {
-      window.location.reload();
-    }
-  )
+  $("#inputForm").on("change", function() {
+    refreshFeatures();
+  });
 
   refreshFeatures();
   refreshFont();
@@ -74,6 +67,7 @@ $(document).ready(function() {
   var vision = document.getElementById("vision");
   var contrast = document.getElementById("contrast");
   var overglow = document.getElementById("overglow");
+  var $overglow = $("#overglow");
   var pixelation = document.getElementById("pixelation");
   var spacing = document.getElementById("letterspacing");
   var leading = document.getElementById("leading");
@@ -126,28 +120,42 @@ $(document).ready(function() {
     type.style.opacity =  contrast.value / 100;
   }, false);
 
-  overglow.addEventListener("input", function () {
+  $overglow.on("input", function () {
     if (overglow.value > 0) {
       html.classList.add("overglow");
     } else {
       html.classList.remove("overglow");
     }
     if (html.classList.contains("vision")) {
-      type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #222";
-      type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222";
-      type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
-    } else {
-      type.style.webkitFilter = "blur(" + overglow.value / 6 + "px)";
-      type.style.webkitTextStroke = overglow.value / 2 + "px #222";
-      if (ua.match(/safari/i) && !ua.match(/chrome/i)) {
-        type.style.textShadow = "0 0 " + overglow.value + "px rgba(0,0,0,.3), 0 0 " + overglow.value * 0.5 + "px rgba(0,0,0,.3)";
+      if (html.classList.contains("negative")) {
+        type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #fff";
+        type.style.textShadow = "0 0 " + overglow.value * 4 + "px #fff";
+        type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
       } else {
-        type.style.textShadow = "0 0 " + overglow.value * 4 + "px #222, 0 0 " + overglow.value * 2 + "px #222";
+        type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #111";
+        type.style.textShadow = "0 0 " + overglow.value * 4 + "px #111";
+        type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
       }
-
+    } else {
+      if (html.classList.contains("negative")) {
+        type.style.webkitTextStroke = overglow.value / 2 + "px #fff";
+        if (ua.match(/safari/i) && !ua.match(/chrome/i)) {
+          type.style.textShadow = "0 0 " + overglow.value + "px rgba(255,255,255,.3), 0 0 " + overglow.value * 0.5 + "px rgba(255,255,255,.3)";
+        } else {
+          type.style.textShadow = "0 0 " + overglow.value * 4 + "px #fff, 0 0 " + overglow.value * 2 + "px #fff";
+        }
+      } else {
+        type.style.webkitTextStroke = overglow.value / 2 + "px #111";
+        if (ua.match(/safari/i) && !ua.match(/chrome/i)) {
+          type.style.textShadow = "0 0 " + overglow.value + "px rgba(0,0,0,.3), 0 0 " + overglow.value * 0.5 + "px rgba(0,0,0,.3)";
+        } else {
+          type.style.textShadow = "0 0 " + overglow.value * 4 + "px #111, 0 0 " + overglow.value * 2 + "px #111";
+        }
+      }
+      type.style.webkitFilter = "blur(" + overglow.value / 6 + "px)";
       type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
     }
-  }, false);
+  });
 
   pixelation.addEventListener("input", function () {
     if (!once) {
@@ -266,6 +274,18 @@ function refreshFont() {
     $('#otherfont').hide();
     document.getElementsByTagName("h1")[0].style.fontFamily = typefaceSelect.value;
   }
+}
+
+function refreshBoard() {
+  document.getElementById("overglow").value = 0;
+  $("#overglow").trigger("input");
+  if ($("#board").val() == "negative") {
+    document.documentElement.classList.add("negative");
+  } else {
+    document.documentElement.classList.remove("negative");
+  }
+  $("#overglow").css('background', '#B3B3B3');
+  $("#overglowoutput").html("0");
 }
 
 function refreshOther() {

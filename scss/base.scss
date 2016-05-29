@@ -8,8 +8,12 @@ html.no-scroll {
 
 body {
   font: normal normal 11px/1.6 $base;
+  background: $white;
   text-align: left;
   color: $black;
+  .negative & {
+    background: #111;
+  }
 }
 
 h1 {
@@ -23,6 +27,7 @@ h1 {
   line-height: 1.1;
   font-weight: 600;
   overflow: visible;
+  color: #111;
   transform: translateY(-50%) translateX(-50%);
   &:hover {
     background: rgba($yellow, .3);
@@ -30,6 +35,9 @@ h1 {
   &:focus {
     background: $yellow;
     outline: 0;
+  }
+  .negative & {
+    color: $white;
   }
 }
 
