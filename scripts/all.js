@@ -426,11 +426,11 @@ $(document).ready(function() {
   }, false);
 
   wideness.addEventListener("input", function () {
-    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + wideness.value + ", 1.0)";
+    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
   }, false);
 
   heightness.addEventListener("input", function () {
-    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(1.0, " + heightness.value + ")";
+      type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
   }, false);
 
 
@@ -523,6 +523,7 @@ function refreshBoard() {
     document.documentElement.classList.remove("negative");
   }
   $("#overglow").css('background', '#B3B3B3');
+  $("#overglowoutput").html("0");
 }
 
 function refreshOther() {
