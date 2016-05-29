@@ -303,10 +303,12 @@ $(document).ready(function() {
 
   var size = document.getElementById("textsize");
   var vision = document.getElementById("vision");
+  var $vision = $("#vision");
   var contrast = document.getElementById("contrast");
   var overglow = document.getElementById("overglow");
   var $overglow = $("#overglow");
   var pixelation = document.getElementById("pixelation");
+  var $pixelation = $("#pixelation");
   var spacing = document.getElementById("letterspacing");
   var leading = document.getElementById("leading");
   var weight = document.getElementById("weight");
@@ -318,10 +320,19 @@ $(document).ready(function() {
     return parseFloat(style);
   }
 
+  function resetPixelation() {
+    pixelation.value = 0;
+    $pixelation.css('background', '#B3B3B3');
+    $("#pixelationoutput").html("0px");
+    type.style.fontSize = initialSize + "px";
+  }
+
   var initialSize = getSize();
   var once = false;
 
   size.addEventListener("input", function () {
+    resetPixelation();
+
     if (size.value > 0) {
       html.classList.add("size");
     } else {
@@ -337,7 +348,9 @@ $(document).ready(function() {
 
   }, false);
 
-  vision.addEventListener("input", function () {
+  $vision.on("input", function () {
+    resetPixelation();
+
     if (vision.value > 0) {
       html.classList.add("vision");
     } else {
@@ -352,13 +365,15 @@ $(document).ready(function() {
       type.style.mozFilter =
       type.style.filter = "blur(" + vision.value / 10 + "px)";
     }
-  }, false);
+  });
 
   contrast.addEventListener("input", function () {
     type.style.opacity =  contrast.value / 100;
   }, false);
 
   $overglow.on("input", function () {
+    resetPixelation();
+
     if (overglow.value > 0) {
       html.classList.add("overglow");
     } else {
@@ -395,13 +410,23 @@ $(document).ready(function() {
     }
   });
 
-  pixelation.addEventListener("input", function () {
+  $pixelation.on("input", function () {
+    document.getElementById("overglow").value = 0;
+    document.getElementById("vision").value = 0;
+    $overglow.css('background', '#B3B3B3');
+    $("#overglowoutput").html("0");
+    $vision.css('background', '#B3B3B3');
+    $("#visionoutput").html("0ft");
+
     if (!once) {
       initialSize = getSize();
       once = true;
     }
     if (pixelation.value > 0) {
         html.classList.add("pixelation");
+        type.style.textShadow = "none";
+        type.style.webkitTextStroke = "0";
+        type.style.webkitFilter = "none";
         type.style.mozTransform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + pixelation.value + ")";
         type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + pixelation.value + ")";
         type.style.fontSize = initialSize / pixelation.value + "px";
@@ -411,7 +436,7 @@ $(document).ready(function() {
       type.style.fontSize = initialSize + "px";
       once = false;
     }
-  }, false);
+  });
 
   spacing.addEventListener("input", function () {
     type.style.letterSpacing = spacing.value + "em";
@@ -426,11 +451,13 @@ $(document).ready(function() {
   }, false);
 
   wideness.addEventListener("input", function () {
+    resetPixelation();
     type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
   }, false);
 
   heightness.addEventListener("input", function () {
-      type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
+    resetPixelation();
+    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
   }, false);
 
 
@@ -516,7 +543,9 @@ function refreshFont() {
 
 function refreshBoard() {
   document.getElementById("overglow").value = 0;
+  document.getElementById("pixelation").value = 0;
   $("#overglow").trigger("input");
+  $("#pixelation").trigger("input");
   if ($("#board").val() == "negative") {
     document.documentElement.classList.add("negative");
   } else {
@@ -524,6 +553,8 @@ function refreshBoard() {
   }
   $("#overglow").css('background', '#B3B3B3');
   $("#overglowoutput").html("0");
+  $("#pixelation").css('background', '#B3B3B3');
+  $("#pixelationoutput").html("0px");
 }
 
 function refreshOther() {
