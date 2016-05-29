@@ -325,6 +325,8 @@ $(document).ready(function() {
     $pixelation.css('background', '#B3B3B3');
     $("#pixelationoutput").html("0px");
     type.style.fontSize = initialSize + "px";
+    html.classList.remove("pixelation");
+    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
   }
 
   var initialSize = getSize();
@@ -417,6 +419,8 @@ $(document).ready(function() {
     $("#overglowoutput").html("0");
     $vision.css('background', '#B3B3B3');
     $("#visionoutput").html("0ft");
+    html.classList.remove("overglow");
+    html.classList.remove("vision");
 
     if (!once) {
       initialSize = getSize();
