@@ -310,7 +310,9 @@ function refreshFont() {
 function refreshBoard() {
   document.getElementById("overglow").value = 0;
   document.getElementById("pixelation").value = 0;
+  document.getElementById("vision").value = 0;
   $("#overglow").trigger("input");
+  $("#vision").trigger("input");
   $("#pixelation").trigger("input");
   if ($("#board").val() == "negative") {
     document.documentElement.classList.add("negative");
@@ -321,6 +323,13 @@ function refreshBoard() {
   $("#overglowoutput").html("0");
   $("#pixelation").css('background', '#B3B3B3');
   $("#pixelationoutput").html("0px");
+  $("#vision").css('background', '#B3B3B3');
+  $("#visionoutput").html("0ft");
+
+  document.documentElement.classList.remove("pixelation");
+  document.documentElement.classList.remove("overglow");
+  document.documentElement.classList.remove("vision");
+  document.getElementsByTagName("h1")[0].style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
 }
 
 function refreshOther() {
