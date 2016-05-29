@@ -210,3 +210,20 @@ label {
 .weight-label {
   margin-top: 1.5em;
 }
+
+.madeby {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0, .8);
+  text-decoration: none;
+  padding: 1em 1.4em 1em 1.5em;
+  font-weight: 200;
+  z-index: 99;
+  border-top-left-radius: 6px;
+  color: darken($white, 10%);
+  strong {
+    font-weight: 700;
+    color: $white;
+  }
+}
