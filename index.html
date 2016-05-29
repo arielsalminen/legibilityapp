@@ -17,7 +17,7 @@
       <h2 class="handle">Legibility Inspector</h2>
       <form id="inputForm">
         <h3 id="legibility">Simulation</h3>
-        <div class="group" style="display: block;">
+        <div class="group">
           <div class="spacer"></div>
           <label>Vision:</label>
           <output for="vision" id="visionoutput">0ft</output><br>
@@ -38,12 +38,11 @@
           </select>
         </div>
         <h3 id="typeface-panel" class="closed">Typeface</h3>
-        <div class="group" style="display: block;">
+        <div class="group">
           <div class="spacer"></div>
           <select id="typeface" class="customselect" style="width: 230px;"></select>
-          <label><input type="text" id="font" name="font" style="display: none;"></label>
-          <label><input type="text" id="otherfont" style="display: none;" name="otherfont" onkeyup="refreshOther()" placeholder="Font-family name" value="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif" style="display: inline-block;"><br>
-          <label>Weight:</label>
+          <input type="text" id="otherfont" name="otherfont" onkeyup="refreshOther()" placeholder="Font-family name" value="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif">
+          <label class="weight-label">Weight:</label>
           <output for="weight" id="weightoutput">600</output><br>
           <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 60%, rgb(179, 179, 179) 60%);" data-width="20%" type="range" name="weight" id="weight" min="100" step="100" max="900" value="600" oninput="weightoutput.value = weight.valueAsNumber">
           <label>Size:</label>
@@ -63,7 +62,7 @@
           <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 50%, rgb(179, 179, 179) 50%);" type="range" name="heightness" id="heightness" min="0.7" step="0.1" max="1.3" value="1" oninput="heightnessoutput.value = heightness.valueAsNumber + 'x'">
         </div>
         <h3 class="closed">OpenType Features</h3>
-        <div class="group" style="display: none;">
+        <div class="group">
           <label><input id="kern" type="checkbox">Kerning (kern)</label>
           <label><input id="liga" type="checkbox">Common Ligatures (liga)</label>
           <label><input id="dlig" type="checkbox">Discretionary Ligatures (dlig)</label>
@@ -90,19 +89,19 @@
           <label><input id="ss09" type="checkbox">Stylistic Set 9 (ss09)</label>
         </div>
         <h3 class="closed">Numerals</h3>
-        <div class="group" style="display: none;">
+        <div class="group">
           <label><input name="numsty" checked="checked" type="radio">Default</label>
           <label><input id="lnum" name="numsty" type="radio">Lining (lnum)</label>
           <label><input id="onum" name="numsty" type="radio">Old-Style (onum)</label>
         </div>
         <h3 class="closed">Number Spacing</h3>
-        <div class="group" style="display: none;">
+        <div class="group">
           <label><input name="numspc" checked="checked" type="radio">Default</label>
           <label><input id="pnum" name="numspc" type="radio">Proportional (pnum)</label>
           <label><input id="tnum" name="numspc" type="radio">Tabular (tnum)</label>
         </div>
         <h3 class="closed">Fractions</h3>
-        <div class="group" style="display: none;">
+        <div class="group">
           <label><input name="frac" checked="checked" type="radio">Off</label>
           <label><input id="frac" name="frac" type="radio">Normal (frac)</label>
           <label><input id="afrc" name="frac" type="radio">Alternate (afrc)</label>

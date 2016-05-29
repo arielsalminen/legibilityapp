@@ -192,7 +192,7 @@ input[type="text"] {
   border-radius: 4px;
   box-sizing: border-box;
   padding: .7em .7em;
-  margin: .5em 0 1.5em;
+  margin: .5em 0 0;
   &:focus {
     outline: 0;
     border: 1px solid $focus;
@@ -205,4 +205,8 @@ label {
 }
 .handle {
   cursor: move;
+}
+
+.weight-label {
+  margin-top: 1.5em;
 }

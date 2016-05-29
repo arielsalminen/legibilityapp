@@ -1,9 +1,5 @@
 $(document).ready(function() {
 
-  /*document.addEventListener("touchmove", function(e) {
-    e.preventDefault();
-  }, false);*/
-
   var ua = navigator.userAgent;
   var type = document.getElementsByTagName("h1")[0];
   var html = document.documentElement;
@@ -22,7 +18,7 @@ $(document).ready(function() {
   });
 
   // hide controls and set heading images to closed
-  $('.group, #font, #otherfont').hide();
+  $('.group').hide();
   $('#controls h3').addClass("closed");
 
   // show typeface selector by default
@@ -300,9 +296,7 @@ function refreshFont() {
   var typefaceSelect = document.getElementById("typeface");
   if (typefaceSelect.selectedIndex == 0) {
     refreshOther();
-    $('#otherfont').show();
   } else {
-    $('#otherfont').hide();
     document.getElementsByTagName("h1")[0].style.fontFamily = typefaceSelect.value;
   }
 }

@@ -34,6 +34,7 @@
     var $select = this.select2({
       placeholder:"Select typeface",
       data: fontMap,
+      current: 3,
       theme: "classic",
       triggerChange: true,
       allowClear: false,
@@ -44,6 +45,8 @@
         return state;
       }
     });
+
+    $select.val("Specify local font:").trigger("change");
 
     this.on("select2:open", function (e) {
       jQuery('.select2-search input').prop('focus',false);
