@@ -226,10 +226,28 @@ label {
 }
 
 .d3 {
-  margin: 0 auto;
+  margin: 0 auto .5em;
   width: 100px;
 }
 
-#svg-hover:hover {
-  opacity: 0.4;
+.svg-hover use {
+  fill: #B3B3B3;
+  stroke: #B3B3B3;
+}
+.svg-hover.deactive use {
+  fill: #B3B3B3;
+  stroke: #B3B3B3;
+}
+.svg-hover:hover use {
+  fill: $focus;
+  stroke: $focus;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.svg-hover.active use,
+.active:hover {
+  opacity: 1;
+  stroke: $focus;
+  fill: $focus;
 }

@@ -8,6 +8,13 @@ $(document).ready(function() {
     document.getElementById("overglow").disabled = true;
   }
 
+  $(".svg-hover").on("click", function(e) {
+    e.preventDefault();
+    $(".svg-hover").removeClass("active");
+    $(".svg-hover").addClass("deactive");
+    $(this).addClass("active").removeClass("deactive");
+  });
+
   $('input[type="range"]').on('input', function () {
     var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
     $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
