@@ -40,12 +40,8 @@ usage example: $('.post-thumbnail, article header').draggable();
 
                     var startOffset = $dragged.offset();
                     var x = startOffset.left - e.pageX,
-                        y = startOffset.top - e.pageY,
-                        z = $dragged.css('z-index');
+                        y = startOffset.top - e.pageY;
 
-                    if (!$.fn.draggable.stack) {
-                        $.fn.draggable.stack = 999;
-                    }
                     stack = $.fn.draggable.stack;
                     var firstMove = true;
                     var $preventClick = null;
@@ -57,7 +53,7 @@ usage example: $('.post-thumbnail, article header').draggable();
                             if (firstMove) {
                                 firstMove = false;
                                 $dragged
-                                    .css({'z-index': stack,
+                                    .css({
                                           'bottom': 'auto', 'right': 'auto'
                                     });
                                 var $target = $(e.target);
@@ -85,8 +81,6 @@ usage example: $('.post-thumbnail, article header').draggable();
                         })
                         .one('mouseup touchend touchcancel', function() {
                             $(this).off('mousemove.draggable touchmove.draggable');
-                            $dragged.css({'z-index': z, 'transform': 'scale(1)'})
-                            $.fn.draggable.stack++;
                             if (_fixMobileEvent(e)) {
                                 if ($preventClick) $preventClick.off('click.draggable');
                                 var endOffset = $dragged.offset();

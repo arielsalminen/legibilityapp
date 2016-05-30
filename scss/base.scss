@@ -3,7 +3,7 @@ html,body {
 }
 
 html.no-scroll {
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 body {
@@ -16,19 +16,46 @@ body {
   }
 }
 
-h1 {
+.editor {
   position: absolute;
   text-align: center;
-  top: 48%;
+  top: 29%;
+  z-index: 1;
   padding: 0 2%;
   width: auto;
-  left: 50%;
+  overflow: visible;
+  left: 31.5%;
+  .handle {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    z-index: 80;
+    width: 30px;
+    height: 22px;
+    opacity: 0.6;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    background: #efefef url(../images/move.svg) no-repeat 50% 50%;
+    background-size: 16px 16px;
+    &:hover {
+      opacity: 1;
+    }
+    &:active {
+      background-color: #ddd;
+    }
+  }
+}
+
+h1 {
+  position: relative;
+  overflow: visible;
+  z-index: 70;
+  width: auto;
   font-size: 20vw;
   line-height: 1.1;
   font-weight: 600;
-  overflow: visible;
   color: #111;
-  transform: translateY(-50%) translateX(-50%);
+  transform-origin: 0 0;
   &:focus {
     outline: 0;
   }
@@ -48,7 +75,7 @@ h1 {
   background-color: #efefef;
   box-shadow: 0 1px 3px rgba(0,0,0,0.4);
   width: 22em;
-  z-index:100;
+  z-index: 900;
   input[type="range"],
   input[type="checkbox"],
   input[type="reset"],

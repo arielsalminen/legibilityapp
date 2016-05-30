@@ -56,7 +56,7 @@ html, body {
   height: 100%; }
 
 html.no-scroll {
-  overflow: hidden; }
+  overflow-y: hidden; }
 
 body {
   font: normal normal 11px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande", sans-serif;
@@ -66,19 +66,42 @@ body {
   .negative body {
     background: #111; }
 
-h1 {
+.editor {
   position: absolute;
   text-align: center;
-  top: 48%;
+  top: 29%;
+  z-index: 1;
   padding: 0 2%;
   width: auto;
-  left: 50%;
+  overflow: visible;
+  left: 31.5%; }
+  .editor .handle {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    z-index: 80;
+    width: 30px;
+    height: 22px;
+    opacity: 0.6;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    background: #efefef url(../images/move.svg) no-repeat 50% 50%;
+    background-size: 16px 16px; }
+    .editor .handle:hover {
+      opacity: 1; }
+    .editor .handle:active {
+      background-color: #ddd; }
+
+h1 {
+  position: relative;
+  overflow: visible;
+  z-index: 70;
+  width: auto;
   font-size: 20vw;
   line-height: 1.1;
   font-weight: 600;
-  overflow: visible;
   color: #111;
-  transform: translateY(-50%) translateX(-50%); }
+  transform-origin: 0 0; }
   h1:focus {
     outline: 0; }
   .negative h1 {
@@ -94,7 +117,7 @@ h1 {
   background-color: #efefef;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   width: 22em;
-  z-index: 100; }
+  z-index: 900; }
   #controls input[type="range"],
   #controls input[type="checkbox"],
   #controls input[type="reset"],

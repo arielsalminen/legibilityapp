@@ -8,19 +8,16 @@ $(document).ready(function() {
     document.getElementById("overglow").disabled = true;
   }
 
-  $(".svg-hover").on("click", function(e) {
-    e.preventDefault();
-    $(".svg-hover").removeClass("active");
-    $(".svg-hover").addClass("deactive");
-    $(this).addClass("active").removeClass("deactive");
-  });
-
   $('input[type="range"]').on('input', function () {
     var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
     $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
   });
 
   $(".draggable").draggable({
+    handle: ".handle"
+  });
+
+  $(".editor").draggable({
     handle: ".handle"
   });
 
@@ -79,22 +76,33 @@ $(document).ready(function() {
   var weight = document.getElementById("weight");
   var wideness = document.getElementById("wideness");
   var heightness = document.getElementById("heightness");
-  var rotateX = document.getElementById("rotatex");
-  var rotatey = document.getElementById("rotatey");
-  var rotatez = document.getElementById("rotatez");
 
   function getSize() {
     var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
     return parseFloat(style);
   }
 
+  function toggle3dSpace() {
+    if ($(".floor").hasClass("active")) {
+      type.style.transform = "rotate3d(359, -50, 80, 70deg)";
+    } else if ($(".wall-left").hasClass("active")) {
+      type.style.transform = "rotate3d(-120, 180, -40, 60deg) ";
+    } else if ($(".wall-right").hasClass("active")) {
+      type.style.transform = "rotate3d(120, 180, 40, 60deg) ";
+    }
+  }
+
   function resetPixelation() {
+    if (html.classList.contains("space3d")) {
+      toggle3dSpace();
+    } else {
+      type.style.transform = "translateZ(0)";
+    }
     pixelation.value = 0;
     $pixelation.css('background', '#B3B3B3');
     $("#pixelationoutput").html("0px");
     type.style.fontSize = initialSize + "px";
     html.classList.remove("pixelation");
-    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
   }
 
   var initialSize = getSize();
@@ -110,7 +118,7 @@ $(document).ready(function() {
     }
     once = false;
     type.style.fontSize = size.value + "vw";
-    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
+    type.style.transform = "translateZ(0)";
     html.classList.remove("pixelation");
     pixelation.value = 0;
     pixelation.style.background = "-webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 0%, rgb(179, 179, 179) 0%)";
@@ -153,11 +161,11 @@ $(document).ready(function() {
       if (html.classList.contains("negative")) {
         type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #fff";
         type.style.textShadow = "0 0 " + overglow.value * 4 + "px #fff";
-        type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
+        type.style.transform = "translateZ(0)";
       } else {
         type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #111";
         type.style.textShadow = "0 0 " + overglow.value * 4 + "px #111";
-        type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
+        type.style.transform = "translateZ(0)";
       }
     } else {
       if (html.classList.contains("negative")) {
@@ -176,7 +184,6 @@ $(document).ready(function() {
         }
       }
       type.style.webkitFilter = "blur(" + overglow.value / 6 + "px)";
-      type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
     }
   });
 
@@ -195,15 +202,32 @@ $(document).ready(function() {
       once = true;
     }
     if (pixelation.value > 0) {
-        html.classList.add("pixelation");
-        type.style.textShadow = "none";
-        type.style.webkitTextStroke = "0";
-        type.style.webkitFilter = "none";
-        type.style.mozTransform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + pixelation.value + ")";
-        type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + pixelation.value + ")";
-        type.style.fontSize = initialSize / pixelation.value + "px";
+      html.classList.add("pixelation");
+      type.style.textShadow = "none";
+      type.style.webkitTextStroke = "0";
+      type.style.webkitFilter = "none";
+      type.style.fontSize = initialSize / pixelation.value + "px";
+      if (html.classList.contains("space3d")) {
+        type.style.mozTransform = "translateZ(0) scale(" + pixelation.value + ")";
+        type.style.transform = "translateZ(0) scale(" + pixelation.value + ")";
+        if ($(".floor").hasClass("active")) {
+          type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(359, -50, 80, 70deg)";
+        } else if ($(".wall-left").hasClass("active")) {
+          type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(-120, 180, -40, 60deg) ";
+        } else if ($(".wall-right").hasClass("active")) {
+          type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(120, 180, 40, 60deg) ";
+        }
+      } else {
+        type.style.mozTransform = "translateZ(0) scale(" + pixelation.value + ")";
+        type.style.transform = "translateZ(0) scale(" + pixelation.value + ")";
+      }
     } else {
-      type.style.transform = "translateY(-50%) translateX(-50%)";
+      if (html.classList.contains("space3d")) {
+        toggle3dSpace();
+      } else {
+        type.style.transform = "none";
+      }
+
       html.classList.remove("pixelation");
       type.style.fontSize = initialSize + "px";
       once = false;
@@ -224,25 +248,33 @@ $(document).ready(function() {
 
   wideness.addEventListener("input", function () {
     resetPixelation();
-    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
+    type.style.transform = "translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
   }, false);
 
   heightness.addEventListener("input", function () {
     resetPixelation();
-    type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
+    type.style.transform = "translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
   }, false);
 
-  rotatex.addEventListener("input", function () {
-    type.style.transform = "rotate3d(1, 0, 0, " + rotatex.value + "deg)";
-  }, false);
+  $(".svg-hover").on("click", function(e) {
+    html.classList.add("space3d");
+    e.preventDefault();
+    $(".svg-hover").removeClass("active");
+    $(".svg-hover").addClass("deactive");
+    $(this).addClass("active").removeClass("deactive");
 
-  rotatey.addEventListener("input", function () {
-    type.style.transform = "rotate3d(0, 1, 0, " + rotatey.value + "deg)";
-  }, false);
-
-  rotatez.addEventListener("input", function () {
-    type.style.transform = "rotate3d(1, 2, -1, " + rotatez.value + "deg)";
-  }, false);
+    if (!html.classList.contains("pixelation")) {
+      toggle3dSpace();
+    } else {
+      if ($(this).hasClass("floor")) {
+        type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(359, -50, 80, 70deg)";
+      } else if ($(this).hasClass("wall-left")) {
+        type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(-120, 180, -40, 60deg) ";
+      } else if ($(this).hasClass("wall-right")) {
+        type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(120, 180, 40, 60deg) ";
+      }
+    }
+  });
 
 
   var defaultOff = [
@@ -345,7 +377,7 @@ function refreshBoard() {
   document.documentElement.classList.remove("pixelation");
   document.documentElement.classList.remove("overglow");
   document.documentElement.classList.remove("vision");
-  document.getElementsByTagName("h1")[0].style.transform = "translateY(-50%) translateX(-50%) translateZ(0)";
+  document.getElementsByTagName("h1")[0].style.transform = "translateZ(0)";
 }
 
 function refreshOther() {
