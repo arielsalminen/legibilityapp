@@ -370,6 +370,9 @@ function refreshBoard() {
   document.documentElement.classList.remove("pixelation");
   document.documentElement.classList.remove("overglow");
   document.documentElement.classList.remove("vision");
+  document.querySelector(".floor").classList.remove("active");
+  document.querySelector(".wall-left").classList.remove("active");
+  document.querySelector(".wall-right").classList.remove("active");
   document.getElementsByTagName("h1")[0].style.transform = "translateZ(0)";
 }
 
