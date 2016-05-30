@@ -278,3 +278,10 @@ label {
   stroke: $focus;
   fill: $focus;
 }
+
+.reset {
+  display: none;
+  position: absolute;
+  margin-top: 4px;
+  right: 16px;
+}

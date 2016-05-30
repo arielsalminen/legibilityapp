@@ -251,6 +251,7 @@ $(document).ready(function() {
 
   $(".svg-hover").on("click", function(e) {
     html.classList.add("space3d");
+    $(".reset").show();
     e.preventDefault();
     $(".svg-hover").removeClass("active");
     $(".svg-hover").addClass("deactive");
@@ -267,6 +268,17 @@ $(document).ready(function() {
         type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(120, 180, 40, 60deg) ";
       }
     }
+  });
+
+  $(".reset").on("click", function(e) {
+    e.preventDefault();
+    $(".svg-hover").removeClass("active");
+    if (!html.classList.contains("pixelation")) {
+      type.style.transform = "none";
+    } else {
+      type.style.transform = "translateZ(0) scale(" + pixelation.value + ")";
+    }
+    $(this).hide();
   });
 
 

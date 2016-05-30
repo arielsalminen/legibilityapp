@@ -289,6 +289,12 @@ label {
   stroke: #419bf9;
   fill: #419bf9; }
 
+.reset {
+  display: none;
+  position: absolute;
+  margin-top: 4px;
+  right: 16px; }
+
 .select2-results__options li {
   padding: 1px !important; }
 
