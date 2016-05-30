@@ -237,7 +237,7 @@ input[type="text"] {
   box-sizing: border-box;
   padding: .7em .7em;
   float: left;
-  margin: -1em 0 2em; }
+  margin: -1em 0 1.5em; }
   input[type="text"]:focus {
     outline: 0;
     border: 1px solid #419bf9; }
