@@ -64,7 +64,7 @@ h1 {
   overflow: hidden;
   padding: 0 16px 2em;
   > *:nth-child(1) {
-    margin-top: 8px;
+    margin-top: 12px;
   }
 }
 h3, h2 {
@@ -192,7 +192,8 @@ input[type="text"] {
   border-radius: 4px;
   box-sizing: border-box;
   padding: .7em .7em;
-  margin: .5em 0 0;
+  float: left;
+  margin: -1em 0 2em;
   &:focus {
     outline: 0;
     border: 1px solid $focus;
@@ -205,10 +206,6 @@ label {
 }
 .handle {
   cursor: move;
-}
-
-.weight-label {
-  margin-top: 1.5em;
 }
 
 .madeby {
@@ -226,4 +223,13 @@ label {
     font-weight: 700;
     color: $white;
   }
+}
+
+.d3 {
+  margin: 0 auto;
+  width: 100px;
+}
+
+#svg-hover:hover {
+  opacity: 0.4;
 }

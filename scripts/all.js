@@ -6035,6 +6035,9 @@ $(document).ready(function() {
   var weight = document.getElementById("weight");
   var wideness = document.getElementById("wideness");
   var heightness = document.getElementById("heightness");
+  var rotateX = document.getElementById("rotatex");
+  var rotatey = document.getElementById("rotatey");
+  var rotatez = document.getElementById("rotatez");
 
   function getSize() {
     var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
@@ -6183,6 +6186,18 @@ $(document).ready(function() {
   heightness.addEventListener("input", function () {
     resetPixelation();
     type.style.transform = "translateY(-50%) translateX(-50%) translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
+  }, false);
+
+  rotatex.addEventListener("input", function () {
+    type.style.transform = "rotate3d(1, 0, 0, " + rotatex.value + "deg)";
+  }, false);
+
+  rotatey.addEventListener("input", function () {
+    type.style.transform = "rotate3d(0, 1, 0, " + rotatey.value + "deg)";
+  }, false);
+
+  rotatez.addEventListener("input", function () {
+    type.style.transform = "rotate3d(1, 2, -1, " + rotatez.value + "deg)";
   }, false);
 
 

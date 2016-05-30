@@ -107,7 +107,7 @@ h1 {
   overflow: hidden;
   padding: 0 16px 2em; }
   .group > *:nth-child(1) {
-    margin-top: 8px; }
+    margin-top: 12px; }
 
 h3, h2 {
   font-size: 11px;
@@ -213,7 +213,8 @@ input[type="text"] {
   border-radius: 4px;
   box-sizing: border-box;
   padding: .7em .7em;
-  margin: .5em 0 0; }
+  float: left;
+  margin: -1em 0 2em; }
   input[type="text"]:focus {
     outline: 0;
     border: 1px solid #419bf9; }
@@ -225,9 +226,6 @@ label {
 
 .handle {
   cursor: move; }
-
-.weight-label {
-  margin-top: 1.5em; }
 
 .madeby {
   position: fixed;
@@ -243,6 +241,13 @@ label {
   .madeby strong {
     font-weight: 700;
     color: #fff; }
+
+.d3 {
+  margin: 0 auto;
+  width: 100px; }
+
+#svg-hover:hover {
+  opacity: 0.4; }
 
 .select2-results__options li {
   padding: 1px !important; }
@@ -274,7 +279,7 @@ label {
 .select2-container {
   box-sizing: border-box;
   display: inline-block;
-  margin: 0;
+  margin: 0 0 1.4em;
   position: relative;
   vertical-align: middle; }
 
