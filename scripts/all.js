@@ -6067,7 +6067,6 @@ $(document).ready(function() {
 
   size.addEventListener("input", function () {
     resetPixelation();
-
     if (size.value > 0) {
       html.classList.add("size");
     } else {
@@ -6075,12 +6074,6 @@ $(document).ready(function() {
     }
     once = false;
     type.style.fontSize = size.value + "vw";
-    type.style.transform = "translateZ(0)";
-    html.classList.remove("pixelation");
-    pixelation.value = 0;
-    pixelation.style.background = "-webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 0%, rgb(179, 179, 179) 0%)";
-    once = false;
-
   }, false);
 
   $vision.on("input", function () {
