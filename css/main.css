@@ -292,8 +292,12 @@ label {
 .reset {
   display: none;
   position: absolute;
-  margin-top: 4px;
-  right: 16px; }
+  top: 2px;
+  right: 0; }
+
+.group-3d {
+  position: relative;
+  width: 100%; }
 
 .select2-results__options li {
   padding: 1px !important; }
