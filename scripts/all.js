@@ -6031,8 +6031,6 @@ $(document).ready(function() {
   var spacing = document.getElementById("letterspacing");
   var leading = document.getElementById("leading");
   var weight = document.getElementById("weight");
-  var wideness = document.getElementById("wideness");
-  var heightness = document.getElementById("heightness");
 
   function getSize() {
     var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
@@ -6196,26 +6194,8 @@ $(document).ready(function() {
     type.style.fontWeight = weight.value;
   }, false);
 
-  wideness.addEventListener("input", function () {
-    resetPixelation();
-    $(".svg-hover").removeClass("active");
-    $(".reset").hide();
-    type.style.transform = "translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
-  }, false);
-
-  heightness.addEventListener("input", function () {
-    resetPixelation();
-    $(".svg-hover").removeClass("active");
-    $(".reset").hide();
-    type.style.transform = "translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
-  }, false);
-
   $(".svg-hover").on("click", function(e) {
     html.classList.add("space3d");
-    heightness.value = 1;
-    wideness.value = 1;
-    $("#heightness").trigger("input");
-    $("#wideness").trigger("input");
 
     $(".reset").show();
     e.preventDefault();
