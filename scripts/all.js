@@ -6335,6 +6335,7 @@ function refreshBoard() {
   $("#pixelationoutput").html("0px");
   $("#vision").css('background', '#B3B3B3');
   $("#visionoutput").html("0ft");
+  $(".reset").hide();
 
   document.documentElement.classList.remove("pixelation");
   document.documentElement.classList.remove("overglow");
