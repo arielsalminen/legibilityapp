@@ -71,6 +71,7 @@ h1 {
   position: absolute;
   top: 30px;
   left: 30px;
+  color: #444;
   border-radius: 3px;
   overflow: hidden;
   background-color: #efefef;
@@ -169,39 +170,48 @@ input {
   }
 
   &[type='range']::-webkit-slider-thumb {
-  	-webkit-appearance: none;
-  	border-radius: 100%;
-  	background: #fff;
+    -webkit-appearance: none;
+    border-radius: 100%;
     position: relative;
     border: 0;
     overflow: visible;
-  	box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-  	height: 16px;
-  	width: 16px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    height: 16px;
+    width: 16px;
+    background-color: #f7f7f7;
+    background-image: -webkit-linear-gradient(top, white 50%, #eeeeee 100%);
+    background-image: linear-gradient(to bottom, white 50%, #eeeeee 100%);
   }
 
   &[type='range']::-moz-range-thumb {
-  	-webkit-appearance: none;
-  	border-radius: 100%;
-  	background: #fff;
+    -webkit-appearance: none;
+    border-radius: 100%;
     position: relative;
     border: 0;
     overflow: visible;
-  	box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-  	height: 16px;
-  	width: 16px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    height: 16px;
+    width: 16px;
+    background-color: #f7f7f7;
+    background-image: -webkit-linear-gradient(top, white 50%, #eeeeee 100%);
+    background-image: linear-gradient(to bottom, white 50%, #eeeeee 100%);
   }
   &[type="range"]:focus {
     outline: 0;
   }
   &[type="range"]:focus::-webkit-slider-thumb,
   &[type='range']::-webkit-slider-thumb:active {
-    background: $focus;
+    border: 1px solid $focus;
+    height: 17px;
+    width: 17px;
+  }
+  &[type=range]::-moz-focus-outer {
+    border: 0;
   }
 
   &[type="range"]:focus::-moz-range-thumb,
   &[type='range']::-moz-range-thumb:active {
-    background: $focus;
+    border: 1px solid $focus;
   }
 }
 output {
@@ -290,4 +300,29 @@ label {
 .group-3d {
   position: relative;
   width: 100%;
+}
+
+button {
+  -webkit-appearance: none;
+  color: #444;
+  text-shadow: 0 1px rgba(255,255,255,0.5);
+  background-image: -webkit-linear-gradient(top, #eeeeee 0%, #cccccc 100%);
+  background-image: linear-gradient(to bottom, #eeeeee 0%, #cccccc 100%);
+  background-repeat: repeat-x;
+  background-color: #f7f7f7;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 0.2em 0.6em;
+  line-height: 1.3;
+  outline: 0;
+  background-image: -webkit-linear-gradient(top, white 50%, #eeeeee 100%);
+  background-image: linear-gradient(to bottom, white 50%, #eeeeee 100%);
+  cursor: pointer;
+  &:active {
+    background-image: none;
+    background-color: darken(#f7f7f7, 5%);
+  }
+  &:focus {
+    border-color: $focus;
+  }
 }
