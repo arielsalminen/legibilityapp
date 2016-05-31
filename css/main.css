@@ -97,7 +97,6 @@ h1 {
   overflow: visible;
   z-index: 70;
   width: auto;
-  min-width: 100px;
   font-size: 20vw;
   line-height: 1.1;
   font-weight: 600;
