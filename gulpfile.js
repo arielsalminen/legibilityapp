@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var sass = require('gulp-ruby-sass');
 var browserSync = require('browser-sync');
+var cssmin = require('gulp-cssmin');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
@@ -8,6 +9,8 @@ var reload = browserSync.reload;
 
 gulp.task('sass', function() {
   return sass('scss/main.scss')
+    .pipe(cssmin())
+    .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('css'))
     .pipe(reload({ stream:true }));
 });

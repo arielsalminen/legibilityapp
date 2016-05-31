@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="@viljamis">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Legibility App">
+    <meta name="description" content="Legibility App is a tool for user interface designers for evaluating typeface legibility under different viewing conditions.">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#000">
+    <title>Legibility App (beta)</title>
+    <link rel="stylesheet" href="css/main.min.css">
+    <script src="scripts/all.min.js"></script>
+  </head>
+  <body>
+    <div class="editor">
+      <div class="handle"></div>
+      <h1 style="filter: blur(0px);" contenteditable autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">1ilI|!</h1>
+    </div>
+    <div id="controls" class="draggable">
+      <h2 class="handle">Legibility Inspector</h2>
+      <form id="inputForm">
+        <h3 id="legibility">Simulation</h3>
+        <div class="group">
+          <div class="spacer"></div>
+          <select id="board" name="board" onchange="refreshBoard()">
+            <option value="positive">Positive (black on white)</option>
+            <option value="negative">Negative (white on black)</option>
+          </select>
+          <label>Vision</label>
+          <output for="vision" id="visionoutput">0ft</output><br>
+          <input type="range" name="vision" id="vision" min="0" step="0.01" max="200" value="0" oninput="visionoutput.value = vision.valueAsNumber + 'ft'">
+          <label>Overglow</label>
+          <output for="overglow" id="overglowoutput">0</output><br>
+          <input type="range" name="overglow" id="overglow" min="0" step="0.01" max="30" value="0" oninput="overglowoutput.value = overglow.valueAsNumber">
+          <label>Pixelation</label>
+          <output for="pixelation" id="pixelationoutput">0px</output><br>
+          <input type="range" name="pixelation" id="pixelation" min="0" step="0" max="35" value="0" oninput="pixelationoutput.value = pixelation.valueAsNumber + 'px'">
+          <label>Contrast</label>
+          <output for="contrast" id="contrastoutput">100%</output><br>
+          <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 100%, rgb(179, 179, 179) 100%);" type="range" name="contrast" id="contrast" min="0" step="0.1" max="100" value="100" oninput="contrastoutput.value = contrast.valueAsNumber + '%'">
+          <div class="group-3d">
+            <label>3D Space</label>
+            <button class="reset">Reset</button>
+            <svg class="d3" width="95px" height="86px" viewBox="0 0 95 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                  <polygon id="path-1" points="47 43 96 64.5 47 86 -1 64.5"></polygon>
+                  <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="95" height="42.5" fill="white">
+                    <use xlink:href="#path-1"></use>
+                  </mask>
+                  <polygon id="path-3" points="48 44 0 65 0 19 48 0"></polygon>
+                  <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="47.8476562" height="65.7600021" fill="white">
+                    <use xlink:href="#path-3"></use>
+                  </mask>
+                  <polygon id="path-5" points="95 44 47 65 47 19 95 0"></polygon>
+                  <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="47.8476562" height="65.7600021" fill="white">
+                    <use xlink:href="#path-5"></use>
+                  </mask>
+                  <path d="M47.5,33 C49.15,33 50.5,34.35 50.5,36 C50.5,37.65 49.15,39 47.5,39 C45.85,39 44.5,37.65 44.5,36 C44.5,34.35 45.85,33 47.5,33 L47.5,33 Z M52,43.5 L52,63 L49,63 L49,54 L46,54 L46,63 L43,63 L43,43.5 L34,43.5 L34,40.5 L61,40.5 L61,43.5 L52,43.5 Z" id="path-7"></path>
+                  <filter x="-50%" y="-60%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-8">
+                    <feMorphology radius="3.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+                    <feOffset dx="0" dy="-7" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+                    <feGaussianBlur stdDeviation="6.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                    <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+                  </filter>
+                </defs>
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g class="svg-hover floor">
+                    <use id="Path-3" stroke="#3B99FC" mask="url(#mask-2)" stroke-width="2" fill-opacity="0.6" fill="#3B99FC" xlink:href="#path-1"></use>
+                  </g>
+                  <g class="svg-hover wall-left">
+                    <use id="Rectangle-2" stroke="#3B99FC" mask="url(#mask-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill-opacity="0.3" fill="#3B99FC" xlink:href="#path-3"></use>
+                  </g>
+                  <g class="svg-hover wall-right">
+                    <use id="Rectangle-2" stroke="#3B99FC" mask="url(#mask-6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill-opacity="0.3" fill="#3B99FC" transform="translate(70.9, 32.8) scale(-1,1) translate(-70.9,-32.8)" xlink:href="#path-5"></use>
+                  </g>
+                  <g id="Shape">
+                    <use fill="black" fill-opacity="0.1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+                    <use fill="#fff" fill-rule="evenodd" xlink:href="#path-7"></use>
+                  </g>
+                </g>
+            </svg>
+          </div>
+        </div>
+        <h3 id="typeface-panel" class="closed">Typeface</h3>
+        <div class="group">
+          <div class="spacer"></div>
+          <select id="typeface" class="customselect" style="width: 230px;"></select>
+          <input type="text" id="otherfont" name="otherfont" onkeyup="refreshOther()" placeholder="Font-family name" value="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Lucida Grande', sans-serif">
+          <label class="weight-label">Weight</label>
+          <output for="weight" id="weightoutput">600</output><br>
+          <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 60%, rgb(179, 179, 179) 60%);" data-width="20%" type="range" name="weight" id="weight" min="100" step="100" max="900" value="600" oninput="weightoutput.value = weight.valueAsNumber">
+          <label>Size</label>
+          <output for="textsize" id="textsizeoutput">20vw</output><br>
+          <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 42%, rgb(179, 179, 179) 42%);" type="range" name="textsize" id="textsize" min="0.3" step="0.01" max="50" value="20" oninput="textsizeoutput.value = textsize.valueAsNumber + 'vw'">
+          <label>Leading</label>
+          <output for="leading" id="leadingoutput">1.6</output><br>
+          <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 75%, rgb(179, 179, 179) 75%);" type="range" name="leading" id="leading" min="0" step="0.01" max="2" value="1.6" oninput="leadingoutput.value = leading.valueAsNumber">
+          <label>Spacing</label>
+          <output for="letterspacing" id="letterspacingoutput">0em</output><br>
+          <input style="background: -webkit-linear-gradient(left, rgb(65, 155, 249) 0%, rgb(65, 155, 249) 50%, rgb(179, 179, 179) 50%);" type="range" name="letterspacing" id="letterspacing" min="-0.1" step="0.001" max="0.1" value="0" oninput="letterspacingoutput.value = letterspacing.valueAsNumber + 'em'">
+        </div>
+        <h3 class="closed">OpenType Features</h3>
+        <div class="group">
+          <label><input id="kern" type="checkbox">Kerning (kern)</label>
+          <label><input id="liga" type="checkbox">Common Ligatures (liga)</label>
+          <label><input id="dlig" type="checkbox">Discretionary Ligatures (dlig)</label>
+          <label><input id="hlig" type="checkbox">Historical Ligatures (hlig)</label>
+          <label><input id="clig" type="checkbox">Contextual Ligatures (clig)</label>
+          <label><input id="smcp" name="smcp" type="checkbox">Small Caps (smcp)</label>
+          <label><input id="c2sc" name="smcp" type="checkbox">Small Caps from Caps (c2sc)</label>
+          <label><input id="zero" type="checkbox">Slashed Zero (zero)</label>
+          <label><input id="nalt" type="checkbox">Numeric Alt. Annotation (nalt)</label>
+          <label><input id="sups" type="checkbox">Superscript/Superiors</label>
+          <label><input id="subs" type="checkbox">Subscript/Inferiors</label>
+          <label><input id="swsh" type="checkbox">Swash (swsh)</label>
+          <label><input id="calt" type="checkbox">Contextual (calt)</label>
+          <label><input id="hist" type="checkbox">Historical (hist)</label>
+          <label><input id="salt" type="checkbox">Stylistic (salt)</label>
+          <label><input id="ss01" type="checkbox">Stylistic Set 1 (ss01)</label>
+          <label><input id="ss02" type="checkbox">Stylistic Set 2 (ss02)</label>
+          <label><input id="ss03" type="checkbox">Stylistic Set 3 (ss03)</label>
+          <label><input id="ss04" type="checkbox">Stylistic Set 4 (ss04)</label>
+          <label><input id="ss05" type="checkbox">Stylistic Set 5 (ss05)</label>
+          <label><input id="ss06" type="checkbox">Stylistic Set 6 (ss06)</label>
+          <label><input id="ss07" type="checkbox">Stylistic Set 7 (ss07)</label>
+          <label><input id="ss08" type="checkbox">Stylistic Set 8 (ss08)</label>
+          <label><input id="ss09" type="checkbox">Stylistic Set 9 (ss09)</label>
+        </div>
+        <h3 class="closed">Numerals</h3>
+        <div class="group">
+          <label><input name="numsty" checked="checked" type="radio">Default</label>
+          <label><input id="lnum" name="numsty" type="radio">Lining (lnum)</label>
+          <label><input id="onum" name="numsty" type="radio">Old-Style (onum)</label>
+        </div>
+        <h3 class="closed">Number Spacing</h3>
+        <div class="group">
+          <label><input name="numspc" checked="checked" type="radio">Default</label>
+          <label><input id="pnum" name="numspc" type="radio">Proportional (pnum)</label>
+          <label><input id="tnum" name="numspc" type="radio">Tabular (tnum)</label>
+        </div>
+        <h3 class="closed">Fractions</h3>
+        <div class="group">
+          <label><input name="frac" checked="checked" type="radio">Off</label>
+          <label><input id="frac" name="frac" type="radio">Normal (frac)</label>
+          <label><input id="afrc" name="frac" type="radio">Alternate (afrc)</label>
+        </div>
+      </form>
+    </div>
+    <a href="https://viljamis.com/" target="_blank" class="madeby">Made by <strong>@viljamis</strong></a>
+  </body>
+</html>
