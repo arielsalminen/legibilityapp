@@ -6198,16 +6198,25 @@ $(document).ready(function() {
 
   wideness.addEventListener("input", function () {
     resetPixelation();
+    $(".svg-hover").removeClass("active");
+    $(".reset").hide();
     type.style.transform = "translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
   }, false);
 
   heightness.addEventListener("input", function () {
     resetPixelation();
+    $(".svg-hover").removeClass("active");
+    $(".reset").hide();
     type.style.transform = "translateZ(0) scale(" + wideness.value + ", " + heightness.value + ")";
   }, false);
 
   $(".svg-hover").on("click", function(e) {
     html.classList.add("space3d");
+    heightness.value = 1;
+    wideness.value = 1;
+    $("#heightness").trigger("input");
+    $("#wideness").trigger("input");
+
     $(".reset").show();
     e.preventDefault();
     $(".svg-hover").removeClass("active");
