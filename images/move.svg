@@ -1,9 +1,1 @@
-<svg fill="#999" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-        <path d="M0 0h24v24H0V0z" id="a"/>
-    </defs>
-    <clipPath id="b">
-        <use overflow="visible" xlink:href="#a"/>
-    </clipPath>
-    <path clip-path="url(#b)" d="M20 9H4v2h16V9zM4 15h16v-2H4v2z"/>
-</svg>
+<?xml version="1.0" ?><svg enable-background="new 0 0 32 32" height="32px" id="svg2" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"><g id="background"><rect fill="none" height="32" width="32"/></g><g fill="white" id="move"><path d="M6,22V10l-6,6L6,22z M26,10v12l6-6L26,10z M10,6h12l-6-6L10,6z M16,32l6-6H10L16,32z M16,9.999C12.686,10,10,12.686,10,16   s2.685,5.999,5.999,6c3.314-0.002,5.999-2.687,5.999-6H22C21.998,12.686,19.313,10,16,9.999z M16,19.998   C13.792,19.994,12.004,18.209,12,16C12.004,13.792,13.792,12.004,16,12c2.209,0.004,3.995,1.79,3.999,3.999H20   C19.994,18.209,18.209,19.994,16,19.998z"/></g></svg>

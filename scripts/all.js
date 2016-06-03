@@ -5997,6 +5997,13 @@ $(document).ready(function() {
     }
   );
 
+  $('h1').focus(function() {
+    $(".editor").addClass("focus");
+  });
+  $('h1').blur(function() {
+    $(".editor").removeClass("focus");
+  });
+
   // update changes
   $("#inputForm").on("change", function() {
     refreshFeatures();
@@ -6240,7 +6247,7 @@ $(document).ready(function() {
     'kern',
     'liga', 'dlig', 'hlig', 'clig',
     'swsh', 'calt', 'hist', 'salt',
-    'ss01', 'ss02', 'ss03', 'ss04', 'ss05','ss06', 'ss07', 'ss08', 'ss09'
+    'ss01', 'ss02', 'ss03', 'ss04'
   ];
 
   var defaultOn = [];

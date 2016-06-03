@@ -27,22 +27,25 @@ body {
   left: 31.5%;
   .handle {
     position: absolute;
-    top: -10px;
-    left: -10px;
+    top: 0;
+    left: 0;
     z-index: 80;
-    width: 30px;
-    height: 22px;
-    opacity: 0.6;
+    width: 28px;
+    height: 28px;
     border-radius: 3px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    background: #efefef url("data:image/svg+xml;utf8,<svg fill='#999' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><defs><path d='M0 0h24v24H0V0z' id='a'/></defs><clipPath id='b'><use overflow='visible' xlink:href='#a'/></clipPath><path clip-path='url(#b)' d='M20 9H4v2h16V9zM4 15h16v-2H4v2z'/></svg>") no-repeat 50% 50%;
+    opacity: 0;
+    background: $focus url("../images/move.svg") no-repeat 50% 50%;
     background-size: 16px 16px;
-    &:hover {
-      opacity: 1;
-    }
-    &:active {
-      background-color: #ddd;
-    }
+  }
+  &:hover .handle {
+    opacity: 1;
+    background-color: #ccc;
+  }
+  &:focus .handle,
+  &:active .handle,
+  &.focus .handle {
+    opacity: 1;
+    background-color: $focus;
   }
 }
 
