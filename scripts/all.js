@@ -5982,6 +5982,10 @@ $(document).ready(function() {
   $('.group').hide();
   $('#controls h3').addClass("closed");
 
+  // hide controls and set heading images to closed
+  $('#legibility').next(".group").show();
+  $('#legibility').remove("closed");
+
   // show/hide control group
   $('#controls h3').click(
     function() {
