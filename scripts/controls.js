@@ -25,10 +25,6 @@ $(document).ready(function() {
   $('.group').hide();
   $('#controls h3').addClass("closed");
 
-  // show typeface selector by default
-  $('#legibility').toggleClass("closed");
-  $('#legibility').next(".group").show();
-
   // show/hide control group
   $('#controls h3').click(
     function() {
