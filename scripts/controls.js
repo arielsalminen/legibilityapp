@@ -87,6 +87,8 @@ $(document).ready(function() {
       type.style.transform = "rotate3d(-120, 180, -40, 60deg) ";
     } else if ($(".wall-right").hasClass("active")) {
       type.style.transform = "rotate3d(120, 180, 40, 60deg) ";
+    } else {
+      type.style.transform = "translateZ(0)";
     }
   }
 
@@ -115,6 +117,7 @@ $(document).ready(function() {
     }
     once = false;
     type.style.fontSize = size.value + "vw";
+    initialSize = getSize();
   }, false);
 
   $vision.on("input", function () {
