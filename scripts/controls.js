@@ -27,7 +27,7 @@ $(document).ready(function() {
 
   // hide controls and set heading images to closed
   $('#legibility').next(".group").show();
-  $('#legibility').remove("closed");
+  $('#legibility').removeClass("closed");
 
   // show/hide control group
   $('#controls h3').click(
