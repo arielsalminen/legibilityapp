@@ -162,10 +162,11 @@ $(document).ready(function() {
       if (html.classList.contains("negative")) {
         type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #fff";
         type.style.textShadow = "0 0 " + overglow.value * 4 + "px #fff";
-        type.style.transform = "translateZ(0)";
       } else {
         type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #111";
         type.style.textShadow = "0 0 " + overglow.value * 4 + "px #111";
+      }
+      if (!html.classList.contains("space3d")) {
         type.style.transform = "translateZ(0)";
       }
     } else {
