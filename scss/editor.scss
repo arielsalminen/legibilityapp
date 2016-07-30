@@ -26,7 +26,8 @@
     background: $focus url("../images/move.svg") no-repeat 50% 50%;
     background-size: 16px 16px;
   }
-  &:hover .handle {
+  &:hover .handle,
+  .ipad & .handle {
     opacity: 1;
     background-color: #ccc;
   }
