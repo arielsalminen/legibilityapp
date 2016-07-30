@@ -1,0 +1,57 @@
+
+/* EDITOR
+--------------------------------------------- */
+
+.editor {
+  position: absolute;
+  text-align: center;
+  top: 29%;
+  z-index: 1;
+  padding: 0 2%;
+  width: auto;
+  overflow: visible;
+  left: 31.5%;
+  @media (max-width: 768px) {
+    display: none;
+  }
+  .handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 80;
+    width: 28px;
+    height: 28px;
+    border-radius: 3px;
+    opacity: 0;
+    background: $focus url("../images/move.svg") no-repeat 50% 50%;
+    background-size: 16px 16px;
+  }
+  &:hover .handle {
+    opacity: 1;
+    background-color: #ccc;
+  }
+  &:focus .handle,
+  &:active .handle,
+  &.focus .handle {
+    opacity: 1;
+    background-color: $focus;
+  }
+}
+
+h1 {
+  position: relative;
+  overflow: visible;
+  z-index: 70;
+  width: auto;
+  font-size: 20vw;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #111;
+  transform-origin: 0 0;
+  &:focus {
+    outline: 0;
+  }
+  .negative & {
+    color: $white;
+  }
+}

@@ -1,0 +1,25 @@
+.tiny-devices {
+  background: $white;
+  font-size: 16px;
+  font: normal 400 4vw/1.5 $base;
+  color: lighten($black, 20%);
+  padding: 12% 8%;
+  @media (min-width: 768px) {
+    display: none;
+  }
+  p {
+    margin-bottom: 1.4em;
+  }
+  h4 {
+    font-size: 32px;
+    font: normal 700 8.6vw/1.6 $base;
+    margin-bottom: .4em;
+    background: $white;
+    color: $black;
+    span {
+      font-weight: 200;
+      color: lighten($black, 50%);
+      margin-left: .1em;
+    }
+  }
+}

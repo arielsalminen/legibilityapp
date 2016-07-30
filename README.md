@@ -9,3 +9,5 @@
 3. ```npm install --save-dev browser-sync```
 
 4. ```gulp serve```
+
+See: http://localhost:3000/development.html
