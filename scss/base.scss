@@ -148,7 +148,7 @@ label {
   z-index: 99;
   border-top-left-radius: 6px;
   color: darken($white, 10%);
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     display: none;
   }
   strong {
