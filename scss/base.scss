@@ -142,6 +142,7 @@ label {
 }
 
 .madeby {
+  -webkit-font-smoothing: antialiased;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -150,11 +151,8 @@ label {
   padding: 1em 1.4em 1em 1.5em;
   font-weight: 400;
   z-index: 99;
-  border-top-left-radius: 6px;
+  border-top-left-radius: 4px;
   color: darken($white, 10%);
-  @media (max-width: 600px) {
-    display: none;
-  }
   strong {
     font-weight: 700;
     color: $white;
