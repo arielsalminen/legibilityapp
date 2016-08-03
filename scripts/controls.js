@@ -282,6 +282,7 @@ $(document).ready(function() {
     } else {
       type.style.transform = "translateZ(0) scale(" + pixelation.value + ")";
     }
+    document.documentElement.classList.remove("space3d");
     $(this).hide();
   });
 

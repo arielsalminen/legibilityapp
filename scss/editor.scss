@@ -9,13 +9,22 @@
   z-index: 1;
   padding: 0 2%;
   border: 1px dashed $focus;
+  border-radius: 3px;
+  border-top-left-radius: 0;
   width: auto;
   overflow: visible;
   left: 31.5%;
+  .space3d &,
+  .pixelation &,
+  .overglow &,
+  .vision & {
+    border: 1px solid transparent;
+  }
   @media (max-width: 600px) {
     display: none;
   }
   .handle {
+    @extend %prevent-user-select;
     position: absolute;
     top: -28px;
     left: -1px;
@@ -27,12 +36,28 @@
     border-top-right-radius: 3px;
     background: $focus url("../images/move.svg") no-repeat 50% 50%;
     background-size: 16px 16px;
+    .space3d &,
+    .pixelation &,
+    .overglow &,
+    .vision & {
+      border-radius: 3px;
+    }
   }
   &:hover,
   &:focus,
   &:active,
   &.focus {
-    background-color: #fefac1;
+    background-color: $yellow;
+    .negative & {
+      background-color: rgba($focus, .2);
+    }
+    .space3d &,
+    .pixelation &,
+    .overglow &,
+    .vision &,
+    .contrast & {
+      background-color: transparent
+    }
   }
 }
 
