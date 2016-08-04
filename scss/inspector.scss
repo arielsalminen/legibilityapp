@@ -5,7 +5,7 @@
 #controls {
   @extend %prevent-user-select;
   cursor: default;
-  position: fixed;
+  position: absolute;
   top: 92px;
   left: 30px;
   color: #444;
