@@ -1,12 +1,8 @@
 .tiny-devices {
   background: $white;
-  font: normal 400 18px/1.5 $base;
+  font: normal 400 14px/1.5 $base;
   color: lighten($black, 20%);
   padding: 90px 30px;
-  @media (max-width: 480px) {
-    font-size: 16px;
-    font-size: 4vw;
-  }
   @media (min-width: 601px) {
     display: none;
   }

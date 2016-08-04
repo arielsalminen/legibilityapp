@@ -87,11 +87,13 @@ $(document).ready(function() {
   var weight = document.getElementById("weight");
 
   function getSize() {
+    type = document.getElementsByTagName("h1")[0];
     var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
     return parseFloat(style);
   }
 
   function toggle3dSpace() {
+    type = document.getElementsByTagName("h1")[0];
     if ($(".floor").hasClass("active")) {
       type.style.transform = "rotate3d(359, -50, 80, 70deg)";
     } else if ($(".wall-left").hasClass("active")) {
@@ -104,6 +106,7 @@ $(document).ready(function() {
   }
 
   function resetPixelation() {
+    type = document.getElementsByTagName("h1")[0];
     if (html.classList.contains("space3d")) {
       toggle3dSpace();
     } else {
@@ -120,6 +123,7 @@ $(document).ready(function() {
   var once = false;
 
   size.addEventListener("input", function () {
+    type = document.getElementsByTagName("h1")[0];
     resetPixelation();
     if (size.value > 0) {
       html.classList.add("size");
@@ -132,6 +136,7 @@ $(document).ready(function() {
   }, false);
 
   $vision.on("input", function () {
+    type = document.getElementsByTagName("h1")[0];
     resetPixelation();
 
     if (vision.value > 0) {
@@ -151,10 +156,12 @@ $(document).ready(function() {
   });
 
   contrast.addEventListener("input", function () {
+    type = document.getElementsByTagName("h1")[0];
     type.style.opacity =  contrast.value / 100;
   }, false);
 
   $overglow.on("input", function () {
+    type = document.getElementsByTagName("h1")[0];
     resetPixelation();
 
     if (overglow.value > 0) {
@@ -194,6 +201,7 @@ $(document).ready(function() {
   });
 
   $pixelation.on("input", function () {
+    type = document.getElementsByTagName("h1")[0];
     document.getElementById("overglow").value = 0;
     document.getElementById("vision").value = 0;
     $overglow.css('background', '#B3B3B3');
@@ -241,18 +249,22 @@ $(document).ready(function() {
   });
 
   spacing.addEventListener("input", function () {
+    type = document.getElementsByTagName("h1")[0];
     type.style.letterSpacing = spacing.value + "em";
   }, false);
 
   leading.addEventListener("input", function () {
+    type = document.getElementsByTagName("h1")[0];
     type.style.lineHeight = leading.value;
   }, false);
 
   weight.addEventListener("input", function () {
+    type = document.getElementsByTagName("h1")[0];
     type.style.fontWeight = weight.value;
   }, false);
 
   $(".svg-hover").on("click", function(e) {
+    type = document.getElementsByTagName("h1")[0];
     html.classList.add("space3d");
 
     $(".reset").show();
@@ -275,6 +287,7 @@ $(document).ready(function() {
   });
 
   $(".reset").on("click", function(e) {
+    type = document.getElementsByTagName("h1")[0];
     e.preventDefault();
     $(".svg-hover").removeClass("active");
     if (!html.classList.contains("pixelation")) {
@@ -302,6 +315,7 @@ $(document).ready(function() {
   var defaultOn = [];
 
   function refreshFeatures() {
+    type = document.getElementsByTagName("h1")[0];
 
     var mfeatures = "";
     var wfeatures = "";

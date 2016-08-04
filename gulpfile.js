@@ -16,7 +16,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('uglify', function(){
-  return gulp.src(['scripts/jquery.js', 'scripts/select2.min.js', 'scripts/draggable.js', 'scripts/fonts.js', 'scripts/webfontloader.js', 'scripts/controls.js'])
+  return gulp.src(['scripts/jquery.js', 'scripts/select2.min.js', 'scripts/draggable.js', 'scripts/fonts.js', 'scripts/webfontloader.js', 'scripts/controls.js', 'scripts/save.js'])
     .pipe(concat('all.js'))
     .pipe(gulp.dest('scripts'))
     .pipe(rename('all.min.js'))
@@ -34,4 +34,5 @@ gulp.task('serve', ['sass', 'uglify'], function() {
 
   gulp.watch('scss/*.scss', ['sass']);
   gulp.watch('scripts/controls.js', ['uglify']);
+  gulp.watch('scripts/save.js', ['uglify']);
 });
