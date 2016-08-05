@@ -377,6 +377,10 @@ function initFunctionalities() {
 
 $(document).ready(function() {
   initFunctionalities();
+
+  window.setTimeout(function() {
+    $(".overlay").addClass("content-ready");
+  }, 1400);
 });
 
 function refreshFont() {

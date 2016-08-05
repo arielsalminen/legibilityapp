@@ -2,10 +2,6 @@
 /* HEADER
 --------------------------------------------- */
 
-@-moz-keyframes spin { 100% { -moz-transform: translateZ(0) rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: translateZ(0) rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: translateZ(0) rotate(360deg); transform: translateZ(0) rotate(360deg); } }
-
 header {
   @extend %prevent-user-select;
   -webkit-font-smoothing: antialiased;
@@ -13,7 +9,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 901;
+  z-index: 902;
   overflow: hidden;
   background-color: $focus;
   box-shadow: 0 1px 1px 1px rgba(0,0,0,.13);

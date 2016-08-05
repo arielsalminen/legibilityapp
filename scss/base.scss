@@ -220,3 +220,44 @@ button {
     border-color: $focus;
   }
 }
+
+.overlay {
+  transition: all .3s ease;
+  z-index: 901;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $white;
+  &:after {
+    content: "";
+    background: url('data:image/svg+xml;utf8,<svg width="40px" height="40px" viewBox="0 0 16 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><path d="M8,3 L8,0 L4,4 L8,8 L8,5 C11.31,5 14,7.69 14,11 C14,12.01 13.75,12.97 13.3,13.8 L14.76,15.26 C15.54,14.03 16,12.57 16,11 C16,6.58 12.42,3 8,3 L8,3 Z M8,17 C4.69,17 2,14.31 2,11 C2,9.99 2.25,9.03 2.7,8.2 L1.24,6.74 C0.46,7.97 0,9.43 0,11 C0,15.42 3.58,19 8,19 L8,22 L12,18 L8,14 L8,17 L8,17 Z" fill="#419bf9" transform="translate(8,11) scale(-1,1) translate(-8,-11)"></path></g></svg>');
+    -webkit-animation: spin .8s linear infinite;
+    -moz-animation: spin .8s linear infinite;
+    animation: spin .8s linear infinite;
+    width: 40px;
+    height: 40px;
+    top: 48%;
+    left: 49%;
+    position: absolute;
+  }
+  &.content-ready {
+    opacity: 0;
+    background: rgba($white, .2);
+    visibility: hidden;
+    &:after {
+      background: none;
+      -webkit-animation: none;
+      -moz-animation: none;
+      animation: none;
+    }
+    .negative & {
+      background: rgba($black, .2);
+    }
+  }
+  .saving & {
+    opacity: 1;
+    visibility: visible;
+  }
+}

@@ -6,9 +6,11 @@ $(document).ready(function() {
       btn.classList.add("func--save__saving");
       btn.classList.add("func--save__savingend");
       btn.innerHTML = "Saving";
+      document.documentElement.classList.add("saving");
       window.setTimeout(function() {
         btn.innerHTML = "Saved&nbsp;";
         btn.classList.remove("func--save__saving");
+        document.documentElement.classList.remove("saving");
         window.setTimeout(function() {
           btn.innerHTML = "Save";
           btn.classList.remove("func--save__savingend");
@@ -18,10 +20,10 @@ $(document).ready(function() {
 
     function storeUserEditable() {
       if (!$(".func--save").hasClass("func--save__savingend")) {
-        saving();
         var edits = document.querySelector(".editor").innerHTML;
         var settings = document.getElementById("controls").innerHTML;
         var theme = document.documentElement.className;
+        saving();
         localStorage.setItem("userEditable", edits);
         localStorage.setItem("userSettings", settings);
         localStorage.setItem("userTheme", theme);

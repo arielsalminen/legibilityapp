@@ -1,0 +1,4 @@
+
+@-moz-keyframes spin { 100% { -moz-transform: translateZ(0) rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: translateZ(0) rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: translateZ(0) rotate(360deg); transform: translateZ(0) rotate(360deg); } }
