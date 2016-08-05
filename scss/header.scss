@@ -2,6 +2,10 @@
 /* HEADER
 --------------------------------------------- */
 
+@-moz-keyframes spin { 100% { -moz-transform: translateZ(0) rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: translateZ(0) rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: translateZ(0) rotate(360deg); transform: translateZ(0) rotate(360deg); } }
+
 header {
   @extend %prevent-user-select;
   -webkit-font-smoothing: antialiased;
@@ -41,12 +45,40 @@ header {
     padding: 0 1.25em;
     text-decoration: none;
     color: $white;
+    &.func--save {
+      position: relative;
+      svg {
+        display: none;
+      }
+    }
     &:hover {
       background: rgba($black, .1);
     }
-    &:active,
-    &:focus {
+    &:active {
       background: rgba($black, .2);
+    }
+    &.func--save__savingend {
+      padding-left: 38px;
+      cursor: default;
+      background: rgba($black, .2);
+      &:after {
+        content: "";
+        background: url('data:image/svg+xml;utf8,<svg fill="#fff" height="17" viewBox="0 0 24 24" width="17" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>');
+        display: block !important;
+        width: 17px;
+        height: 17px;
+        top: 21px;
+        left: 17px;
+        position: absolute;
+      }
+    }
+    &.func--save__saving {
+      &:after {
+        background: url('data:image/svg+xml;utf8,<svg width="17px" height="17px" viewBox="0 0 16 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><path d="M8,3 L8,0 L4,4 L8,8 L8,5 C11.31,5 14,7.69 14,11 C14,12.01 13.75,12.97 13.3,13.8 L14.76,15.26 C15.54,14.03 16,12.57 16,11 C16,6.58 12.42,3 8,3 L8,3 Z M8,17 C4.69,17 2,14.31 2,11 C2,9.99 2.25,9.03 2.7,8.2 L1.24,6.74 C0.46,7.97 0,9.43 0,11 C0,15.42 3.58,19 8,19 L8,22 L12,18 L8,14 L8,17 L8,17 Z" fill="#fff" transform="translate(8,11) scale(-1,1) translate(-8,-11)"></path></g></svg>');
+        -webkit-animation: spin 1s linear infinite;
+        -moz-animation: spin 1s linear infinite;
+        animation: spin 1s linear infinite;
+      }
     }
   }
   .twitter {

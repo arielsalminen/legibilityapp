@@ -1,28 +1,20 @@
-$(document).ready(function() {
+var type;
 
-  var ua = navigator.userAgent;
-  var type = document.getElementsByTagName("h1")[0];
-  var html = document.documentElement;
-
-  if (ua.match(/firefox/i)) {
-    document.getElementById("overglow").disabled = true;
-  }
-
-  if (ua.match(/ipad/i)) {
-    document.documentElement.className += " ipad";
-  }
-
-  $('input[type="range"]').on('input', function () {
-    var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
-    $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
-  });
-
+// Needed for when things are loaded from localStorage
+// to reinitialize the instances
+function initFunctionalities() {
+  type = document.getElementsByTagName("h1")[0];
   $(".draggable").draggable({
     handle: ".handle"
   });
 
   $(".editor").draggable({
     handle: ".handle"
+  });
+
+  $('input[type="range"]').on('input', function () {
+    var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
+    $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
   });
 
   // hide controls and set heading images to closed
@@ -51,6 +43,17 @@ $(document).ready(function() {
     $(".editor").removeClass("focus");
   });
 
+  var ua = navigator.userAgent;
+  var html = document.documentElement;
+
+  if (ua.match(/firefox/i)) {
+    document.getElementById("overglow").disabled = true;
+  }
+
+  if (ua.match(/ipad/i)) {
+    document.documentElement.className += " ipad";
+  }
+
   // update changes
   $("#inputForm").on("change", function() {
     refreshFeatures();
@@ -66,11 +69,14 @@ $(document).ready(function() {
   });
 
   $("select").each(function() {
-   if (!($(this).hasClass("customselect"))) {
+   if (!$(this).hasClass("customselect")) {
      $(this).select2({
        theme: "classic",
        minimumResultsForSearch: 30
      });
+     if ($(".select2").next(".select2")) {
+       $(".select2").next(".select2").remove();
+     }
    }
   });
 
@@ -87,13 +93,13 @@ $(document).ready(function() {
   var weight = document.getElementById("weight");
 
   function getSize() {
-    type = document.getElementsByTagName("h1")[0];
+
     var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
     return parseFloat(style);
   }
 
   function toggle3dSpace() {
-    type = document.getElementsByTagName("h1")[0];
+
     if ($(".floor").hasClass("active")) {
       type.style.transform = "rotate3d(359, -50, 80, 70deg)";
     } else if ($(".wall-left").hasClass("active")) {
@@ -106,7 +112,7 @@ $(document).ready(function() {
   }
 
   function resetPixelation() {
-    type = document.getElementsByTagName("h1")[0];
+
     if (html.classList.contains("space3d")) {
       toggle3dSpace();
     } else {
@@ -123,7 +129,7 @@ $(document).ready(function() {
   var once = false;
 
   size.addEventListener("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     resetPixelation();
     if (size.value > 0) {
       html.classList.add("size");
@@ -136,7 +142,7 @@ $(document).ready(function() {
   }, false);
 
   $vision.on("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     resetPixelation();
 
     if (vision.value > 0) {
@@ -156,12 +162,12 @@ $(document).ready(function() {
   });
 
   contrast.addEventListener("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     type.style.opacity =  contrast.value / 100;
   }, false);
 
   $overglow.on("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     resetPixelation();
 
     if (overglow.value > 0) {
@@ -201,7 +207,7 @@ $(document).ready(function() {
   });
 
   $pixelation.on("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     document.getElementById("overglow").value = 0;
     document.getElementById("vision").value = 0;
     $overglow.css('background', '#B3B3B3');
@@ -249,22 +255,22 @@ $(document).ready(function() {
   });
 
   spacing.addEventListener("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     type.style.letterSpacing = spacing.value + "em";
   }, false);
 
   leading.addEventListener("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     type.style.lineHeight = leading.value;
   }, false);
 
   weight.addEventListener("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     type.style.fontWeight = weight.value;
   }, false);
 
   $(".svg-hover").on("click", function(e) {
-    type = document.getElementsByTagName("h1")[0];
+
     html.classList.add("space3d");
 
     $(".reset").show();
@@ -287,7 +293,7 @@ $(document).ready(function() {
   });
 
   $(".reset").on("click", function(e) {
-    type = document.getElementsByTagName("h1")[0];
+
     e.preventDefault();
     $(".svg-hover").removeClass("active");
     if (!html.classList.contains("pixelation")) {
@@ -315,7 +321,7 @@ $(document).ready(function() {
   var defaultOn = [];
 
   function refreshFeatures() {
-    type = document.getElementsByTagName("h1")[0];
+
 
     var mfeatures = "";
     var wfeatures = "";
@@ -367,7 +373,10 @@ $(document).ready(function() {
 
   window.addEventListener("resize", resize, false);
   resize();
+}
 
+$(document).ready(function() {
+  initFunctionalities();
 });
 
 function refreshFont() {

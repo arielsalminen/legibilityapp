@@ -5956,31 +5956,23 @@ Da=/^(thin|(?:(?:extra|ultra)-?)?light|regular|book|medium|(?:(?:semi|demi|extra
 function Ea(a){for(var b=a.f.length,c=0;c<b;c++){var d=a.f[c].split(":"),e=d[0].replace(/\+/g," "),f=["n4"];if(2<=d.length){var g;var k=d[1];g=[];if(k)for(var k=k.split(","),h=k.length,m=0;m<h;m++){var l;l=k[m];if(l.match(/^[\w-]+$/)){var n=Da.exec(l.toLowerCase());if(null==n)l="";else{l=n[2];l=null==l||""==l?"n":Ca[l];n=n[1];if(null==n||""==n)n="4";else var r=Ba[n],n=r?r:isNaN(n)?"4":n.substr(0,1);l=[l,n].join("")}}else l="";l&&g.push(l)}0<g.length&&(f=g);3==d.length&&(d=d[2],g=[],d=d?d.split(","):
 g,0<d.length&&(d=Aa[d[0]])&&(a.c[e]=d))}a.c[e]||(d=Aa[e])&&(a.c[e]=d);for(d=0;d<f.length;d+=1)a.a.push(new H(e,f[d]))}};function Fa(a,b){this.c=a;this.a=b}var Ga={Arimo:!0,Cousine:!0,Tinos:!0};Fa.prototype.load=function(a){var b=new C,c=this.c,d=new va(this.a.api,z(c),this.a.text),e=this.a.families;xa(d,e);var f=new za(e);Ea(f);A(c,ya(d),D(b));F(b,function(){a(f.a,f.c,Ga)})};function Ha(a,b){this.c=a;this.a=b}Ha.prototype.load=function(a){var b=this.a.id,c=this.c.m;b?B(this.c,(this.a.api||"https://use.typekit.net")+"/"+b+".js",function(b){if(b)a([]);else if(c.Typekit&&c.Typekit.config&&c.Typekit.config.fn){b=c.Typekit.config.fn;for(var e=[],f=0;f<b.length;f+=2)for(var g=b[f],k=b[f+1],h=0;h<k.length;h++)e.push(new H(g,k[h]));try{c.Typekit.load({events:!1,classes:!1,async:!0})}catch(m){}a(e)}},2E3):a([])};function Ia(a,b){this.c=a;this.f=b;this.a=[]}Ia.prototype.load=function(a){var b=this.f.id,c=this.c.m,d=this;b?(c.__webfontfontdeckmodule__||(c.__webfontfontdeckmodule__={}),c.__webfontfontdeckmodule__[b]=function(b,c){for(var g=0,k=c.fonts.length;g<k;++g){var h=c.fonts[g];d.a.push(new H(h.name,ga("font-weight:"+h.weight+";font-style:"+h.style)))}a(d.a)},B(this.c,z(this.c)+(this.f.api||"//f.fontdeck.com/s/css/js/")+ea(this.c)+"/"+b+".js",function(b){b&&a([])})):a([])};var Y=new pa(window);Y.a.c.custom=function(a,b){return new ua(b,a)};Y.a.c.fontdeck=function(a,b){return new Ia(b,a)};Y.a.c.monotype=function(a,b){return new sa(b,a)};Y.a.c.typekit=function(a,b){return new Ha(b,a)};Y.a.c.google=function(a,b){return new Fa(b,a)};var Z={load:p(Y.load,Y)};"function"===typeof define&&define.amd?define(function(){return Z}):"undefined"!==typeof module&&module.exports?module.exports=Z:(window.WebFont=Z,window.WebFontConfig&&Y.load(window.WebFontConfig));}());
 
-$(document).ready(function() {
+var type;
 
-  var ua = navigator.userAgent;
-  var type = document.getElementsByTagName("h1")[0];
-  var html = document.documentElement;
-
-  if (ua.match(/firefox/i)) {
-    document.getElementById("overglow").disabled = true;
-  }
-
-  if (ua.match(/ipad/i)) {
-    document.documentElement.className += " ipad";
-  }
-
-  $('input[type="range"]').on('input', function () {
-    var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
-    $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
-  });
-
+// Needed for when things are loaded from localStorage
+// to reinitialize the instances
+function initFunctionalities() {
+  type = document.getElementsByTagName("h1")[0];
   $(".draggable").draggable({
     handle: ".handle"
   });
 
   $(".editor").draggable({
     handle: ".handle"
+  });
+
+  $('input[type="range"]').on('input', function () {
+    var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
+    $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
   });
 
   // hide controls and set heading images to closed
@@ -6009,6 +6001,17 @@ $(document).ready(function() {
     $(".editor").removeClass("focus");
   });
 
+  var ua = navigator.userAgent;
+  var html = document.documentElement;
+
+  if (ua.match(/firefox/i)) {
+    document.getElementById("overglow").disabled = true;
+  }
+
+  if (ua.match(/ipad/i)) {
+    document.documentElement.className += " ipad";
+  }
+
   // update changes
   $("#inputForm").on("change", function() {
     refreshFeatures();
@@ -6024,11 +6027,14 @@ $(document).ready(function() {
   });
 
   $("select").each(function() {
-   if (!($(this).hasClass("customselect"))) {
+   if (!$(this).hasClass("customselect")) {
      $(this).select2({
        theme: "classic",
        minimumResultsForSearch: 30
      });
+     if ($(".select2").next(".select2")) {
+       $(".select2").next(".select2").remove();
+     }
    }
   });
 
@@ -6045,13 +6051,13 @@ $(document).ready(function() {
   var weight = document.getElementById("weight");
 
   function getSize() {
-    type = document.getElementsByTagName("h1")[0];
+
     var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
     return parseFloat(style);
   }
 
   function toggle3dSpace() {
-    type = document.getElementsByTagName("h1")[0];
+
     if ($(".floor").hasClass("active")) {
       type.style.transform = "rotate3d(359, -50, 80, 70deg)";
     } else if ($(".wall-left").hasClass("active")) {
@@ -6064,7 +6070,7 @@ $(document).ready(function() {
   }
 
   function resetPixelation() {
-    type = document.getElementsByTagName("h1")[0];
+
     if (html.classList.contains("space3d")) {
       toggle3dSpace();
     } else {
@@ -6081,7 +6087,7 @@ $(document).ready(function() {
   var once = false;
 
   size.addEventListener("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     resetPixelation();
     if (size.value > 0) {
       html.classList.add("size");
@@ -6094,7 +6100,7 @@ $(document).ready(function() {
   }, false);
 
   $vision.on("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     resetPixelation();
 
     if (vision.value > 0) {
@@ -6114,12 +6120,12 @@ $(document).ready(function() {
   });
 
   contrast.addEventListener("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     type.style.opacity =  contrast.value / 100;
   }, false);
 
   $overglow.on("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     resetPixelation();
 
     if (overglow.value > 0) {
@@ -6159,7 +6165,7 @@ $(document).ready(function() {
   });
 
   $pixelation.on("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     document.getElementById("overglow").value = 0;
     document.getElementById("vision").value = 0;
     $overglow.css('background', '#B3B3B3');
@@ -6207,22 +6213,22 @@ $(document).ready(function() {
   });
 
   spacing.addEventListener("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     type.style.letterSpacing = spacing.value + "em";
   }, false);
 
   leading.addEventListener("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     type.style.lineHeight = leading.value;
   }, false);
 
   weight.addEventListener("input", function () {
-    type = document.getElementsByTagName("h1")[0];
+
     type.style.fontWeight = weight.value;
   }, false);
 
   $(".svg-hover").on("click", function(e) {
-    type = document.getElementsByTagName("h1")[0];
+
     html.classList.add("space3d");
 
     $(".reset").show();
@@ -6245,7 +6251,7 @@ $(document).ready(function() {
   });
 
   $(".reset").on("click", function(e) {
-    type = document.getElementsByTagName("h1")[0];
+
     e.preventDefault();
     $(".svg-hover").removeClass("active");
     if (!html.classList.contains("pixelation")) {
@@ -6273,7 +6279,7 @@ $(document).ready(function() {
   var defaultOn = [];
 
   function refreshFeatures() {
-    type = document.getElementsByTagName("h1")[0];
+
 
     var mfeatures = "";
     var wfeatures = "";
@@ -6325,7 +6331,10 @@ $(document).ready(function() {
 
   window.addEventListener("resize", resize, false);
   resize();
+}
 
+$(document).ready(function() {
+  initFunctionalities();
 });
 
 function refreshFont() {
@@ -6373,22 +6382,83 @@ function refreshOther() {
 $(document).ready(function() {
   if (document.querySelectorAll && window.addEventListener && "classList" in document.documentElement) {
 
+    function saving() {
+      var btn = document.querySelector(".func--save");
+      btn.classList.add("func--save__saving");
+      btn.classList.add("func--save__savingend");
+      btn.innerHTML = "Saving";
+      window.setTimeout(function() {
+        btn.innerHTML = "Saved&nbsp;";
+        btn.classList.remove("func--save__saving");
+        window.setTimeout(function() {
+          btn.innerHTML = "Save";
+          btn.classList.remove("func--save__savingend");
+        }, 800);
+      }, 1400);
+    }
+
     function storeUserEditable() {
-      var edits = document.querySelector(".editor").innerHTML;
-      localStorage.setItem("userEditable", edits);
+      if (!$(".func--save").hasClass("func--save__savingend")) {
+        saving();
+        var edits = document.querySelector(".editor").innerHTML;
+        var settings = document.getElementById("controls").innerHTML;
+        var theme = document.documentElement.className;
+        localStorage.setItem("userEditable", edits);
+        localStorage.setItem("userSettings", settings);
+        localStorage.setItem("userTheme", theme);
+      }
     }
 
     function getUserEditable() {
       var edits = localStorage.getItem("userEditable");
+      var settings = localStorage.getItem("userSettings");
+      var theme = localStorage.getItem("userTheme");
       if (edits) {
         document.querySelector(".editor").innerHTML = edits;
+        if (settings) {
+          document.getElementById("controls").innerHTML = settings;
+        }
+        if (theme) {
+          document.documentElement.className = theme;
+        }
+        initFunctionalities();
+
+        var visionValue = document.getElementById("visionoutput").innerHTML;
+        document.getElementById("vision").value = visionValue.replace("ft", "");
+
+        var overglowValue = document.getElementById("overglowoutput").innerHTML;
+        document.getElementById("overglow").value = overglowValue;
+
+        var pixelationValue = document.getElementById("pixelationoutput").innerHTML;
+        document.getElementById("pixelation").value = pixelationValue.replace("px", "");
+
+        var contrastValue = document.getElementById("contrastoutput").innerHTML;
+        document.getElementById("contrast").value = contrastValue.replace("%", "");
+
+        var weightValue = document.getElementById("weightoutput").innerHTML;
+        document.getElementById("weight").value = weightValue;
+
+        var textsizeValue = document.getElementById("textsizeoutput").innerHTML;
+        document.getElementById("textsize").value = textsizeValue.replace("vw", "");
+
+        var leadingValue = document.getElementById("leadingoutput").innerHTML;
+        document.getElementById("leading").value = leadingValue;
+
+        var letterspacingValue = document.getElementById("letterspacingoutput").innerHTML;
+        document.getElementById("letterspacing").value = letterspacingValue.replace("em", "");
       }
     }
 
     function clearUserEditable() {
       if (confirm("Permanently erase all changes?")) {
         localStorage.clear();
-        document.querySelector(".editor").innerHTML = "<div class='handle'></div><h1 style='filter: blur(0px);' contenteditable autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'>1ilI|!</h1>";
+        document.getElementById("editor").innerHTML = "<div class='handle'></div><h1 style='filter: blur(0px);' contenteditable autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'>1ilI|!</h1>";
+        var editorContent = $.get(document.location.href, function(data) {
+          var editorState = $(data).filter("div#controls").html();
+          document.querySelector("#controls").innerHTML = editorState;
+          document.documentElement.className = "";
+          initFunctionalities();
+        });
       }
     }
 
