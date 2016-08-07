@@ -4,6 +4,7 @@
 
 .overlay {
   transition: all .3s ease;
+  transform: translateZ(0);
   z-index: 901;
   position: fixed;
   top: 0;
