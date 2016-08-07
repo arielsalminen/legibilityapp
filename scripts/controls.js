@@ -1,8 +1,11 @@
-var type;
+var type, once, initialSize;
+var ua = navigator.userAgent;
+var html = document.documentElement;
 
 // Needed for when things are loaded from localStorage
 // to reinitialize the instances
 function initFunctionalities() {
+
   type = document.getElementsByTagName("h1")[0];
   $(".draggable").draggable({
     handle: ".handle"
@@ -42,9 +45,6 @@ function initFunctionalities() {
   $('h1').blur(function() {
     $(".editor").removeClass("focus");
   });
-
-  var ua = navigator.userAgent;
-  var html = document.documentElement;
 
   if (ua.match(/firefox/i)) {
     document.getElementById("overglow").disabled = true;
@@ -125,8 +125,8 @@ function initFunctionalities() {
     html.classList.remove("pixelation");
   }
 
-  var initialSize = getSize();
-  var once = false;
+  initialSize = getSize();
+  once = false;
 
   size.addEventListener("input", function () {
 
@@ -380,7 +380,8 @@ $(document).ready(function() {
 
   window.setTimeout(function() {
     $(".overlay").addClass("content-ready");
-  }, 1400);
+    $(".func--disabled").removeClass("func--disabled");
+  }, 1700);
 });
 
 function refreshFont() {

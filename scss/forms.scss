@@ -1,0 +1,144 @@
+
+/* FORMS
+--------------------------------------------- */
+
+input {
+  font-size:100%;
+  font-family:inherit;
+  margin-right: 0.545454545454545em;
+  margin-left: 0;
+  &[disabled] {
+    opacity: 0.5;
+    cursor: default !important;
+  }
+  &[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    margin: 8px 0 15px;
+    height: 3px;
+    background: #B3B3B3;
+    position: relative;
+    &:focus,
+    &:active {
+      outline: 0;
+    }
+  }
+  &[type="text"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  &[type="range"]::-moz-range-track {
+    -moz-appearance: none;
+    border: 0;
+    height: 3px;
+    background: #B3B3B3;
+  }
+
+  &[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border-radius: 100%;
+    position: relative;
+    border: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.45);
+    height: 16px;
+    width: 16px;
+    background-color: #f7f7f7;
+    background-image: -webkit-linear-gradient(top, white 50%, #eee 120%);
+    background-image: linear-gradient(to bottom, white 50%, #eee 120%);
+    .ipad & {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  &[type='range']::-moz-range-thumb {
+    -webkit-appearance: none;
+    border-radius: 100%;
+    position: relative;
+    border: 0;
+    overflow: visible;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.45);
+    height: 16px;
+    width: 16px;
+    background-color: #f7f7f7;
+    background-image: -webkit-linear-gradient(top, white 50%, #eee 120%);
+    background-image: linear-gradient(to bottom, white 50%, #eee 120%);
+  }
+  &[type="range"]:focus {
+    outline: 0;
+  }
+  &[type="range"]:focus::-webkit-slider-thumb,
+  &[type='range']::-webkit-slider-thumb:active {
+    border: 1px solid $focus;
+    height: 17px;
+    width: 17px;
+    .ipad & {
+      height: 19px;
+      width: 19px;
+    }
+  }
+  &[type=range]::-moz-focus-outer {
+    border: 0;
+  }
+
+  &[type="range"]:focus::-moz-range-thumb,
+  &[type='range']::-moz-range-thumb:active {
+    border: 1px solid $focus;
+  }
+}
+
+output {
+  margin: -17px 0 0;
+  color: #aaa;
+  float: right;
+}
+
+select {
+  width: 100%;
+}
+
+input[type="text"] {
+  width: 100%;
+  background: $white;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: .7em .7em;
+  float: left;
+  margin: -1em 0 1.5em;
+  &:focus {
+    outline: 0;
+    border: 1px solid $focus;
+  }
+}
+
+label {
+  float: left;
+  width: 100%;
+  margin: 0;
+}
+
+button {
+  -webkit-appearance: none;
+  color: #444;
+  text-shadow: 0 1px rgba(255,255,255,0.5);
+  background-repeat: repeat-x;
+  background-color: #f7f7f7;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 0.2em 0.6em;
+  line-height: 1.3;
+  outline: 0;
+  background-image: -webkit-linear-gradient(top, white 50%, #eeeeee 120%);
+  background-image: linear-gradient(to bottom, white 50%, #eeeeee 120%);
+  cursor: pointer;
+  &:active {
+    background-image: none;
+    background-color: darken(#f7f7f7, 5%);
+  }
+  &:focus {
+    border-color: $focus;
+  }
+}

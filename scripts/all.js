@@ -5956,11 +5956,14 @@ Da=/^(thin|(?:(?:extra|ultra)-?)?light|regular|book|medium|(?:(?:semi|demi|extra
 function Ea(a){for(var b=a.f.length,c=0;c<b;c++){var d=a.f[c].split(":"),e=d[0].replace(/\+/g," "),f=["n4"];if(2<=d.length){var g;var k=d[1];g=[];if(k)for(var k=k.split(","),h=k.length,m=0;m<h;m++){var l;l=k[m];if(l.match(/^[\w-]+$/)){var n=Da.exec(l.toLowerCase());if(null==n)l="";else{l=n[2];l=null==l||""==l?"n":Ca[l];n=n[1];if(null==n||""==n)n="4";else var r=Ba[n],n=r?r:isNaN(n)?"4":n.substr(0,1);l=[l,n].join("")}}else l="";l&&g.push(l)}0<g.length&&(f=g);3==d.length&&(d=d[2],g=[],d=d?d.split(","):
 g,0<d.length&&(d=Aa[d[0]])&&(a.c[e]=d))}a.c[e]||(d=Aa[e])&&(a.c[e]=d);for(d=0;d<f.length;d+=1)a.a.push(new H(e,f[d]))}};function Fa(a,b){this.c=a;this.a=b}var Ga={Arimo:!0,Cousine:!0,Tinos:!0};Fa.prototype.load=function(a){var b=new C,c=this.c,d=new va(this.a.api,z(c),this.a.text),e=this.a.families;xa(d,e);var f=new za(e);Ea(f);A(c,ya(d),D(b));F(b,function(){a(f.a,f.c,Ga)})};function Ha(a,b){this.c=a;this.a=b}Ha.prototype.load=function(a){var b=this.a.id,c=this.c.m;b?B(this.c,(this.a.api||"https://use.typekit.net")+"/"+b+".js",function(b){if(b)a([]);else if(c.Typekit&&c.Typekit.config&&c.Typekit.config.fn){b=c.Typekit.config.fn;for(var e=[],f=0;f<b.length;f+=2)for(var g=b[f],k=b[f+1],h=0;h<k.length;h++)e.push(new H(g,k[h]));try{c.Typekit.load({events:!1,classes:!1,async:!0})}catch(m){}a(e)}},2E3):a([])};function Ia(a,b){this.c=a;this.f=b;this.a=[]}Ia.prototype.load=function(a){var b=this.f.id,c=this.c.m,d=this;b?(c.__webfontfontdeckmodule__||(c.__webfontfontdeckmodule__={}),c.__webfontfontdeckmodule__[b]=function(b,c){for(var g=0,k=c.fonts.length;g<k;++g){var h=c.fonts[g];d.a.push(new H(h.name,ga("font-weight:"+h.weight+";font-style:"+h.style)))}a(d.a)},B(this.c,z(this.c)+(this.f.api||"//f.fontdeck.com/s/css/js/")+ea(this.c)+"/"+b+".js",function(b){b&&a([])})):a([])};var Y=new pa(window);Y.a.c.custom=function(a,b){return new ua(b,a)};Y.a.c.fontdeck=function(a,b){return new Ia(b,a)};Y.a.c.monotype=function(a,b){return new sa(b,a)};Y.a.c.typekit=function(a,b){return new Ha(b,a)};Y.a.c.google=function(a,b){return new Fa(b,a)};var Z={load:p(Y.load,Y)};"function"===typeof define&&define.amd?define(function(){return Z}):"undefined"!==typeof module&&module.exports?module.exports=Z:(window.WebFont=Z,window.WebFontConfig&&Y.load(window.WebFontConfig));}());
 
-var type;
+var type, once, initialSize;
+var ua = navigator.userAgent;
+var html = document.documentElement;
 
 // Needed for when things are loaded from localStorage
 // to reinitialize the instances
 function initFunctionalities() {
+
   type = document.getElementsByTagName("h1")[0];
   $(".draggable").draggable({
     handle: ".handle"
@@ -6000,9 +6003,6 @@ function initFunctionalities() {
   $('h1').blur(function() {
     $(".editor").removeClass("focus");
   });
-
-  var ua = navigator.userAgent;
-  var html = document.documentElement;
 
   if (ua.match(/firefox/i)) {
     document.getElementById("overglow").disabled = true;
@@ -6083,8 +6083,8 @@ function initFunctionalities() {
     html.classList.remove("pixelation");
   }
 
-  var initialSize = getSize();
-  var once = false;
+  initialSize = getSize();
+  once = false;
 
   size.addEventListener("input", function () {
 
@@ -6338,7 +6338,8 @@ $(document).ready(function() {
 
   window.setTimeout(function() {
     $(".overlay").addClass("content-ready");
-  }, 1400);
+    $(".func--disabled").removeClass("func--disabled");
+  }, 1700);
 });
 
 function refreshFont() {
@@ -6390,11 +6391,15 @@ $(document).ready(function() {
       var btn = document.querySelector(".func--save");
       btn.classList.add("func--save__saving");
       btn.classList.add("func--save__savingend");
+      $(".func--reset").addClass("func--disabled");
+      $(".func--reload").addClass("func--disabled");
       btn.innerHTML = "Saving";
       document.documentElement.classList.add("saving");
       window.setTimeout(function() {
         btn.innerHTML = "Saved&nbsp;";
         btn.classList.remove("func--save__saving");
+        $(".func--reset").removeClass("func--disabled");
+        $(".func--reload").removeClass("func--disabled");
         document.documentElement.classList.remove("saving");
         window.setTimeout(function() {
           btn.innerHTML = "Save";

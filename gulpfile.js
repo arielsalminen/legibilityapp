@@ -29,7 +29,8 @@ gulp.task('serve', ['sass', 'uglify'], function() {
   browserSync({
     server: {
       baseDir: ''
-    }
+    },
+    notify: false
   });
 
   gulp.watch('scss/*.scss', ['sass']);

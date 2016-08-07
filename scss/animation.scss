@@ -2,3 +2,16 @@
 @-moz-keyframes spin { 100% { -moz-transform: translateZ(0) rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: translateZ(0) rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: translateZ(0) rotate(360deg); transform: translateZ(0) rotate(360deg); } }
+
+@-moz-keyframes progress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+@-webkit-keyframes progress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+@keyframes progress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}

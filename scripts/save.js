@@ -5,11 +5,15 @@ $(document).ready(function() {
       var btn = document.querySelector(".func--save");
       btn.classList.add("func--save__saving");
       btn.classList.add("func--save__savingend");
+      $(".func--reset").addClass("func--disabled");
+      $(".func--reload").addClass("func--disabled");
       btn.innerHTML = "Saving";
       document.documentElement.classList.add("saving");
       window.setTimeout(function() {
         btn.innerHTML = "Saved&nbsp;";
         btn.classList.remove("func--save__saving");
+        $(".func--reset").removeClass("func--disabled");
+        $(".func--reload").removeClass("func--disabled");
         document.documentElement.classList.remove("saving");
         window.setTimeout(function() {
           btn.innerHTML = "Save";
