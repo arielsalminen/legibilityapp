@@ -5956,432 +5956,439 @@ Da=/^(thin|(?:(?:extra|ultra)-?)?light|regular|book|medium|(?:(?:semi|demi|extra
 function Ea(a){for(var b=a.f.length,c=0;c<b;c++){var d=a.f[c].split(":"),e=d[0].replace(/\+/g," "),f=["n4"];if(2<=d.length){var g;var k=d[1];g=[];if(k)for(var k=k.split(","),h=k.length,m=0;m<h;m++){var l;l=k[m];if(l.match(/^[\w-]+$/)){var n=Da.exec(l.toLowerCase());if(null==n)l="";else{l=n[2];l=null==l||""==l?"n":Ca[l];n=n[1];if(null==n||""==n)n="4";else var r=Ba[n],n=r?r:isNaN(n)?"4":n.substr(0,1);l=[l,n].join("")}}else l="";l&&g.push(l)}0<g.length&&(f=g);3==d.length&&(d=d[2],g=[],d=d?d.split(","):
 g,0<d.length&&(d=Aa[d[0]])&&(a.c[e]=d))}a.c[e]||(d=Aa[e])&&(a.c[e]=d);for(d=0;d<f.length;d+=1)a.a.push(new H(e,f[d]))}};function Fa(a,b){this.c=a;this.a=b}var Ga={Arimo:!0,Cousine:!0,Tinos:!0};Fa.prototype.load=function(a){var b=new C,c=this.c,d=new va(this.a.api,z(c),this.a.text),e=this.a.families;xa(d,e);var f=new za(e);Ea(f);A(c,ya(d),D(b));F(b,function(){a(f.a,f.c,Ga)})};function Ha(a,b){this.c=a;this.a=b}Ha.prototype.load=function(a){var b=this.a.id,c=this.c.m;b?B(this.c,(this.a.api||"https://use.typekit.net")+"/"+b+".js",function(b){if(b)a([]);else if(c.Typekit&&c.Typekit.config&&c.Typekit.config.fn){b=c.Typekit.config.fn;for(var e=[],f=0;f<b.length;f+=2)for(var g=b[f],k=b[f+1],h=0;h<k.length;h++)e.push(new H(g,k[h]));try{c.Typekit.load({events:!1,classes:!1,async:!0})}catch(m){}a(e)}},2E3):a([])};function Ia(a,b){this.c=a;this.f=b;this.a=[]}Ia.prototype.load=function(a){var b=this.f.id,c=this.c.m,d=this;b?(c.__webfontfontdeckmodule__||(c.__webfontfontdeckmodule__={}),c.__webfontfontdeckmodule__[b]=function(b,c){for(var g=0,k=c.fonts.length;g<k;++g){var h=c.fonts[g];d.a.push(new H(h.name,ga("font-weight:"+h.weight+";font-style:"+h.style)))}a(d.a)},B(this.c,z(this.c)+(this.f.api||"//f.fontdeck.com/s/css/js/")+ea(this.c)+"/"+b+".js",function(b){b&&a([])})):a([])};var Y=new pa(window);Y.a.c.custom=function(a,b){return new ua(b,a)};Y.a.c.fontdeck=function(a,b){return new Ia(b,a)};Y.a.c.monotype=function(a,b){return new sa(b,a)};Y.a.c.typekit=function(a,b){return new Ha(b,a)};Y.a.c.google=function(a,b){return new Fa(b,a)};var Z={load:p(Y.load,Y)};"function"===typeof define&&define.amd?define(function(){return Z}):"undefined"!==typeof module&&module.exports?module.exports=Z:(window.WebFont=Z,window.WebFontConfig&&Y.load(window.WebFontConfig));}());
 
-var type, once, initialSize;
-var ua = navigator.userAgent;
-var html = document.documentElement;
+if (document.querySelectorAll && window.addEventListener && "classList" in document.documentElement) {
 
-// Needed for when things are loaded from localStorage
-// to reinitialize the instances
-function initFunctionalities() {
+  var type, once, initialSize;
+  var ua = navigator.userAgent;
+  var html = document.documentElement;
 
-  type = document.getElementsByTagName("h1")[0];
-  $(".draggable").draggable({
-    handle: ".handle"
-  });
+  // Needed for when things are loaded from localStorage
+  // to reinitialize the instances
+  function initFunctionalities() {
 
-  $(".editor").draggable({
-    handle: ".handle"
-  });
+    type = document.getElementsByTagName("h1")[0];
+    $(".draggable").draggable({
+      handle: ".handle"
+    });
 
-  $('input[type="range"]').on('input', function () {
-    var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
-    $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
-  });
+    $(".editor").draggable({
+      handle: ".handle"
+    });
 
-  // hide controls and set heading images to closed
-  $('.group').hide();
-  $('#controls h3').addClass("closed");
+    $('input[type="range"]').on('input', function () {
+      var percent = Math.ceil(((this.value - this.min) / (this.max - this.min)) * 100);
+      $(this).css('background', '-webkit-linear-gradient(left, #419bf9 0%, #419bf9 ' + percent + '%, #B3B3B3 ' + percent + '%)');
+    });
 
-  // hide controls and set heading images to closed
-  $('#legibility').next(".group").show();
-  $('#legibility').removeClass("closed");
+    // hide controls and set heading images to closed
+    $('.group').hide();
+    $('#controls h3').addClass("closed");
 
-  // show/hide control group
-  $('#controls h3').click(
-    function() {
-      $(this).toggleClass("closed");
-      $(this).next(".group").slideToggle(200);
-      setTimeout(function() {
-        resize();
-      }, 201);
-    }
-  );
+    // hide controls and set heading images to closed
+    $('#legibility').next(".group").show();
+    $('#legibility').removeClass("closed");
 
-  $('h1').focus(function() {
-    $(".editor").addClass("focus");
-  });
-  $('h1').blur(function() {
-    $(".editor").removeClass("focus");
-  });
-
-  if (ua.match(/firefox/i)) {
-    document.getElementById("overglow").disabled = true;
-  }
-
-  if (ua.match(/ipad/i)) {
-    document.documentElement.className += " ipad";
-  }
-
-  // update changes
-  $("#inputForm").on("change", function() {
-    refreshFeatures();
-  });
-
-  refreshFeatures();
-  refreshFont();
-
-  $("#typeface").higooglefonts({
-    loadedCallback:function(font){
-      $("h1").css("font-family", font);
-    }
-  });
-
-  $("select").each(function() {
-   if (!$(this).hasClass("customselect")) {
-     $(this).select2({
-       theme: "classic",
-       minimumResultsForSearch: 30
-     });
-     if ($(".select2").next(".select2")) {
-       $(".select2").next(".select2").remove();
-     }
-   }
-  });
-
-  var size = document.getElementById("textsize");
-  var vision = document.getElementById("vision");
-  var $vision = $("#vision");
-  var contrast = document.getElementById("contrast");
-  var overglow = document.getElementById("overglow");
-  var $overglow = $("#overglow");
-  var pixelation = document.getElementById("pixelation");
-  var $pixelation = $("#pixelation");
-  var spacing = document.getElementById("letterspacing");
-  var leading = document.getElementById("leading");
-  var weight = document.getElementById("weight");
-
-  function getSize() {
-
-    var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
-    return parseFloat(style);
-  }
-
-  function toggle3dSpace() {
-
-    if ($(".floor").hasClass("active")) {
-      type.style.transform = "rotate3d(359, -50, 80, 70deg)";
-    } else if ($(".wall-left").hasClass("active")) {
-      type.style.transform = "rotate3d(-120, 180, -40, 60deg) ";
-    } else if ($(".wall-right").hasClass("active")) {
-      type.style.transform = "rotate3d(120, 180, 40, 60deg) ";
-    } else {
-      type.style.transform = "translateZ(0)";
-    }
-  }
-
-  function resetPixelation() {
-
-    if (html.classList.contains("space3d")) {
-      toggle3dSpace();
-    } else {
-      type.style.transform = "translateZ(0)";
-    }
-    pixelation.value = 0;
-    $pixelation.css('background', '#B3B3B3');
-    $("#pixelationoutput").html("0px");
-    type.style.fontSize = initialSize + "px";
-    html.classList.remove("pixelation");
-  }
-
-  initialSize = getSize();
-  once = false;
-
-  size.addEventListener("input", function () {
-
-    resetPixelation();
-    if (size.value > 0) {
-      html.classList.add("size");
-    } else {
-      html.classList.remove("size");
-    }
-    once = false;
-    type.style.fontSize = size.value + "vw";
-    initialSize = getSize();
-  }, false);
-
-  $vision.on("input", function () {
-
-    resetPixelation();
-
-    if (vision.value > 0) {
-      html.classList.add("vision");
-    } else {
-      html.classList.remove("vision");
-    }
-    if (html.classList.contains("overglow")) {
-      type.style.webkitFilter =
-      type.style.mozFilter =
-      type.style.filter = "blur(" + ((vision.value / 10) + (overglow.value / 1.5)) + "px)";
-    } else {
-      type.style.webkitFilter =
-      type.style.mozFilter =
-      type.style.filter = "blur(" + vision.value / 10 + "px)";
-    }
-  });
-
-  contrast.addEventListener("input", function () {
-
-    type.style.opacity =  contrast.value / 100;
-  }, false);
-
-  $overglow.on("input", function () {
-
-    resetPixelation();
-
-    if (overglow.value > 0) {
-      html.classList.add("overglow");
-    } else {
-      html.classList.remove("overglow");
-    }
-    if (html.classList.contains("vision")) {
-      if (html.classList.contains("negative")) {
-        type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #fff";
-        type.style.textShadow = "0 0 " + overglow.value * 4 + "px #fff";
-      } else {
-        type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #111";
-        type.style.textShadow = "0 0 " + overglow.value * 4 + "px #111";
+    // show/hide control group
+    $('#controls h3').click(
+      function() {
+        $(this).toggleClass("closed");
+        $(this).next(".group").slideToggle(200);
+        setTimeout(function() {
+          resize();
+        }, 201);
       }
-      if (!html.classList.contains("space3d")) {
+    );
+
+    $('h1').focus(function() {
+      $(".editor").addClass("focus");
+    });
+    $('h1').blur(function() {
+      $(".editor").removeClass("focus");
+    });
+
+    if (ua.match(/firefox/i)) {
+      document.getElementById("overglow").disabled = true;
+    }
+
+    if (ua.match(/ipad/i)) {
+      document.documentElement.className += " ipad";
+    }
+
+    // update changes
+    $("#inputForm").on("change", function() {
+      refreshFeatures();
+    });
+
+    refreshFeatures();
+    refreshFont();
+
+    $("#typeface").higooglefonts({
+      loadedCallback:function(font){
+        $("h1").css("font-family", font);
+      }
+    });
+
+    $("select").each(function() {
+     if (!$(this).hasClass("customselect")) {
+       $(this).select2({
+         theme: "classic",
+         minimumResultsForSearch: 30
+       });
+       if ($(".select2").next(".select2")) {
+         $(".select2").next(".select2").remove();
+       }
+     }
+    });
+
+    var size = document.getElementById("textsize");
+    var vision = document.getElementById("vision");
+    var $vision = $("#vision");
+    var contrast = document.getElementById("contrast");
+    var overglow = document.getElementById("overglow");
+    var $overglow = $("#overglow");
+    var pixelation = document.getElementById("pixelation");
+    var $pixelation = $("#pixelation");
+    var spacing = document.getElementById("letterspacing");
+    var leading = document.getElementById("leading");
+    var weight = document.getElementById("weight");
+
+    function getSize() {
+
+      var style = window.getComputedStyle(type, null).getPropertyValue('font-size') || 0;
+      return parseFloat(style);
+    }
+
+    function toggle3dSpace() {
+
+      if ($(".floor").hasClass("active")) {
+        type.style.transform = "rotate3d(359, -50, 80, 70deg)";
+      } else if ($(".wall-left").hasClass("active")) {
+        type.style.transform = "rotate3d(-120, 180, -40, 60deg) ";
+      } else if ($(".wall-right").hasClass("active")) {
+        type.style.transform = "rotate3d(120, 180, 40, 60deg) ";
+      } else {
         type.style.transform = "translateZ(0)";
       }
-    } else {
-      if (html.classList.contains("negative")) {
-        type.style.webkitTextStroke = overglow.value / 2 + "px #fff";
-        if (ua.match(/safari/i) && !ua.match(/chrome/i)) {
-          type.style.textShadow = "0 0 " + overglow.value + "px rgba(255,255,255,.3), 0 0 " + overglow.value * 0.5 + "px rgba(255,255,255,.3)";
-        } else {
-          type.style.textShadow = "0 0 " + overglow.value * 4 + "px #fff, 0 0 " + overglow.value * 2 + "px #fff";
-        }
-      } else {
-        type.style.webkitTextStroke = overglow.value / 2 + "px #111";
-        if (ua.match(/safari/i) && !ua.match(/chrome/i)) {
-          type.style.textShadow = "0 0 " + overglow.value + "px rgba(0,0,0,.3), 0 0 " + overglow.value * 0.5 + "px rgba(0,0,0,.3)";
-        } else {
-          type.style.textShadow = "0 0 " + overglow.value * 4 + "px #111, 0 0 " + overglow.value * 2 + "px #111";
-        }
-      }
-      type.style.webkitFilter = "blur(" + overglow.value / 6 + "px)";
     }
-  });
 
-  $pixelation.on("input", function () {
+    function resetPixelation() {
 
-    document.getElementById("overglow").value = 0;
-    document.getElementById("vision").value = 0;
-    $overglow.css('background', '#B3B3B3');
-    $("#overglowoutput").html("0");
-    $vision.css('background', '#B3B3B3');
-    $("#visionoutput").html("0ft");
-    html.classList.remove("overglow");
-    html.classList.remove("vision");
-
-    if (!once) {
-      initialSize = getSize();
-      once = true;
-    }
-    if (pixelation.value > 0) {
-      html.classList.add("pixelation");
-      type.style.textShadow = "none";
-      type.style.webkitTextStroke = "0";
-      type.style.webkitFilter = "none";
-      type.style.fontSize = initialSize / pixelation.value + "px";
-      if (html.classList.contains("space3d")) {
-        type.style.mozTransform = "translateZ(0) scale(" + pixelation.value + ")";
-        type.style.transform = "translateZ(0) scale(" + pixelation.value + ")";
-        if ($(".floor").hasClass("active")) {
-          type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(359, -50, 80, 70deg)";
-        } else if ($(".wall-left").hasClass("active")) {
-          type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(-120, 180, -40, 60deg) ";
-        } else if ($(".wall-right").hasClass("active")) {
-          type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(120, 180, 40, 60deg) ";
-        }
-      } else {
-        type.style.mozTransform = "translateZ(0) scale(" + pixelation.value + ")";
-        type.style.transform = "translateZ(0) scale(" + pixelation.value + ")";
-      }
-    } else {
       if (html.classList.contains("space3d")) {
         toggle3dSpace();
       } else {
-        type.style.transform = "none";
+        type.style.transform = "translateZ(0)";
       }
-
-      html.classList.remove("pixelation");
+      pixelation.value = 0;
+      $pixelation.css('background', '#B3B3B3');
+      $("#pixelationoutput").html("0px");
       type.style.fontSize = initialSize + "px";
+      html.classList.remove("pixelation");
+    }
+
+    initialSize = getSize();
+    once = false;
+
+    size.addEventListener("input", function () {
+
+      resetPixelation();
+      if (size.value > 0) {
+        html.classList.add("size");
+      } else {
+        html.classList.remove("size");
+      }
       once = false;
-    }
-  });
+      type.style.fontSize = size.value + "vw";
+      initialSize = getSize();
+    }, false);
 
-  spacing.addEventListener("input", function () {
+    $vision.on("input", function () {
 
-    type.style.letterSpacing = spacing.value + "em";
-  }, false);
+      resetPixelation();
 
-  leading.addEventListener("input", function () {
+      if (vision.value > 0) {
+        html.classList.add("vision");
+      } else {
+        html.classList.remove("vision");
+      }
+      if (html.classList.contains("overglow")) {
+        type.style.webkitFilter =
+        type.style.mozFilter =
+        type.style.filter = "blur(" + ((vision.value / 10) + (overglow.value / 1.5)) + "px)";
+      } else {
+        type.style.webkitFilter =
+        type.style.mozFilter =
+        type.style.filter = "blur(" + vision.value / 10 + "px)";
+      }
+    });
 
-    type.style.lineHeight = leading.value;
-  }, false);
+    contrast.addEventListener("input", function () {
 
-  weight.addEventListener("input", function () {
+      type.style.opacity =  contrast.value / 100;
+    }, false);
 
-    type.style.fontWeight = weight.value;
-  }, false);
+    $overglow.on("input", function () {
 
-  $(".svg-hover").on("click", function(e) {
+      resetPixelation();
 
-    html.classList.add("space3d");
+      if (overglow.value > 0) {
+        html.classList.add("overglow");
+      } else {
+        html.classList.remove("overglow");
+      }
+      if (html.classList.contains("vision")) {
+        if (html.classList.contains("negative")) {
+          type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #fff";
+          type.style.textShadow = "0 0 " + overglow.value * 4 + "px #fff";
+        } else {
+          type.style.webkitTextStroke = ((vision.value / 20) + (overglow.value / 2)) + "px #111";
+          type.style.textShadow = "0 0 " + overglow.value * 4 + "px #111";
+        }
+        if (!html.classList.contains("space3d")) {
+          type.style.transform = "translateZ(0)";
+        }
+      } else {
+        if (html.classList.contains("negative")) {
+          type.style.webkitTextStroke = overglow.value / 2 + "px #fff";
+          if (ua.match(/safari/i) && !ua.match(/chrome/i)) {
+            type.style.textShadow = "0 0 " + overglow.value + "px rgba(255,255,255,.3), 0 0 " + overglow.value * 0.5 + "px rgba(255,255,255,.3)";
+          } else {
+            type.style.textShadow = "0 0 " + overglow.value * 4 + "px #fff, 0 0 " + overglow.value * 2 + "px #fff";
+          }
+        } else {
+          type.style.webkitTextStroke = overglow.value / 2 + "px #111";
+          if (ua.match(/safari/i) && !ua.match(/chrome/i)) {
+            type.style.textShadow = "0 0 " + overglow.value + "px rgba(0,0,0,.3), 0 0 " + overglow.value * 0.5 + "px rgba(0,0,0,.3)";
+          } else {
+            type.style.textShadow = "0 0 " + overglow.value * 4 + "px #111, 0 0 " + overglow.value * 2 + "px #111";
+          }
+        }
+        type.style.webkitFilter = "blur(" + overglow.value / 6 + "px)";
+      }
+    });
 
-    $(".reset").show();
-    e.preventDefault();
-    $(".svg-hover").removeClass("active");
-    $(".svg-hover").addClass("deactive");
-    $(this).addClass("active").removeClass("deactive");
+    $pixelation.on("input", function () {
 
-    if (!html.classList.contains("pixelation")) {
-      toggle3dSpace();
-    } else {
-      if ($(this).hasClass("floor")) {
-        type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(359, -50, 80, 70deg)";
-      } else if ($(this).hasClass("wall-left")) {
-        type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(-120, 180, -40, 60deg) ";
-      } else if ($(this).hasClass("wall-right")) {
-        type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(120, 180, 40, 60deg) ";
+      document.getElementById("overglow").value = 0;
+      document.getElementById("vision").value = 0;
+      $overglow.css('background', '#B3B3B3');
+      $("#overglowoutput").html("0");
+      $vision.css('background', '#B3B3B3');
+      $("#visionoutput").html("0ft");
+      html.classList.remove("overglow");
+      html.classList.remove("vision");
+
+      if (!once) {
+        initialSize = getSize();
+        once = true;
+      }
+      if (pixelation.value > 0) {
+        html.classList.add("pixelation");
+        type.style.textShadow = "none";
+        type.style.webkitTextStroke = "0";
+        type.style.webkitFilter = "none";
+        type.style.fontSize = initialSize / pixelation.value + "px";
+        if (html.classList.contains("space3d")) {
+          type.style.mozTransform = "translateZ(0) scale(" + pixelation.value + ")";
+          type.style.transform = "translateZ(0) scale(" + pixelation.value + ")";
+          if ($(".floor").hasClass("active")) {
+            type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(359, -50, 80, 70deg)";
+          } else if ($(".wall-left").hasClass("active")) {
+            type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(-120, 180, -40, 60deg) ";
+          } else if ($(".wall-right").hasClass("active")) {
+            type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(120, 180, 40, 60deg) ";
+          }
+        } else {
+          type.style.mozTransform = "translateZ(0) scale(" + pixelation.value + ")";
+          type.style.transform = "translateZ(0) scale(" + pixelation.value + ")";
+        }
+      } else {
+        if (html.classList.contains("space3d")) {
+          toggle3dSpace();
+        } else {
+          type.style.transform = "none";
+        }
+
+        html.classList.remove("pixelation");
+        type.style.fontSize = initialSize + "px";
+        once = false;
+      }
+    });
+
+    spacing.addEventListener("input", function () {
+
+      type.style.letterSpacing = spacing.value + "em";
+    }, false);
+
+    leading.addEventListener("input", function () {
+
+      type.style.lineHeight = leading.value;
+    }, false);
+
+    weight.addEventListener("input", function () {
+
+      type.style.fontWeight = weight.value;
+    }, false);
+
+    $(".svg-hover").on("click", function(e) {
+
+      html.classList.add("space3d");
+
+      $(".reset").show();
+      e.preventDefault();
+      $(".svg-hover").removeClass("active");
+      $(".svg-hover").addClass("deactive");
+      $(this).addClass("active").removeClass("deactive");
+
+      if (!html.classList.contains("pixelation")) {
+        toggle3dSpace();
+      } else {
+        if ($(this).hasClass("floor")) {
+          type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(359, -50, 80, 70deg)";
+        } else if ($(this).hasClass("wall-left")) {
+          type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(-120, 180, -40, 60deg) ";
+        } else if ($(this).hasClass("wall-right")) {
+          type.style.transform = "translateZ(0) scale(" + pixelation.value + ") rotate3d(120, 180, 40, 60deg) ";
+        }
+      }
+    });
+
+    $(".reset").on("click", function(e) {
+
+      e.preventDefault();
+      $(".svg-hover").removeClass("active");
+      if (!html.classList.contains("pixelation")) {
+        type.style.transform = "none";
+      } else {
+        type.style.transform = "translateZ(0) scale(" + pixelation.value + ")";
+      }
+      document.documentElement.classList.remove("space3d");
+      $(this).hide();
+    });
+
+
+    var defaultOff = [
+      'smcp', 'c2sc',
+      'lnum', 'onum', 'tnum', 'pnum',
+      'frac', 'afrc',
+      'sups', 'subs',
+      'zero', 'nalt',
+      'kern',
+      'liga', 'dlig', 'hlig', 'clig',
+      'swsh', 'calt', 'hist', 'salt',
+      'ss01', 'ss02', 'ss03', 'ss04'
+    ];
+
+    var defaultOn = [];
+
+    function refreshFeatures() {
+
+
+      var mfeatures = "";
+      var wfeatures = "";
+      var f;
+      for (f in defaultOn) {
+        if (!document.getElementById(defaultOn[f]).checked) { wfeatures += "'" + defaultOn[f] + "' 0, "; }
+      }
+      for (f in defaultOff) {
+        if (document.getElementById(defaultOff[f]).checked) { wfeatures += "'" + defaultOff[f] + "' 1, "; }
+      }
+
+      if ("MozFontFeatureSettings" in type.style) {
+        // first, reset the property to normal
+        type.style.MozFontFeatureSettings = "normal";
+
+        // old Firefox syntax
+        type.style.MozFontFeatureSettings = "'" + wfeatures + "'";
+
+        // if that failed setting will be "normal", use standard syntax
+        if (type.style.MozFontFeatureSettings == "normal") {
+          type.style.MozFontFeatureSettings = wfeatures;
+        }
+      }
+
+      wfeatures = wfeatures.substring(0, wfeatures.length - 2);
+      type.style.msFontFeatureSettings = "'" + wfeatures + "'";
+      type.style.oFontFeatureSettings = "'" + wfeatures + "'";
+      type.style.webkitFontFeatureSettings = wfeatures;
+      type.style.fontFeatureSettings = wfeatures;
+    };
+
+    function resize() {
+      var viewport = window.innerHeight;
+      var body = document.body;
+      var bodyHeight = Math.max(
+          body.scrollHeight,
+          body.offsetHeight,
+          html.clientHeight,
+          html.scrollHeight,
+          html.offsetHeight
+        );
+
+      if (bodyHeight === viewport) {
+        html.classList.add("no-scroll");
+      } else {
+        html.classList.remove("no-scroll");
       }
     }
+
+    window.addEventListener("resize", resize, false);
+    resize();
+  }
+
+  $(document).ready(function() {
+    initFunctionalities();
+
+    window.setTimeout(function() {
+      $(".overlay").addClass("content-ready");
+      $(".func--disabled").removeClass("func--disabled");
+    }, 1700);
+
+    var content = document.querySelector(".tiny-devices").innerHTML;
+    document.querySelector(".group--about").innerHTML = content;
   });
 
-  $(".reset").on("click", function(e) {
-
-    e.preventDefault();
-    $(".svg-hover").removeClass("active");
-    if (!html.classList.contains("pixelation")) {
-      type.style.transform = "none";
+  function refreshFont() {
+    var typefaceSelect = document.getElementById("typeface");
+    if (typefaceSelect.selectedIndex == 0) {
+      refreshOther();
     } else {
-      type.style.transform = "translateZ(0) scale(" + pixelation.value + ")";
+      document.getElementsByTagName("h1")[0].style.fontFamily = typefaceSelect.value;
     }
-    document.documentElement.classList.remove("space3d");
-    $(this).hide();
-  });
+  }
 
-
-  var defaultOff = [
-    'smcp', 'c2sc',
-    'lnum', 'onum', 'tnum', 'pnum',
-    'frac', 'afrc',
-    'sups', 'subs',
-    'zero', 'nalt',
-    'kern',
-    'liga', 'dlig', 'hlig', 'clig',
-    'swsh', 'calt', 'hist', 'salt',
-    'ss01', 'ss02', 'ss03', 'ss04'
-  ];
-
-  var defaultOn = [];
-
-  function refreshFeatures() {
-
-
-    var mfeatures = "";
-    var wfeatures = "";
-    var f;
-    for (f in defaultOn) {
-      if (!document.getElementById(defaultOn[f]).checked) { wfeatures += "'" + defaultOn[f] + "' 0, "; }
-    }
-    for (f in defaultOff) {
-      if (document.getElementById(defaultOff[f]).checked) { wfeatures += "'" + defaultOff[f] + "' 1, "; }
-    }
-
-    if ("MozFontFeatureSettings" in type.style) {
-      // first, reset the property to normal
-      type.style.MozFontFeatureSettings = "normal";
-
-      // old Firefox syntax
-      type.style.MozFontFeatureSettings = "'" + wfeatures + "'";
-
-      // if that failed setting will be "normal", use standard syntax
-      if (type.style.MozFontFeatureSettings == "normal") {
-        type.style.MozFontFeatureSettings = wfeatures;
-      }
-    }
-
-    wfeatures = wfeatures.substring(0, wfeatures.length - 2);
-    type.style.msFontFeatureSettings = "'" + wfeatures + "'";
-    type.style.oFontFeatureSettings = "'" + wfeatures + "'";
-    type.style.webkitFontFeatureSettings = wfeatures;
-    type.style.fontFeatureSettings = wfeatures;
-  };
-
-  function resize() {
-    var viewport = window.innerHeight;
-    var body = document.body;
-    var bodyHeight = Math.max(
-        body.scrollHeight,
-        body.offsetHeight,
-        html.clientHeight,
-        html.scrollHeight,
-        html.offsetHeight
-      );
-
-    if (bodyHeight === viewport) {
-      html.classList.add("no-scroll");
+  function refreshBoard() {
+    document.getElementById("overglow").value = 0;
+    document.getElementById("pixelation").value = 0;
+    document.getElementById("vision").value = 0;
+    $("#overglow").trigger("input");
+    $("#vision").trigger("input");
+    $("#pixelation").trigger("input");
+    if ($("#board").val() == "negative") {
+      document.documentElement.classList.add("negative");
     } else {
-      html.classList.remove("no-scroll");
+      document.documentElement.classList.remove("negative");
     }
+    $("#overglow").css('background', '#B3B3B3');
+    $("#overglowoutput").html("0");
+    $("#pixelation").css('background', '#B3B3B3');
+    $("#pixelationoutput").html("0px");
+    $("#vision").css('background', '#B3B3B3');
+    $("#visionoutput").html("0ft");
+    $(".reset").hide();
+
+    document.documentElement.classList.remove("pixelation");
+    document.documentElement.classList.remove("overglow");
+    document.documentElement.classList.remove("vision");
+    document.querySelector(".floor").classList.remove("active");
+    document.querySelector(".wall-left").classList.remove("active");
+    document.querySelector(".wall-right").classList.remove("active");
+    document.getElementsByTagName("h1")[0].style.transform = "translateZ(0)";
   }
 
-  window.addEventListener("resize", resize, false);
-  resize();
-}
-
-$(document).ready(function() {
-  initFunctionalities();
-
-  window.setTimeout(function() {
-    $(".overlay").addClass("content-ready");
-    $(".func--disabled").removeClass("func--disabled");
-  }, 1700);
-});
-
-function refreshFont() {
-  var typefaceSelect = document.getElementById("typeface");
-  if (typefaceSelect.selectedIndex == 0) {
-    refreshOther();
-  } else {
-    document.getElementsByTagName("h1")[0].style.fontFamily = typefaceSelect.value;
+  function refreshOther() {
+    document.getElementsByTagName("h1")[0].style.fontFamily = document.getElementById("otherfont").value;
   }
-}
 
-function refreshBoard() {
-  document.getElementById("overglow").value = 0;
-  document.getElementById("pixelation").value = 0;
-  document.getElementById("vision").value = 0;
-  $("#overglow").trigger("input");
-  $("#vision").trigger("input");
-  $("#pixelation").trigger("input");
-  if ($("#board").val() == "negative") {
-    document.documentElement.classList.add("negative");
-  } else {
-    document.documentElement.classList.remove("negative");
-  }
-  $("#overglow").css('background', '#B3B3B3');
-  $("#overglowoutput").html("0");
-  $("#pixelation").css('background', '#B3B3B3');
-  $("#pixelationoutput").html("0px");
-  $("#vision").css('background', '#B3B3B3');
-  $("#visionoutput").html("0ft");
-  $(".reset").hide();
-
-  document.documentElement.classList.remove("pixelation");
-  document.documentElement.classList.remove("overglow");
-  document.documentElement.classList.remove("vision");
-  document.querySelector(".floor").classList.remove("active");
-  document.querySelector(".wall-left").classList.remove("active");
-  document.querySelector(".wall-right").classList.remove("active");
-  document.getElementsByTagName("h1")[0].style.transform = "translateZ(0)";
-}
-
-function refreshOther() {
-  document.getElementsByTagName("h1")[0].style.fontFamily = document.getElementById("otherfont").value;
 }
 
 $(document).ready(function() {
