@@ -392,12 +392,15 @@ $(document).ready(function() {
     $(".func--disabled").removeClass("func--disabled");
   }, 1700);
 
-  window.setTimeout(function() {
-    $(".notice").addClass("active");
-  }, 8000);
+  if (!localStorage.getItem("userNoticeDismissed")) {
+    window.setTimeout(function() {
+      $(".notice").addClass("active");
+    }, 8000);
+  }
 
   $(".notice").on("click", function() {
     $(this).removeClass("active");
+    localStorage.setItem("userNoticeDismissed", true);
   });
 
   var content = document.querySelector(".tiny-devices").innerHTML;
