@@ -121,6 +121,7 @@ label {
 }
 
 button {
+  @extend %prevent-user-select;
   -webkit-appearance: none;
   color: #444;
   text-shadow: 0 1px rgba(255,255,255,0.5);
