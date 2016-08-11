@@ -6725,6 +6725,7 @@ $(document).ready(function() {
 
     var save = document.querySelector(".func--save");
     var clear = document.querySelector(".func--reset");
+    var reload = document.querySelector(".func--reload");
     save.addEventListener("click", function(e) {
       e.preventDefault();
       storeUserEditable();
@@ -6732,6 +6733,10 @@ $(document).ready(function() {
     clear.addEventListener("click", function(e) {
       e.preventDefault();
       clearUserEditable();
+    }, false);
+    reload.addEventListener("click", function(e) {
+      e.preventDefault();
+      window.location.reload();
     }, false);
 
   }
