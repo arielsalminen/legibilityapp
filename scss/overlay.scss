@@ -1,0 +1,54 @@
+
+/* OVERLAY
+--------------------------------------------- */
+
+.overlay {
+  transition: all .3s ease;
+  transform: translateZ(0);
+  z-index: 901;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $white;
+  &.content-ready {
+    .progress { display: none }
+    opacity: 0;
+    background: rgba($white, .4);
+    visibility: hidden;
+    &:after {
+      background: none;
+      -webkit-animation: none;
+      -moz-animation: none;
+      animation: none;
+    }
+    .negative & {
+      background: rgba($black, .4);
+    }
+  }
+  .saving & {
+    opacity: 1;
+    visibility: visible;
+  }
+  .progress {
+    -webkit-animation: progress 1.3s linear 1 forwards;
+    -moz-animation: progress 1.3s linear 1 forwards;
+    animation: progress 1.3s linear 1 forwards;
+    visibility: visible;
+    position: relative;
+    opacity: 1;
+    margin-top: 60px;
+    width: 0%;
+    height: 4px;
+    background: darken($focus, 20%);
+    .nosupport & {
+      display: none !important;
+    }
+  }
+  .nosupport & {
+    background: $white !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}

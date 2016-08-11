@@ -5,37 +5,64 @@
 .editor {
   position: absolute;
   text-align: center;
-  top: 29%;
+  transform: translateZ(0);
+  top: 32%;
   z-index: 1;
   padding: 0 2%;
+  border: 1px dashed $focus;
+  border-radius: 3px;
+  border-top-left-radius: 0;
   width: auto;
   overflow: visible;
   left: 31.5%;
-  @media (max-width: 600px) {
+  transition: background .2s ease;
+  .space3d &,
+  .pixelation &,
+  .overglow &,
+  .vision & {
+    border: 1px solid transparent;
+  }
+  @media (max-width: 650px) {
     display: none;
   }
   .handle {
+    @extend %prevent-user-select;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -28px;
+    left: -1px;
     z-index: 80;
     width: 28px;
     height: 28px;
-    border-radius: 3px;
-    opacity: 0;
+    opacity: 1;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     background: $focus url("../images/move.svg") no-repeat 50% 50%;
     background-size: 16px 16px;
+    &:active {
+      background-color: darken($focus, 10%);
+    }
+    .space3d &,
+    .pixelation &,
+    .overglow &,
+    .vision & {
+      border-radius: 3px;
+    }
   }
-  &:hover .handle,
-  .ipad & .handle {
-    opacity: 1;
-    background-color: #ccc;
-  }
-  &:focus .handle,
-  &:active .handle,
-  &.focus .handle {
-    opacity: 1;
-    background-color: $focus;
+  &:hover,
+  &:focus,
+  &:active,
+  &.focus {
+    background-color: $yellow;
+    .negative & {
+      background-color: rgba($focus, .2);
+    }
+    .space3d &,
+    .pixelation &,
+    .overglow &,
+    .vision &,
+    .contrast & {
+      background-color: transparent
+    }
   }
 }
 

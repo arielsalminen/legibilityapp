@@ -1,0 +1,120 @@
+
+/* HEADER
+--------------------------------------------- */
+
+header {
+  @extend %prevent-user-select;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: fixed;
+  min-width: 320px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 902;
+  overflow: hidden;
+  background-color: $focus;
+  box-shadow: 0 1px 1px 1px rgba(0,0,0,.13);
+  height: 60px;
+  padding: 0 27px 0 30px;
+  color: $white;
+  .logo {
+    width: 124px;
+    height: 20px;
+    margin: 21px 0 0;
+    float: left;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  ul {
+    float: left;
+    list-style: none;
+    margin-left: 20px;
+    @media (max-width: 650px) {
+      display: none;
+    }
+  }
+  li {
+    float: left;
+  }
+  a {
+    transition: background .2s ease;
+    float: left;
+    line-height: 60px;
+    font-size: 14px;
+    padding: 0 1.25em;
+    text-decoration: none;
+    color: $white;
+    &.func--save {
+      position: relative;
+      svg {
+        display: none;
+      }
+    }
+    &:hover {
+      background: rgba($black, .1);
+    }
+    &:active {
+      background: rgba($black, .2);
+    }
+    &.func--disabled {
+      cursor: default;
+      pointer-events: none;
+      opacity: .5;
+    }
+    &.func--save__savingend {
+      padding-left: 38px;
+      cursor: default;
+      background: rgba($black, .2);
+      &:after {
+        content: "";
+        background: url('/images/saving--end.svg') no-repeat;
+        display: block !important;
+        width: 17px;
+        height: 17px;
+        top: 21px;
+        left: 17px;
+        position: absolute;
+      }
+    }
+    &.func--save__saving {
+      &:after {
+        background: url('/images/saving.svg') no-repeat;
+        -webkit-animation: spin 1s linear infinite;
+        -moz-animation: spin 1s linear infinite;
+        animation: spin 1s linear infinite;
+        left: 18px;
+        top: 23px;
+        width: 13px;
+        height: 13px;
+      }
+    }
+  }
+  .twitter {
+    float: right;
+    transition: all .2s ease;
+    border: 1px solid rgba($white, .3);
+    border-radius: 3px;
+    margin-top: 11px;
+    line-height: 33px;
+    padding: 0 14px 2px 12px;
+    &:hover {
+      border: 1px solid transparent;
+      background: rgba($black, .3);
+    }
+    &:focus {
+      border: 1px solid transparent;
+      background: rgba($black, .2);
+    }
+    &:active {
+      background: rgba($black, .4);
+    }
+    svg {
+      margin: 0 6px -1px 0;
+      width: 12px;
+      height: 12px;
+      display: inline;
+    }
+  }
+}
