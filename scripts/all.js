@@ -6707,7 +6707,9 @@ $(document).ready(function() {
 
     function clearUserEditable() {
       if (confirm("Permanently erase all changes?")) {
-        localStorage.clear();
+        localStorage.removeItem("userEditable");
+        localStorage.removeItem("userSettings");
+        localStorage.removeItem("userTheme");
         document.getElementById("editor").innerHTML = "<div class='handle'></div><h1 style='filter: blur(0px);' contenteditable autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'>1ilI|!</h1>";
         var editorContent = $.get(document.location.href, function(data) {
           var editorState = $(data).filter("div#controls").html();
