@@ -390,7 +390,7 @@ $(document).ready(function() {
   window.setTimeout(function() {
     $(".overlay").addClass("content-ready");
     $(".func--disabled").removeClass("func--disabled");
-  }, 1700);
+  }, 1300);
 
   if (!localStorage.getItem("userNoticeDismissed")) {
     window.setTimeout(function() {

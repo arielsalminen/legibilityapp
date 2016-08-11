@@ -9,6 +9,7 @@ html.no-scroll {
 body {
   -webkit-font-smoothing: subpixel-antialiased;
   font: normal normal 11px/1.6 $base;
+  min-width: 320px;
   background: $white;
   text-align: left;
   color: $black;
