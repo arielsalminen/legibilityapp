@@ -89,9 +89,7 @@ $(document).ready(function() {
       }
     }
 
-    window.addEventListener("load", function() {
-      getUserEditable();
-    }, false);
+    getUserEditable();
 
 
     var save = document.querySelector(".func--save");
