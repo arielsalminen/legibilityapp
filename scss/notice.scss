@@ -25,6 +25,11 @@
   opacity: 0;
   left: 0;
   top: 0;
+  @media (-webkit-max-device-pixel-ratio: 1.5),
+         (max-resolution: 120dpi) {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
   @media (max-width: 650px) {
     display: none;
   }

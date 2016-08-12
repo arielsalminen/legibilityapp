@@ -18,6 +18,11 @@ header {
   height: 60px;
   padding: 0 27px 0 30px;
   color: $white;
+  @media (-webkit-max-device-pixel-ratio: 1.5),
+         (max-resolution: 120dpi) {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
   .logo {
     width: 124px;
     height: 20px;

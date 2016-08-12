@@ -41,6 +41,11 @@ p {
   z-index: 99;
   border-top-left-radius: 4px;
   color: darken($white, 10%);
+  @media (-webkit-max-device-pixel-ratio: 1.5),
+         (max-resolution: 120dpi) {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
   strong {
     font-weight: 700;
     color: $white;
