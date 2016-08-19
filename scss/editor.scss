@@ -22,6 +22,9 @@
   .vision & {
     border: 1px solid transparent;
   }
+  &:hover {
+    cursor: text;
+  }
   @media (max-width: 650px) {
     display: none;
   }
@@ -69,6 +72,7 @@
 h1 {
   position: relative;
   overflow: visible;
+  min-width: 3px;
   z-index: 70;
   width: auto;
   font-size: 20vw;
