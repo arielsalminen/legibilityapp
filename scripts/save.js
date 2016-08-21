@@ -26,10 +26,12 @@ $(document).ready(function() {
       if (!$(".func--save").hasClass("func--save__savingend")) {
         var edits = document.querySelector(".editor").innerHTML;
         var settings = document.getElementById("controls").innerHTML;
+        var customFont = document.getElementById("otherfont").value;
         var theme = document.documentElement.className;
         saving();
         localStorage.setItem("userEditable", edits);
         localStorage.setItem("userSettings", settings);
+        localStorage.setItem("userFont", customFont);
         localStorage.setItem("userTheme", theme);
       }
     }
@@ -38,6 +40,7 @@ $(document).ready(function() {
       var edits = localStorage.getItem("userEditable");
       var settings = localStorage.getItem("userSettings");
       var theme = localStorage.getItem("userTheme");
+      var customFont = localStorage.getItem("userFont", customFont);
       if (edits) {
         document.querySelector(".editor").innerHTML = edits;
         if (settings) {
@@ -46,6 +49,9 @@ $(document).ready(function() {
         }
         if (theme) {
           document.documentElement.className = theme;
+        }
+        if (customFont) {
+          document.getElementById("otherfont").value = customFont;
         }
         initFunctionalities();
 
@@ -80,6 +86,7 @@ $(document).ready(function() {
         localStorage.removeItem("userEditable");
         localStorage.removeItem("userSettings");
         localStorage.removeItem("userTheme");
+        localStorage.removeItem("userFont");
         document.getElementById("editor").innerHTML = "<div class='handle'></div><h1 style='filter: blur(0px);' contenteditable autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'>1ilI|!</h1>";
         var editorContent = $.get(document.location.href, function(data) {
           var editorState = $(data).filter("div#controls").html();

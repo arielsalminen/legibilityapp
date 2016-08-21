@@ -53,23 +53,28 @@ var savedContentWasLoaded = false;
       var selected = $("#typeface option:selected");
       if (selected) {
         var font_family = selected[0].value;
-        $select.val(font_family).trigger("change");
-        WebFont.load({
-          google: {
-            families: [font_family]
-          },
-          fontactive: function(familyName, fvd) {
-            // make sure the callback is a function
-            if (typeof settings.loadedCallback == "function") {
-              // brings the scope to the callback
-              settings.loadedCallback.call(this, familyName);
+        if (font_family == "Specify local font") {
+          $('#otherfont').show();
+        } else {
+          $('#otherfont').hide();
+          $select.val(font_family).trigger("change");
+          WebFont.load({
+            google: {
+              families: [font_family]
+            },
+            fontactive: function(familyName, fvd) {
+              // make sure the callback is a function
+              if (typeof settings.loadedCallback == "function") {
+                // brings the scope to the callback
+                settings.loadedCallback.call(this, familyName);
+              }
             }
-          }
-        });
+          });
+        }
       }
-      $('#otherfont').hide();
     } else {
       $select.val("Specify local font").trigger("change");
+      $("#typeface option[value='Specify local font']").attr('selected','selected');
     }
 
     this.on("select2:open", function (e) {
