@@ -1,32 +1,32 @@
 
 .select2-results__options li {
-	padding:1px !important;
+  padding:1px !important;
 }
 .select2-results__options li div {
-	background: url("../images/fonts.png") !important;
-	background-repeat: no-repeat;
-	overflow: hidden;
-	text-indent: -999px;
-	height: 29px;
+  background: url("../images/fonts.png") !important;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  text-indent: -999px;
+  height: 29px;
 }
 
 .select2-results__options li:last-child div {
-	background: $white none !important;
-	color: $black;
-	line-height: 2.2;
-	text-indent: 10px;
+  background: $white none !important;
+  color: $black;
+  line-height: 2.2;
+  text-indent: 10px;
 }
 
 .select2-results__options li:last-child[aria-selected="true"] div,
 .select2-results__options li:last-child[aria-selected="true"]:hover div {
-	color: $focus;
+  color: $focus;
 }
 
 .select2-results__options li:last-child:hover div {
-	color: $black;
+  color: $black;
 }
 
 #controls .select2-container {
-	text-align: left !important;
-	width: 100% !important;
+  text-align: left !important;
+  width: 100% !important;
 }

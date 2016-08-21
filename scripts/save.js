@@ -42,6 +42,7 @@ $(document).ready(function() {
         document.querySelector(".editor").innerHTML = edits;
         if (settings) {
           document.getElementById("controls").innerHTML = settings;
+          savedContentWasLoaded = true;
         }
         if (theme) {
           document.documentElement.className = theme;

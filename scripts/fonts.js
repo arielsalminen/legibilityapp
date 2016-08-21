@@ -11,6 +11,8 @@
  * Date: 2016-Feb-20
  */
 
+var savedContentWasLoaded = false;
+
 (function($) {
   $.fn.higooglefonts = function (options) {
 
@@ -46,7 +48,29 @@
       }
     });
 
-    $select.val("Specify local font").trigger("change");
+    // Initially select the local font (but in save.js load different if needed)
+    if (savedContentWasLoaded) {
+      var selected = $("#typeface option:selected");
+      if (selected) {
+        var font_family = selected[0].value;
+        $select.val(font_family).trigger("change");
+        WebFont.load({
+          google: {
+            families: [font_family]
+          },
+          fontactive: function(familyName, fvd) {
+            // make sure the callback is a function
+            if (typeof settings.loadedCallback == "function") {
+              // brings the scope to the callback
+              settings.loadedCallback.call(this, familyName);
+            }
+          }
+        });
+      }
+      $('#otherfont').hide();
+    } else {
+      $select.val("Specify local font").trigger("change");
+    }
 
     this.on("select2:open", function (e) {
       jQuery('.select2-search input').prop('focus',false);
@@ -73,6 +97,10 @@
         $('#otherfont').show();
       } else {
         $('#otherfont').hide();
+
+        // Select this option from the original select to save it...
+        $("#typeface option[value='" + font_family + "']").attr('selected','selected');
+
         WebFont.load({
           google: {
             families: [font_family]

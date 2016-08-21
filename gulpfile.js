@@ -36,4 +36,5 @@ gulp.task('serve', ['sass', 'uglify'], function() {
   gulp.watch('scss/*.scss', ['sass']);
   gulp.watch('scripts/controls.js', ['uglify']);
   gulp.watch('scripts/save.js', ['uglify']);
+  gulp.watch('scripts/fonts.js', ['uglify']);
 });
