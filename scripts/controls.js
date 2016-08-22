@@ -392,6 +392,10 @@ function initFunctionalities() {
 
 $(document).ready(function() {
 
+  // Preload font previews
+  var pic = new Image();
+  pic.src = "../images/fonts.png";
+
   window.setTimeout(function() {
     $(".overlay").addClass("content-ready");
     $(".func--disabled").removeClass("func--disabled");
