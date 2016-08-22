@@ -14,8 +14,8 @@ var html = document.documentElement;
 // Needed for when things are loaded from localStorage
 // to reinitialize the instances
 function initFunctionalities() {
-
   type = document.getElementsByTagName("h1")[0];
+
   $(".draggable").draggable({
     handle: ".handle"
   });
@@ -74,13 +74,14 @@ function initFunctionalities() {
   });
 
   refreshFeatures();
-  refreshFont();
 
   $("#typeface").higooglefonts({
     loadedCallback:function(font){
       $("h1").css("font-family", font);
     }
   });
+
+  refreshFont();
 
   $("select").each(function() {
    if (!$(this).hasClass("customselect")) {
@@ -390,7 +391,6 @@ function initFunctionalities() {
 }
 
 $(document).ready(function() {
-  initFunctionalities();
 
   window.setTimeout(function() {
     $(".overlay").addClass("content-ready");
@@ -413,11 +413,13 @@ $(document).ready(function() {
 });
 
 function refreshFont() {
-  var typefaceSelect = document.getElementById("typeface");
-  if (typefaceSelect.selectedIndex == 0) {
-    refreshOther();
-  } else {
-    document.getElementsByTagName("h1")[0].style.fontFamily = typefaceSelect.value;
+  var selected = $("#typeface option:selected");
+  if (selected) {
+    if (selected[0].value == "Specify local font") {
+      refreshOther();
+    } else {
+      document.getElementsByTagName("h1")[0].style.fontFamily = document.getElementById("typeface").value;
+    }
   }
 }
 

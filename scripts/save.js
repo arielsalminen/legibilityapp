@@ -53,7 +53,6 @@ $(document).ready(function() {
         if (customFont) {
           document.getElementById("otherfont").value = customFont;
         }
-        initFunctionalities();
 
         var visionValue = document.getElementById("visionoutput").innerHTML;
         document.getElementById("vision").value = visionValue.replace("ft", "");
@@ -79,6 +78,7 @@ $(document).ready(function() {
         var letterspacingValue = document.getElementById("letterspacingoutput").innerHTML;
         document.getElementById("letterspacing").value = letterspacingValue.replace("em", "");
       }
+      initFunctionalities();
     }
 
     function clearUserEditable() {

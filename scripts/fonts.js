@@ -42,13 +42,13 @@ var savedContentWasLoaded = false;
       allowClear: false,
       minimumResultsForSearch: Infinity,
       templateResult: function (result) {
-        var state = $('<div style="background-position:0 -'+y+'px !important;" class="li_'+result.itemId+'">'+result.text+'</div>');
+        var state = $('<div style="background-position:0 -' + y + 'px !important;" class="li_' + result.itemId + '">' + result.text + '</div>');
         y += 29;
         return state;
       }
     });
 
-    // Initially select the local font (but in save.js load different if needed)
+    // Initially select the local font
     if (savedContentWasLoaded) {
       var selected = $("#typeface option:selected");
       if (selected) {
@@ -78,7 +78,7 @@ var savedContentWasLoaded = false;
     }
 
     this.on("select2:open", function (e) {
-      jQuery('.select2-search input').prop('focus',false);
+      $('.select2-search input').prop('focus',false);
       y = 0;
     });
 
@@ -100,10 +100,13 @@ var savedContentWasLoaded = false;
       if (font_family == "Specify local font") {
         refreshOther();
         $('#otherfont').show();
+        $("#typeface option").removeAttr('selected');
+        $("#typeface option[value='" + font_family + "']").attr('selected','selected');
       } else {
         $('#otherfont').hide();
 
         // Select this option from the original select to save it...
+        $("#typeface option").removeAttr('selected');
         $("#typeface option[value='" + font_family + "']").attr('selected','selected');
 
         WebFont.load({
