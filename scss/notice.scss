@@ -2,7 +2,8 @@
 /* NOTICE
 --------------------------------------------- */
 
-.notice {
+.notice,
+.notice-2 {
   @extend %prevent-user-select;
   -webkit-transform: translate3d(-50%, -4em, 0);
   transform: translate3d(-50%, -4em, 0);
@@ -50,4 +51,20 @@
     top: 19px;
   }
   p { margin: 0 }
+}
+
+.notice-2 {
+  color: mix($black, $focus, 30%);
+  background: mix($white, $focus, 80%);
+  &.active {
+    top: 60px;
+    z-index: 901;
+    cursor: default;
+    text-align: center;
+    padding: 0;
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+    visibility: visible;
+    opacity: 1;
+  }
 }

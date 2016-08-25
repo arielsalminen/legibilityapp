@@ -6336,14 +6336,6 @@ $(document).ready(function() {
 });
 
 // Sanity check
-(function() {
-  if (!feature.svg || !feature.localStorage || !feature.addEventListener || !feature.css3Dtransform || !feature.viewportUnit) {
-    alert("Browser not supported");
-    document.documentElement.className = "nosupport";
-    return;
-  }
-})();
-
 var type, once, initialSize;
 var ua = navigator.userAgent;
 var html = document.documentElement;
@@ -6351,6 +6343,14 @@ var html = document.documentElement;
 // Needed for when things are loaded from localStorage
 // to reinitialize the instances
 function initFunctionalities() {
+  (function() {
+    if (!feature.svg || !feature.localStorage || !feature.addEventListener || !feature.css3Dtransform || !feature.viewportUnit) {
+      document.getElementById("notice-2").className += " active";
+      html.className = "nosupport";
+      throw new Error("Browser not supported");
+    }
+  })();
+
   type = document.getElementsByTagName("h1")[0];
 
   $(".draggable").draggable({
@@ -6384,9 +6384,6 @@ function initFunctionalities() {
     function() {
       $(this).toggleClass("closed");
       $(this).next(".group").slideToggle(200);
-      setTimeout(function() {
-        resize();
-      }, 201);
     }
   );
 
@@ -6704,27 +6701,6 @@ function initFunctionalities() {
     type.style.webkitFontFeatureSettings = wfeatures;
     type.style.fontFeatureSettings = wfeatures;
   };
-
-  function resize() {
-    var viewport = window.innerHeight;
-    var body = document.body;
-    var bodyHeight = Math.max(
-        body.scrollHeight,
-        body.offsetHeight,
-        html.clientHeight,
-        html.scrollHeight,
-        html.offsetHeight
-      );
-
-    if (bodyHeight === viewport) {
-      html.classList.add("no-scroll");
-    } else {
-      html.classList.remove("no-scroll");
-    }
-  }
-
-  window.addEventListener("resize", resize, false);
-  resize();
 }
 
 $(document).ready(function() {

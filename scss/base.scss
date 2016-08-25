@@ -2,10 +2,6 @@ html,body {
   height: 100%;
 }
 
-html.no-scroll {
-  overflow-y: hidden;
-}
-
 body {
   -webkit-font-smoothing: subpixel-antialiased;
   font: normal normal 11px/1.6 $base;
