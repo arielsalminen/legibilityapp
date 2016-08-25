@@ -54,8 +54,8 @@
 }
 
 .notice-2 {
-  color: mix($black, $focus, 30%);
-  background: mix($white, $focus, 80%);
+  color: mix($black, $warning, 65%);
+  background: $warning;
   &.active {
     top: 60px;
     z-index: 901;
