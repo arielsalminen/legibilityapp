@@ -6765,32 +6765,14 @@ function refreshFont() {
 }
 
 function refreshBoard() {
-  document.getElementById("overglow").value = 0;
-  document.getElementById("pixelation").value = 0;
-  document.getElementById("vision").value = 0;
-  $("#overglow").trigger("input");
-  $("#vision").trigger("input");
-  $("#pixelation").trigger("input");
   if ($("#board").val() == "negative") {
     document.documentElement.classList.add("negative");
   } else {
     document.documentElement.classList.remove("negative");
   }
-  $("#overglow").css('background', '#B3B3B3');
-  $("#overglowoutput").html("0");
-  $("#pixelation").css('background', '#B3B3B3');
-  $("#pixelationoutput").html("0px");
-  $("#vision").css('background', '#B3B3B3');
-  $("#visionoutput").html("0ft");
-  $(".reset").hide();
-
-  document.documentElement.classList.remove("pixelation");
-  document.documentElement.classList.remove("overglow");
-  document.documentElement.classList.remove("vision");
-  document.querySelector(".floor").classList.remove("active");
-  document.querySelector(".wall-left").classList.remove("active");
-  document.querySelector(".wall-right").classList.remove("active");
-  document.getElementsByTagName("h1")[0].style.transform = "translateZ(0)";
+  if (!html.classList.contains("pixelation")) {
+    $("#overglow").trigger("input");
+  }
 }
 
 function refreshOther() {
