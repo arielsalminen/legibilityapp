@@ -316,54 +316,6 @@ function initFunctionalities() {
     document.documentElement.classList.remove("space3d");
     $(this).hide();
   });
-
-
-  var defaultOff = [
-    'smcp', 'c2sc',
-    'lnum', 'onum', 'tnum', 'pnum',
-    'frac', 'afrc',
-    'sups', 'subs',
-    'zero', 'nalt',
-    'kern',
-    'liga', 'dlig', 'hlig', 'clig',
-    'swsh', 'calt', 'hist', 'salt',
-    'ss01', 'ss02', 'ss03', 'ss04'
-  ];
-
-  var defaultOn = [];
-
-  function refreshFeatures() {
-
-
-    var mfeatures = "";
-    var wfeatures = "";
-    var f;
-    for (f in defaultOn) {
-      if (!document.getElementById(defaultOn[f]).checked) { wfeatures += "'" + defaultOn[f] + "' 0, "; }
-    }
-    for (f in defaultOff) {
-      if (document.getElementById(defaultOff[f]).checked) { wfeatures += "'" + defaultOff[f] + "' 1, "; }
-    }
-
-    if ("MozFontFeatureSettings" in type.style) {
-      // first, reset the property to normal
-      type.style.MozFontFeatureSettings = "normal";
-
-      // old Firefox syntax
-      type.style.MozFontFeatureSettings = "'" + wfeatures + "'";
-
-      // if that failed setting will be "normal", use standard syntax
-      if (type.style.MozFontFeatureSettings == "normal") {
-        type.style.MozFontFeatureSettings = wfeatures;
-      }
-    }
-
-    wfeatures = wfeatures.substring(0, wfeatures.length - 2);
-    type.style.msFontFeatureSettings = "'" + wfeatures + "'";
-    type.style.oFontFeatureSettings = "'" + wfeatures + "'";
-    type.style.webkitFontFeatureSettings = wfeatures;
-    type.style.fontFeatureSettings = wfeatures;
-  };
 }
 
 $(document).ready(function() {
@@ -417,3 +369,50 @@ function refreshBoard() {
 function refreshOther() {
   document.getElementsByTagName("h1")[0].style.fontFamily = document.getElementById("otherfont").value;
 }
+
+var defaultOff = [
+  'smcp', 'c2sc',
+  'lnum', 'onum', 'tnum', 'pnum',
+  'frac', 'afrc',
+  'sups', 'subs',
+  'zero', 'nalt',
+  'kern',
+  'liga', 'dlig', 'hlig', 'clig',
+  'swsh', 'calt', 'hist', 'salt',
+  'ss01', 'ss02', 'ss03', 'ss04'
+];
+
+var defaultOn = [];
+
+function refreshFeatures() {
+
+
+  var mfeatures = "";
+  var wfeatures = "";
+  var f;
+  for (f in defaultOn) {
+    if (!document.getElementById(defaultOn[f]).checked) { wfeatures += "'" + defaultOn[f] + "' 0, "; }
+  }
+  for (f in defaultOff) {
+    if (document.getElementById(defaultOff[f]).checked) { wfeatures += "'" + defaultOff[f] + "' 1, "; }
+  }
+
+  if ("MozFontFeatureSettings" in type.style) {
+    // first, reset the property to normal
+    type.style.MozFontFeatureSettings = "normal";
+
+    // old Firefox syntax
+    type.style.MozFontFeatureSettings = "'" + wfeatures + "'";
+
+    // if that failed setting will be "normal", use standard syntax
+    if (type.style.MozFontFeatureSettings == "normal") {
+      type.style.MozFontFeatureSettings = wfeatures;
+    }
+  }
+
+  wfeatures = wfeatures.substring(0, wfeatures.length - 2);
+  type.style.msFontFeatureSettings = "'" + wfeatures + "'";
+  type.style.oFontFeatureSettings = "'" + wfeatures + "'";
+  type.style.webkitFontFeatureSettings = wfeatures;
+  type.style.fontFeatureSettings = wfeatures;
+};
