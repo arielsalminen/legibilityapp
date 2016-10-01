@@ -6409,6 +6409,33 @@ $(document).ready(function() {
         localStorage.removeItem("userSettings");
         localStorage.removeItem("userTheme");
         localStorage.removeItem("userFont");
+
+        localStorage.removeItem("userOT-kern");
+        localStorage.removeItem("userOT-liga");
+        localStorage.removeItem("userOT-dlig");
+        localStorage.removeItem("userOT-hlig");
+        localStorage.removeItem("userOT-clig");
+        localStorage.removeItem("userOT-smcp");
+        localStorage.removeItem("userOT-c2sc");
+        localStorage.removeItem("userOT-zero");
+        localStorage.removeItem("userOT-nalt");
+        localStorage.removeItem("userOT-sups");
+        localStorage.removeItem("userOT-subs");
+        localStorage.removeItem("userOT-swsh");
+        localStorage.removeItem("userOT-calt");
+        localStorage.removeItem("userOT-hist");
+        localStorage.removeItem("userOT-salt");
+        localStorage.removeItem("userOT-ss01");
+        localStorage.removeItem("userOT-ss02");
+        localStorage.removeItem("userOT-ss03");
+        localStorage.removeItem("userOT-ss04");
+        localStorage.removeItem("userOT-lnum");
+        localStorage.removeItem("userOT-onum");
+        localStorage.removeItem("userOT-pnum");
+        localStorage.removeItem("userOT-tnum");
+        localStorage.removeItem("userOT-frac");
+        localStorage.removeItem("userOT-afrc");
+
         document.getElementById("editor").innerHTML = "<div class='handle'></div><h1 style='filter: blur(0px);' contenteditable autocomplete='off' autocorrect='off' autocapitalize='off' spellcheck='false'>1ilI|!</h1>";
         var editorContent = $.get(document.location.href, function(data) {
           var editorState = $(data).filter("div#controls").html();
